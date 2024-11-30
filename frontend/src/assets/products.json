@@ -1,0 +1,1602 @@
+[
+    {
+        "name": "Product 1",
+        "categories": "Category 2",
+        "description": "Description for Product 1, a high-quality item.",
+        "costPrice": 51.5,
+        "sellingPrice": 72,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-02-02"
+    },
+    {
+        "name": "Product 2",
+        "categories": "Category 3",
+        "description": "Description for Product 2, a high-quality item.",
+        "costPrice": 53.0,
+        "sellingPrice": 74,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-03-03"
+    },
+    {
+        "name": "Product 3",
+        "categories": "Category 4",
+        "description": "Description for Product 3, a high-quality item.",
+        "costPrice": 54.5,
+        "sellingPrice": 76,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-04-04"
+    },
+    {
+        "name": "Product 4",
+        "categories": "Category 5",
+        "description": "Description for Product 4, a high-quality item.",
+        "costPrice": 56.0,
+        "sellingPrice": 78,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-05-05"
+    },
+    {
+        "name": "Product 5",
+        "categories": "Category 6",
+        "description": "Description for Product 5, a high-quality item.",
+        "costPrice": 57.5,
+        "sellingPrice": 80,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-06-06"
+    },
+    {
+        "name": "Product 6",
+        "categories": "Category 7",
+        "description": "Description for Product 6, a high-quality item.",
+        "costPrice": 59.0,
+        "sellingPrice": 82,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-07-07"
+    },
+    {
+        "name": "Product 7",
+        "categories": "Category 8",
+        "description": "Description for Product 7, a high-quality item.",
+        "costPrice": 60.5,
+        "sellingPrice": 84,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-08-08"
+    },
+    {
+        "name": "Product 8",
+        "categories": "Category 9",
+        "description": "Description for Product 8, a high-quality item.",
+        "costPrice": 62.0,
+        "sellingPrice": 86,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-09-09"
+    },
+    {
+        "name": "Product 9",
+        "categories": "Category 10",
+        "description": "Description for Product 9, a high-quality item.",
+        "costPrice": 63.5,
+        "sellingPrice": 88,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-10-10"
+    },
+    {
+        "name": "Product 10",
+        "categories": "Category 1",
+        "description": "Description for Product 10, a high-quality item.",
+        "costPrice": 65.0,
+        "sellingPrice": 90,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-11-11"
+    },
+    {
+        "name": "Product 11",
+        "categories": "Category 2",
+        "description": "Description for Product 11, a high-quality item.",
+        "costPrice": 66.5,
+        "sellingPrice": 92,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-12-12"
+    },
+    {
+        "name": "Product 12",
+        "categories": "Category 3",
+        "description": "Description for Product 12, a high-quality item.",
+        "costPrice": 68.0,
+        "sellingPrice": 94,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-01-13"
+    },
+    {
+        "name": "Product 13",
+        "categories": "Category 4",
+        "description": "Description for Product 13, a high-quality item.",
+        "costPrice": 69.5,
+        "sellingPrice": 96,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-02-14"
+    },
+    {
+        "name": "Product 14",
+        "categories": "Category 5",
+        "description": "Description for Product 14, a high-quality item.",
+        "costPrice": 71.0,
+        "sellingPrice": 98,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-03-15"
+    },
+    {
+        "name": "Product 15",
+        "categories": "Category 6",
+        "description": "Description for Product 15, a high-quality item.",
+        "costPrice": 72.5,
+        "sellingPrice": 100,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-04-16"
+    },
+    {
+        "name": "Product 16",
+        "categories": "Category 7",
+        "description": "Description for Product 16, a high-quality item.",
+        "costPrice": 74.0,
+        "sellingPrice": 102,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-05-17"
+    },
+    {
+        "name": "Product 17",
+        "categories": "Category 8",
+        "description": "Description for Product 17, a high-quality item.",
+        "costPrice": 75.5,
+        "sellingPrice": 104,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-06-18"
+    },
+    {
+        "name": "Product 18",
+        "categories": "Category 9",
+        "description": "Description for Product 18, a high-quality item.",
+        "costPrice": 77.0,
+        "sellingPrice": 106,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-07-19"
+    },
+    {
+        "name": "Product 19",
+        "categories": "Category 10",
+        "description": "Description for Product 19, a high-quality item.",
+        "costPrice": 78.5,
+        "sellingPrice": 108,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-08-20"
+    },
+    {
+        "name": "Product 20",
+        "categories": "Category 1",
+        "description": "Description for Product 20, a high-quality item.",
+        "costPrice": 80.0,
+        "sellingPrice": 110,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-09-21"
+    },
+    {
+        "name": "Product 21",
+        "categories": "Category 2",
+        "description": "Description for Product 21, a high-quality item.",
+        "costPrice": 81.5,
+        "sellingPrice": 112,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-10-22"
+    },
+    {
+        "name": "Product 22",
+        "categories": "Category 3",
+        "description": "Description for Product 22, a high-quality item.",
+        "costPrice": 83.0,
+        "sellingPrice": 114,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-11-23"
+    },
+    {
+        "name": "Product 23",
+        "categories": "Category 4",
+        "description": "Description for Product 23, a high-quality item.",
+        "costPrice": 84.5,
+        "sellingPrice": 116,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-12-24"
+    },
+    {
+        "name": "Product 24",
+        "categories": "Category 5",
+        "description": "Description for Product 24, a high-quality item.",
+        "costPrice": 86.0,
+        "sellingPrice": 118,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-01-25"
+    },
+    {
+        "name": "Product 25",
+        "categories": "Category 6",
+        "description": "Description for Product 25, a high-quality item.",
+        "costPrice": 87.5,
+        "sellingPrice": 120,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-02-26"
+    },
+    {
+        "name": "Product 26",
+        "categories": "Category 7",
+        "description": "Description for Product 26, a high-quality item.",
+        "costPrice": 89.0,
+        "sellingPrice": 122,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-03-27"
+    },
+    {
+        "name": "Product 27",
+        "categories": "Category 8",
+        "description": "Description for Product 27, a high-quality item.",
+        "costPrice": 90.5,
+        "sellingPrice": 124,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-04-28"
+    },
+    {
+        "name": "Product 28",
+        "categories": "Category 9",
+        "description": "Description for Product 28, a high-quality item.",
+        "costPrice": 92.0,
+        "sellingPrice": 126,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-05-01"
+    },
+    {
+        "name": "Product 29",
+        "categories": "Category 10",
+        "description": "Description for Product 29, a high-quality item.",
+        "costPrice": 93.5,
+        "sellingPrice": 128,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-06-02"
+    },
+    {
+        "name": "Product 30",
+        "categories": "Category 1",
+        "description": "Description for Product 30, a high-quality item.",
+        "costPrice": 95.0,
+        "sellingPrice": 130,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-07-03"
+    },
+    {
+        "name": "Product 31",
+        "categories": "Category 2",
+        "description": "Description for Product 31, a high-quality item.",
+        "costPrice": 96.5,
+        "sellingPrice": 132,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-08-04"
+    },
+    {
+        "name": "Product 32",
+        "categories": "Category 3",
+        "description": "Description for Product 32, a high-quality item.",
+        "costPrice": 98.0,
+        "sellingPrice": 134,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-09-05"
+    },
+    {
+        "name": "Product 33",
+        "categories": "Category 4",
+        "description": "Description for Product 33, a high-quality item.",
+        "costPrice": 99.5,
+        "sellingPrice": 136,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-10-06"
+    },
+    {
+        "name": "Product 34",
+        "categories": "Category 5",
+        "description": "Description for Product 34, a high-quality item.",
+        "costPrice": 101.0,
+        "sellingPrice": 138,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-11-07"
+    },
+    {
+        "name": "Product 35",
+        "categories": "Category 6",
+        "description": "Description for Product 35, a high-quality item.",
+        "costPrice": 102.5,
+        "sellingPrice": 140,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-12-08"
+    },
+    {
+        "name": "Product 36",
+        "categories": "Category 7",
+        "description": "Description for Product 36, a high-quality item.",
+        "costPrice": 104.0,
+        "sellingPrice": 142,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-01-09"
+    },
+    {
+        "name": "Product 37",
+        "categories": "Category 8",
+        "description": "Description for Product 37, a high-quality item.",
+        "costPrice": 105.5,
+        "sellingPrice": 144,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-02-10"
+    },
+    {
+        "name": "Product 38",
+        "categories": "Category 9",
+        "description": "Description for Product 38, a high-quality item.",
+        "costPrice": 107.0,
+        "sellingPrice": 146,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-03-11"
+    },
+    {
+        "name": "Product 39",
+        "categories": "Category 10",
+        "description": "Description for Product 39, a high-quality item.",
+        "costPrice": 108.5,
+        "sellingPrice": 148,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-04-12"
+    },
+    {
+        "name": "Product 40",
+        "categories": "Category 1",
+        "description": "Description for Product 40, a high-quality item.",
+        "costPrice": 110.0,
+        "sellingPrice": 150,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-05-13"
+    },
+    {
+        "name": "Product 41",
+        "categories": "Category 2",
+        "description": "Description for Product 41, a high-quality item.",
+        "costPrice": 111.5,
+        "sellingPrice": 152,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-06-14"
+    },
+    {
+        "name": "Product 42",
+        "categories": "Category 3",
+        "description": "Description for Product 42, a high-quality item.",
+        "costPrice": 113.0,
+        "sellingPrice": 154,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-07-15"
+    },
+    {
+        "name": "Product 43",
+        "categories": "Category 4",
+        "description": "Description for Product 43, a high-quality item.",
+        "costPrice": 114.5,
+        "sellingPrice": 156,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-08-16"
+    },
+    {
+        "name": "Product 44",
+        "categories": "Category 5",
+        "description": "Description for Product 44, a high-quality item.",
+        "costPrice": 116.0,
+        "sellingPrice": 158,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-09-17"
+    },
+    {
+        "name": "Product 45",
+        "categories": "Category 6",
+        "description": "Description for Product 45, a high-quality item.",
+        "costPrice": 117.5,
+        "sellingPrice": 160,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-10-18"
+    },
+    {
+        "name": "Product 46",
+        "categories": "Category 7",
+        "description": "Description for Product 46, a high-quality item.",
+        "costPrice": 119.0,
+        "sellingPrice": 162,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-11-19"
+    },
+    {
+        "name": "Product 47",
+        "categories": "Category 8",
+        "description": "Description for Product 47, a high-quality item.",
+        "costPrice": 120.5,
+        "sellingPrice": 164,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-12-20"
+    },
+    {
+        "name": "Product 48",
+        "categories": "Category 9",
+        "description": "Description for Product 48, a high-quality item.",
+        "costPrice": 122.0,
+        "sellingPrice": 166,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-01-21"
+    },
+    {
+        "name": "Product 49",
+        "categories": "Category 10",
+        "description": "Description for Product 49, a high-quality item.",
+        "costPrice": 123.5,
+        "sellingPrice": 168,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-02-22"
+    },
+    {
+        "name": "Product 50",
+        "categories": "Category 1",
+        "description": "Description for Product 50, a high-quality item.",
+        "costPrice": 125.0,
+        "sellingPrice": 170,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-03-23"
+    },
+    {
+        "name": "Product 51",
+        "categories": "Category 2",
+        "description": "Description for Product 51, a high-quality item.",
+        "costPrice": 126.5,
+        "sellingPrice": 172,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-04-24"
+    },
+    {
+        "name": "Product 52",
+        "categories": "Category 3",
+        "description": "Description for Product 52, a high-quality item.",
+        "costPrice": 128.0,
+        "sellingPrice": 174,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-05-25"
+    },
+    {
+        "name": "Product 53",
+        "categories": "Category 4",
+        "description": "Description for Product 53, a high-quality item.",
+        "costPrice": 129.5,
+        "sellingPrice": 176,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-06-26"
+    },
+    {
+        "name": "Product 54",
+        "categories": "Category 5",
+        "description": "Description for Product 54, a high-quality item.",
+        "costPrice": 131.0,
+        "sellingPrice": 178,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-07-27"
+    },
+    {
+        "name": "Product 55",
+        "categories": "Category 6",
+        "description": "Description for Product 55, a high-quality item.",
+        "costPrice": 132.5,
+        "sellingPrice": 180,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-08-28"
+    },
+    {
+        "name": "Product 56",
+        "categories": "Category 7",
+        "description": "Description for Product 56, a high-quality item.",
+        "costPrice": 134.0,
+        "sellingPrice": 182,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-09-01"
+    },
+    {
+        "name": "Product 57",
+        "categories": "Category 8",
+        "description": "Description for Product 57, a high-quality item.",
+        "costPrice": 135.5,
+        "sellingPrice": 184,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-10-02"
+    },
+    {
+        "name": "Product 58",
+        "categories": "Category 9",
+        "description": "Description for Product 58, a high-quality item.",
+        "costPrice": 137.0,
+        "sellingPrice": 186,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-11-03"
+    },
+    {
+        "name": "Product 59",
+        "categories": "Category 10",
+        "description": "Description for Product 59, a high-quality item.",
+        "costPrice": 138.5,
+        "sellingPrice": 188,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-12-04"
+    },
+    {
+        "name": "Product 60",
+        "categories": "Category 1",
+        "description": "Description for Product 60, a high-quality item.",
+        "costPrice": 140.0,
+        "sellingPrice": 190,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-01-05"
+    },
+    {
+        "name": "Product 61",
+        "categories": "Category 2",
+        "description": "Description for Product 61, a high-quality item.",
+        "costPrice": 141.5,
+        "sellingPrice": 192,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-02-06"
+    },
+    {
+        "name": "Product 62",
+        "categories": "Category 3",
+        "description": "Description for Product 62, a high-quality item.",
+        "costPrice": 143.0,
+        "sellingPrice": 194,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-03-07"
+    },
+    {
+        "name": "Product 63",
+        "categories": "Category 4",
+        "description": "Description for Product 63, a high-quality item.",
+        "costPrice": 144.5,
+        "sellingPrice": 196,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-04-08"
+    },
+    {
+        "name": "Product 64",
+        "categories": "Category 5",
+        "description": "Description for Product 64, a high-quality item.",
+        "costPrice": 146.0,
+        "sellingPrice": 198,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-05-09"
+    },
+    {
+        "name": "Product 65",
+        "categories": "Category 6",
+        "description": "Description for Product 65, a high-quality item.",
+        "costPrice": 147.5,
+        "sellingPrice": 200,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-06-10"
+    },
+    {
+        "name": "Product 66",
+        "categories": "Category 7",
+        "description": "Description for Product 66, a high-quality item.",
+        "costPrice": 149.0,
+        "sellingPrice": 202,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-07-11"
+    },
+    {
+        "name": "Product 67",
+        "categories": "Category 8",
+        "description": "Description for Product 67, a high-quality item.",
+        "costPrice": 150.5,
+        "sellingPrice": 204,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-08-12"
+    },
+    {
+        "name": "Product 68",
+        "categories": "Category 9",
+        "description": "Description for Product 68, a high-quality item.",
+        "costPrice": 152.0,
+        "sellingPrice": 206,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-09-13"
+    },
+    {
+        "name": "Product 69",
+        "categories": "Category 10",
+        "description": "Description for Product 69, a high-quality item.",
+        "costPrice": 153.5,
+        "sellingPrice": 208,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-10-14"
+    },
+    {
+        "name": "Product 70",
+        "categories": "Category 1",
+        "description": "Description for Product 70, a high-quality item.",
+        "costPrice": 155.0,
+        "sellingPrice": 210,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-11-15"
+    },
+    {
+        "name": "Product 71",
+        "categories": "Category 2",
+        "description": "Description for Product 71, a high-quality item.",
+        "costPrice": 156.5,
+        "sellingPrice": 212,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-12-16"
+    },
+    {
+        "name": "Product 72",
+        "categories": "Category 3",
+        "description": "Description for Product 72, a high-quality item.",
+        "costPrice": 158.0,
+        "sellingPrice": 214,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-01-17"
+    },
+    {
+        "name": "Product 73",
+        "categories": "Category 4",
+        "description": "Description for Product 73, a high-quality item.",
+        "costPrice": 159.5,
+        "sellingPrice": 216,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-02-18"
+    },
+    {
+        "name": "Product 74",
+        "categories": "Category 5",
+        "description": "Description for Product 74, a high-quality item.",
+        "costPrice": 161.0,
+        "sellingPrice": 218,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-03-19"
+    },
+    {
+        "name": "Product 75",
+        "categories": "Category 6",
+        "description": "Description for Product 75, a high-quality item.",
+        "costPrice": 162.5,
+        "sellingPrice": 220,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-04-20"
+    },
+    {
+        "name": "Product 76",
+        "categories": "Category 7",
+        "description": "Description for Product 76, a high-quality item.",
+        "costPrice": 164.0,
+        "sellingPrice": 222,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-05-21"
+    },
+    {
+        "name": "Product 77",
+        "categories": "Category 8",
+        "description": "Description for Product 77, a high-quality item.",
+        "costPrice": 165.5,
+        "sellingPrice": 224,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-06-22"
+    },
+    {
+        "name": "Product 78",
+        "categories": "Category 9",
+        "description": "Description for Product 78, a high-quality item.",
+        "costPrice": 167.0,
+        "sellingPrice": 226,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-07-23"
+    },
+    {
+        "name": "Product 79",
+        "categories": "Category 10",
+        "description": "Description for Product 79, a high-quality item.",
+        "costPrice": 168.5,
+        "sellingPrice": 228,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-08-24"
+    },
+    {
+        "name": "Product 80",
+        "categories": "Category 1",
+        "description": "Description for Product 80, a high-quality item.",
+        "costPrice": 170.0,
+        "sellingPrice": 230,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-09-25"
+    },
+    {
+        "name": "Product 81",
+        "categories": "Category 2",
+        "description": "Description for Product 81, a high-quality item.",
+        "costPrice": 171.5,
+        "sellingPrice": 232,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-10-26"
+    },
+    {
+        "name": "Product 82",
+        "categories": "Category 3",
+        "description": "Description for Product 82, a high-quality item.",
+        "costPrice": 173.0,
+        "sellingPrice": 234,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-11-27"
+    },
+    {
+        "name": "Product 83",
+        "categories": "Category 4",
+        "description": "Description for Product 83, a high-quality item.",
+        "costPrice": 174.5,
+        "sellingPrice": 236,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-12-28"
+    },
+    {
+        "name": "Product 84",
+        "categories": "Category 5",
+        "description": "Description for Product 84, a high-quality item.",
+        "costPrice": 176.0,
+        "sellingPrice": 238,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-01-01"
+    },
+    {
+        "name": "Product 85",
+        "categories": "Category 6",
+        "description": "Description for Product 85, a high-quality item.",
+        "costPrice": 177.5,
+        "sellingPrice": 240,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-02-02"
+    },
+    {
+        "name": "Product 86",
+        "categories": "Category 7",
+        "description": "Description for Product 86, a high-quality item.",
+        "costPrice": 179.0,
+        "sellingPrice": 242,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-03-03"
+    },
+    {
+        "name": "Product 87",
+        "categories": "Category 8",
+        "description": "Description for Product 87, a high-quality item.",
+        "costPrice": 180.5,
+        "sellingPrice": 244,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-04-04"
+    },
+    {
+        "name": "Product 88",
+        "categories": "Category 9",
+        "description": "Description for Product 88, a high-quality item.",
+        "costPrice": 182.0,
+        "sellingPrice": 246,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-05-05"
+    },
+    {
+        "name": "Product 89",
+        "categories": "Category 10",
+        "description": "Description for Product 89, a high-quality item.",
+        "costPrice": 183.5,
+        "sellingPrice": 248,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-06-06"
+    },
+    {
+        "name": "Product 90",
+        "categories": "Category 1",
+        "description": "Description for Product 90, a high-quality item.",
+        "costPrice": 185.0,
+        "sellingPrice": 250,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-07-07"
+    },
+    {
+        "name": "Product 91",
+        "categories": "Category 2",
+        "description": "Description for Product 91, a high-quality item.",
+        "costPrice": 186.5,
+        "sellingPrice": 252,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-08-08"
+    },
+    {
+        "name": "Product 92",
+        "categories": "Category 3",
+        "description": "Description for Product 92, a high-quality item.",
+        "costPrice": 188.0,
+        "sellingPrice": 254,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-09-09"
+    },
+    {
+        "name": "Product 93",
+        "categories": "Category 4",
+        "description": "Description for Product 93, a high-quality item.",
+        "costPrice": 189.5,
+        "sellingPrice": 256,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-10-10"
+    },
+    {
+        "name": "Product 94",
+        "categories": "Category 5",
+        "description": "Description for Product 94, a high-quality item.",
+        "costPrice": 191.0,
+        "sellingPrice": 258,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-11-11"
+    },
+    {
+        "name": "Product 95",
+        "categories": "Category 6",
+        "description": "Description for Product 95, a high-quality item.",
+        "costPrice": 192.5,
+        "sellingPrice": 260,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-12-12"
+    },
+    {
+        "name": "Product 96",
+        "categories": "Category 7",
+        "description": "Description for Product 96, a high-quality item.",
+        "costPrice": 194.0,
+        "sellingPrice": 262,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 2"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-01-13"
+    },
+    {
+        "name": "Product 97",
+        "categories": "Category 8",
+        "description": "Description for Product 97, a high-quality item.",
+        "costPrice": 195.5,
+        "sellingPrice": 264,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 3"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-02-14"
+    },
+    {
+        "name": "Product 98",
+        "categories": "Category 9",
+        "description": "Description for Product 98, a high-quality item.",
+        "costPrice": 197.0,
+        "sellingPrice": 266,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 4"
+        ],
+        "destroyedQuantity": 2,
+        "expiryDate": "2025-03-15"
+    },
+    {
+        "name": "Product 99",
+        "categories": "Category 10",
+        "description": "Description for Product 99, a high-quality item.",
+        "costPrice": 198.5,
+        "sellingPrice": 268,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 5"
+        ],
+        "destroyedQuantity": 0,
+        "expiryDate": "2025-04-16"
+    },
+    {
+        "name": "Product 100",
+        "categories": "Category 1",
+        "description": "Description for Product 100, a high-quality item.",
+        "costPrice": 200.0,
+        "sellingPrice": 270,
+        "purchaseDate": [
+            "2024-11-01",
+            "2024-11-15"
+        ],
+        "supplierName": [
+            "Supplier 1"
+        ],
+        "destroyedQuantity": 1,
+        "expiryDate": "2025-05-17"
+    }
+]

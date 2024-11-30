@@ -33,7 +33,8 @@ const customerSchema = new Schema({
                 type:Date,
                 required:true
             }
-        }]
+        }],
+        default:[]
     },
     totalSpend:{
         type:Number,
@@ -43,4 +44,6 @@ const customerSchema = new Schema({
 
 
 
-export default Customer = new model("customer",customerSchema);
+const Customer = new model("customer",customerSchema);
+
+export {Customer}
