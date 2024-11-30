@@ -36,7 +36,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex">
-                        <Link to={'/'}  className="btn btn-ghost text-2xl font-extrabold">MERI <span className='text-pink-600'>DUKAN</span></Link>
+                        <Link to={'/'} className="btn btn-ghost text-2xl font-extrabold">MERI <span className='text-pink-600'>DUKAN</span></Link>
                     </div>
 
                 </div>
@@ -52,29 +52,20 @@ const Navbar = () => {
                         <li className='hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl'><Link to={'/categories'}>Categories</Link></li>
                     </ul>
                 </div>
-                <div className="flex-none">
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img
-                                    alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                <Link to={"/profile"}>
+                    <div className="flex-none">
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img
+                                        alt="Tailwind CSS Navbar component"
+                                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                </div>
                             </div>
-                        </div>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                            <li className='hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl'>
-                                <Link to={"/product"}>
-                                    Product
-                                </Link>
-                            </li>
 
-                            <li className='hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl'><Link to={"/addcustomers"}>Customers</Link> </li>
-                            <li className='hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl'><Link to={'/categories'}>Categories</Link></li>
-                        </ul>
+                        </div>
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
     )

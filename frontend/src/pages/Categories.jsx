@@ -15,7 +15,7 @@ const Categories = () => {
     return (
         <div>
             <Navbar />
-            <div className='grid sm:grid-cols-2 md:grid-cols-4 py-2 px-5 gap-2 '>
+            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 py-2 px-5 gap-2 '>
                 {Categories.map((categ, i) => (
                     <div key={i} className='border-2 border-pink-500 px-2 py-4 hover:scale-95 hover:bg-pink-500 duration-150 rounded-lg cursor-pointer'>
                         <div className='flex items-center justify-center '>
