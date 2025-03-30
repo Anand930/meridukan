@@ -6,7 +6,7 @@ const customerSchema = new Schema({
         required: [true, "customers name is true"]
     },
     phone: {
-        type: Number,
+        type: String,
         required: [true, "phone no. is required for customers"],
         unique: [true, "Phone number should be unique"],
         match: [
@@ -19,19 +19,20 @@ const customerSchema = new Schema({
         required:[true, "address is required"],
         default:"TajNagar"
     },
-    purchaseHistory:{
+    saleHistory:{
         type:[{
-            product:{
+            products:{
                 type:Schema.Types.ObjectId,
                 ref:"product"
             },
             quantity:{
-                type:Number,
-                required:true
+                type:String,
+                default:0   
             },
-            purchaseDate:{
+            saleDate:{
                 type:Date,
-                required:true
+                required:[true, "Date is required"],
+                default:Date.now()
             }
         }],
         default:[]

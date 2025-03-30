@@ -1,48 +1,71 @@
-import mongoose,{Schema, model} from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
-const productSchema = new Schema({
-    name:{
-        type:String,
-        required:[true, "name is required"],
-        unique:[true, "product name should be unique for each product"]
+const productSchema = new Schema(
+  {
+    id: {
+      type: String,
+      required: [true, "id is required"],
+      unique: true,
     },
-    categories:{
-        type:String,
-        required:[true,"product's category is required"],
-        enum:["Dairy","Snacks","Children's Snacks", "Toffes and Candys", "Biscuit","Stationary","Cereals","Others"]
+    name: {
+      type: String,
+      required: [true, "name is required"],
+      unique: [true, "product name should be unique for each product"],
     },
-    description:{
-        type:String,
-        minlength:[20, "product discription should be minimum 20 characters"]
+    categories: {
+      type: String,
+      required: [true, "product's category is required"],
+      enum: [
+        "Dairy",
+        "Snacks",
+        "Children's Snacks",
+        "Toffes and Candys",
+        "Biscuit",
+        "Stationary",
+        "Cereals",
+        "Others",
+      ],
     },
-    costPrice:{
-        type:Number,
-        required:[true, "cost price is required for every products"]
+    description: {
+      type: String,
     },
-    sellingPrice:{
-        type:Number,
-        required:[true, "selling price is required for every products"]
+    costPrice: {
+      type: Number,
+      required: [true, "cost price is required for every products"],
     },
-    purchaseDate:{
-        type:[Date],
-        required:true,
-        default:[]
+    sellingPrice: {
+      type: Number,
+      required: [true, "selling price is required for every products"],
     },
-    supplierName:{
-        type:[String],
-        required:[true, "Supplier name is required"]
+    purchaseDate: {
+      type: String,
+      // required:true,
+      default: "",
     },
-    destroyedQuantity:{
-        type:Number,
-        default:0
+    supplierName: {
+      type: String,
+      // required:[true, "Supplier name is required"],
     },
-    expiryDate:{
-        type:Date
-    }
-},{timestamps:true})
+    availableQuantity: {
+      type: String,
+      required: true,
+      default: 0,
+    },
+    destroyedQuantity: {
+      type: Number,
+      default: 0,
+    },
+    expiryDate: {
+      type: Date,
+    },
+    productImage: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
+const Product = new model("product", productSchema);
 
-
-const Product = new model('product', productSchema)
-
-export default Product
+export default Product;

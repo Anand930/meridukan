@@ -1,31 +1,36 @@
-import React from 'react'
-import productSample from '../assets/products.json'
-import cheetos from '/cheetos.png'
-import Navbar from '../components/Navbar'
+import React, { useEffect, useState, useContext } from "react";
+// import productSample from '../assets/products.json'
+import cheetos from "/cheetos.png";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
+import Card from "../components/Card";
+import { UserContext } from "../context/UserContext";
 
 const Product = () => {
-    return (
-        <div>
-            <Navbar/>
-        <div className='md:mx-10 md:my-5 my-2 mx-2'>
-            <div className='grid md:grid-cols-5 gap-4 sm:grid-cols-3 grid-cols-2'>
-            {productSample.map((p, i) => (
-                <div key={i} className='border-2 border-pink-500 px-2 py-4 hover:scale-95 hover:bg-pink-500 duration-150 rounded-lg cursor-pointer'>
-                    <div className='flex items-center justify-center '>
-                        <p className='font-semibold pb-4'>{p.name}</p>
-                    </div>
-                    <img src={cheetos} alt="" />
-                    <div className='text-center'>{p.categories}</div>
-                </div>
-            ))
-            }
+  
+  const {products} = useContext(UserContext);
+  useEffect(()=>{
+    console.log(products);
+    
+  },[])
+  return (
+    <div>
+      <Navbar />
+      <div className="md:mx-10 md:my-5 my-2 mx-2">
+        <div className="grid md:grid-cols-5 gap-4 md:h-5/6 lg:h-3/4 sm:grid-cols-3 grid-cols-2">
+          {products.map((p, i) => (
+            <div
+              key={i}
+              >
+              <Link to={`/productDetails/${p.name}`}>
+                <Card item={p}/>
+              </Link>
             </div>
+          ))}
         </div>
-        </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-
-
-
-export default Product
+export default Product;

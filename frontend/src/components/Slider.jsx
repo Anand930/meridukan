@@ -25,12 +25,12 @@ export default ({ item }) => {
           slidesPerView: 5,   // Show 4 cards per slide
         }
       }}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSlideChange={() => {}}
+      onSwiper={(swiper) => {}}
     >
       {item.map((slider, i) => (
         <SwiperSlide key={i}>{
-          <div >
+          <div key={i}>
             <Card item={slider}/>
           </div>
         }</SwiperSlide>
