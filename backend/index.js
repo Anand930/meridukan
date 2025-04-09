@@ -14,10 +14,16 @@ const app = express();
 // routing middleware
 app.use(
   cors({
-    origin: "https://meridukan-2.onrender.com/", // Replace with your frontend's URL
+    origin: "https://meridukan-2.onrender.com", // Replace with your frontend's URL
     credentials: true,
   })
 );
+
+app.options("*", cors({
+  origin: "https://meridukan-2.onrender.com",
+  credentials: true,
+}));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
