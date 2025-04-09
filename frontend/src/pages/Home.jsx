@@ -13,7 +13,7 @@ const Home = () => {
     // Prevent default link behavior
     try {
       const response = await fetchWithAuth(
-        "/api/product/getproduct"
+        "https://meridukan-1.onrender.com/api/product/getproduct"
       );
       const data = await response.json();
       console.log(data);

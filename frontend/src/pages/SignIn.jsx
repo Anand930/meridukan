@@ -36,7 +36,7 @@ const SignIn = () => {
     formData.append("profileImage", profileImage);
 
     try {
-      const response = await fetch("http://localhost:3000/api/user/signin", {
+      const response = await fetch("https://meridukan-1.onrender.com/api/user/signin", {
         method: "POST",
         credentials: "include",
         body: formData

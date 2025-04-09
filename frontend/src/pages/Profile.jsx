@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { UserContext } from "../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
+import fetchWithAuth from "../utils/fetchWithAuth.js";
 // import getUserFromToken from '../utils/decodeToken.js'
 
 const Profile = () => {
@@ -22,7 +23,7 @@ const Profile = () => {
 
   const handleLogOut = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/user/logout", {
+      const response = await fetchWithAuth("https://meridukan-1.onrender.com/api/user/logout", {
         method: "POST",
         "Content-Type": "application/json",
         credentials: "include",

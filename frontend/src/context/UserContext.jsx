@@ -13,7 +13,7 @@ const UserProvider = ({children}) => {
   const handleProduct = async () => {
       try {
         const response = await fetchWithAuth(
-          "/api/product/getproduct"
+          "https://meridukan-1.onrender.com/api/product/getproduct"
         );
 
         const data = await response.json();

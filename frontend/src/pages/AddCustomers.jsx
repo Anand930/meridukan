@@ -26,7 +26,7 @@ const AddCustomers = () => {
 
   const handleAddCustomer = async() =>{
     try {
-      const response = await fetchWithAuth('http://localhost:3000/api/customer/addcustomer',{
+      const response = await fetchWithAuth('https://meridukan-1.onrender.com/api/customer/addcustomer',{
         method:"POST",
         headers:{
           "Content-Type":"application/json"

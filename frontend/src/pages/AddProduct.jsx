@@ -71,7 +71,7 @@ const AddProduct = () => {
 
     try {
       const response = await fetchWithAuth(
-        "http://localhost:3000/api/product/addproduct",
+        "https://meridukan-1.onrender.com/api/product/addproduct",
         {
           method: "POST",
           body: formDataToSend // No need to stringify FormData

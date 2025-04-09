@@ -33,7 +33,7 @@ const ProductDetails = () => {
       };
 
       const response = await fetchWithAuth(
-        "http://localhost:3000/api/product/sellproduct",
+        "https://meridukan-1.onrender.com/api/product/sellproduct",
         {
           method: "POST",
           headers: {

@@ -14,7 +14,7 @@ const Product = () => {
   const handleProduct = async () => {
     try {
       const response = await fetch(
-        "/api/product/getproduct"
+        "https://meridukan-1.onrender.com/api/product/getproduct"
       );
       const data = await response.json();
       console.log("fetched data", data);
