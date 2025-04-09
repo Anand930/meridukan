@@ -14,7 +14,7 @@ const app = express();
 // routing middleware
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend's URL
+    origin: "https://meridukan-2.onrender.com/", // Replace with your frontend's URL
     credentials: true,
   })
 );
