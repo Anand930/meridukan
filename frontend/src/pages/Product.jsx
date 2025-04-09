@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 // import productSample from '../assets/products.json'
 import cheetos from "/cheetos.png";
 import Navbar from "../components/Navbar";
@@ -8,11 +8,37 @@ import { UserContext } from "../context/UserContext";
 
 const Product = () => {
   
-  const {products} = useContext(UserContext);
+  const {products, setProducts, user} = useContext(UserContext);
+
+  const prevProducts = useRef([]);
+  const handleProduct = async () => {
+    try {
+      const response = await fetch(
+        "/api/product/getproduct"
+      );
+      const data = await response.json();
+      console.log("fetched data", data);
+      console.log("user ",user);
+      
+      // Check if products have actually changed before setting state
+      if (
+        JSON.stringify(prevProducts.current) !== JSON.stringify(data.products)
+      ) {
+        setProducts(data.products);
+        prevProducts.current = data.products; // Update ref to store latest data
+      }
+    } catch (error) {
+      console.log("Error occurred while getting all the products", error);
+    }
+  };
+  
   useEffect(()=>{
-    console.log(products);
+    if(products.length==0){
+      handleProduct()
+    }
     
-  },[])
+    console.log(products);
+  },[products])
   return (
     <div>
       <Navbar />

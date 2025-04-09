@@ -1,75 +1,117 @@
 import React, { useState, useContext } from "react";
 import Navbar from "../components/Navbar";
-import checkForRefreshToken from '../utils/checkForTokenExpiry.js'
 import { UserContext } from "../context/UserContext";
-import checkForTokenExpiry from "../utils/checkForTokenExpiry.js";
+import toast, {Toaster} from "react-hot-toast";
+// import { data } from "react-router-dom";
+import fetchWithAuth from "../utils/fetchWithAuth.js";
 
 const AddProduct = () => {
-  const [ProductName, setProductName] = useState("");
-  // const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [costPrice, setCostPrice] = useState(0);
-  const [sellingPrice, setSellingPrice] = useState(0);
-  const [purchaseDate, setPurchaseDate] = useState();
-  const [expiryDate, setExpiryDate] = useState();
-  const [supplierName, setSupplierName] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [formData, setFormData] = useState({
+    productName: "",
+    description: "",
+    costPrice: 0,
+    sellingPrice: 0,
+    purchaseDate:null,
+    expiryDate:null,
+    supplierName: "",
+  });
+
+
+  const handleProductFormChange = (e) => {
+    const { name, value } = e.target;
+  
+    let newValue = value;
+    if (["costPrice", "sellingPrice", "productQuantity"].includes(name)) {
+      newValue = parseFloat(value) || 0;
+    } else if (name === "purchaseDate" || name === "expiryDate") {
+      newValue = value ? value : ""; // Keep it in 'YYYY-MM-DD' format
+    }
+  
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: newValue,
+    }));
+  };
+  
+
+
   const [productImage, setProductImage] = useState(null);
-  const [productId, setProductId] = useState('');
-  const [productQuantity, setProductQuantity] = useState("")
-  const categories = ["Dairy","Snacks","Children's Snacks", "Toffes and Candys", "Biscuit","Stationary","Cereals","Others"]
+  const categories = [
+    "Dairy",
+    "Snacks",
+    "Children's Snacks",
+    "Toffes and Candys",
+    "Biscuit",
+    "Stationary",
+    "Cereals",
+    "Cold Drinks",
+    "Others",
+  ];
+
+  
 
   const handleAddProduct = async () => {
-    const token = localStorage.getItem('authenticationToken')
     if (!productImage) {
-        alert("Please select a product image.");
-        return;
-      }
-    const formData = new FormData();
-    formData.append("name", ProductName);
-    formData.append("id", productId);
-    formData.append("categories", selectedCategory);
-    formData.append("description", description);
-    formData.append("costPrice", costPrice);
-    formData.append("sellingPrice", sellingPrice);
-    formData.append("purchaseDate", purchaseDate);
-    formData.append("expiryDate", expiryDate);
-    formData.append("supplierName", supplierName);
-    formData.append("productImage", productImage);
-    formData.append("productQuantity",productQuantity)
-  
-   
+      alert("Please select a product image.");
+      return;
+    }
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.productName);
+    formDataToSend.append("id", formData.productId);
+    formDataToSend.append("categories", selectedCategory);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("costPrice", formData.costPrice);
+    formDataToSend.append("sellingPrice", formData.sellingPrice);
+    formDataToSend.append("purchaseDate", formData.purchaseDate);
+    formDataToSend.append("expiryDate", formData.expiryDate);
+    formDataToSend.append("supplierName", formData.supplierName);
+    formDataToSend.append("productQuantity", formData.productQuantity);
+    formDataToSend.append("productImage", productImage)
+
     try {
-      const response = await fetch(
+      const response = await fetchWithAuth(
         "http://localhost:3000/api/product/addproduct",
         {
           method: "POST",
-          headers:{
-            Authorization: `Bearer ${token}`
-          },
-          body: formData, // No need to stringify FormData
+          body: formDataToSend // No need to stringify FormData
         }
       );
-      
-      checkForTokenExpiry()
-  
-      const userData = await response.json();
-      console.log(userData);
-      
-      
+
+      const productData = await response.json();
+      console.log(productData);
+      setFormData({productName: "",
+        description: "",
+        costPrice: 0,
+        sellingPrice: 0,
+        purchaseDate:null,
+        expiryDate:null,
+        supplierName: ""})
+      toast.success(productData.message)
     } catch (error) {
+      toast.error(error.message)
       console.error("Error while adding product:", error);
     }
   };
 
-  const [selectedCategory, setSelectedCategory] = useState("");
-
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
-  
+
   return (
     <div>
       <Navbar />
+      <Toaster
+        position="below-right"
+        gutter={8}
+        toastOptions={{
+          duration:5000,
+          style: {
+            color: "white",
+            backgroundColor: "grey",
+          },
+        }}
+      />
       <div className="flex itmes-center justify-center font-bold text-3xl mt-5 text-pink-500">
         <p className="underline">Product Addition Form</p>
       </div>
@@ -80,8 +122,9 @@ const AddProduct = () => {
           </div>
           <input
             type="text"
-            value={ProductName}
-            onChange={(e) => setProductName(e.target.value)}
+            value={formData.productName}
+            name="productName"
+            onChange={handleProductFormChange}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>
@@ -91,8 +134,9 @@ const AddProduct = () => {
           </div>
           <input
             type="text"
-            value={productId}
-            onChange={(e) => setProductId(e.target.value)}
+            value={formData.productId}
+            name="productId"
+            onChange={handleProductFormChange}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>
@@ -101,20 +145,27 @@ const AddProduct = () => {
             Product Category
           </div>
           <select
-        className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
-        value={selectedCategory}
-        onChange={handleCategoryChange}
-      >
-        <option value="" disabled 
-        className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center">
-        Select a Category
-        </option>
-        {categories.map((category, index) => (
-          <option key={index} value={category} className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center">
-            {category}
-          </option>
-        ))}
-      </select>
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
+            <option
+              value=""
+              disabled
+              className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            >
+              Select a Category
+            </option>
+            {categories.map((category, index) => (
+              <option
+                key={index}
+                value={category}
+                className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+              >
+                {category}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="flex  items-center justify-center text-center">
@@ -123,8 +174,9 @@ const AddProduct = () => {
           </div>
           <input
             type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={formData.description}
+            name="description"
+            onChange={handleProductFormChange}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>
@@ -134,8 +186,9 @@ const AddProduct = () => {
           </div>
           <input
             type="text"
-            value={productQuantity}
-            onChange={(e) => setProductQuantity(e.target.value)}
+            value={formData.productQuantity}
+            name="productQuantity"
+            onChange={handleProductFormChange}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>
@@ -145,8 +198,9 @@ const AddProduct = () => {
           </div>
           <input
             type="text"
-            value={costPrice}
-            onChange={(e) => setCostPrice(e.target.value)}
+            value={formData.costPrice}
+            name="costPrice"
+            onChange={handleProductFormChange}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>
@@ -156,8 +210,9 @@ const AddProduct = () => {
           </div>
           <input
             type="text"
-            value={sellingPrice}
-            onChange={(e) => setSellingPrice(e.target.value)}
+            value={formData.sellingPrice}
+            name="sellingPrice"
+            onChange={handleProductFormChange}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>
@@ -167,8 +222,9 @@ const AddProduct = () => {
           </div>
           <input
             type="date"
-            value={purchaseDate}
-            onChange={(e) => setPurchaseDate(e.target.value)}
+            value={formData.purchaseDate}
+            name="purchaseDate"
+            onChange={handleProductFormChange}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>
@@ -178,8 +234,9 @@ const AddProduct = () => {
           </div>
           <input
             type="date"
-            value={expiryDate}
-            onChange={(e) => setExpiryDate(e.target.value)}
+            value={formData.expiryDate}
+            name="expiryDate"
+            onChange={handleProductFormChange}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>
@@ -189,8 +246,9 @@ const AddProduct = () => {
           </div>
           <input
             type="text"
-            value={supplierName}
-            onChange={(e) => setSupplierName(e.target.value)}
+            value={formData.supplierName}
+            name="supplierName"
+            onChange={handleProductFormChange}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>
@@ -201,7 +259,7 @@ const AddProduct = () => {
           <input
             type="file"
             name="productImage"
-            onChange={(e)=>setProductImage(e.target.files[0])}
+            onChange={(e) => setProductImage(e.target.files[0])}
             className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
           />
         </div>

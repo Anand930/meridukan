@@ -27,6 +27,6 @@ app.use("/api/customer", customerRoute);
 
 dbConnect();
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 4000 , () => {
   console.log(`App is running at ${process.env.PORT}`);
 });

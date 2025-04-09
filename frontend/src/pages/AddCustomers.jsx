@@ -1,16 +1,32 @@
 import React, { useState } from "react";
+import toast,{Toaster} from 'react-hot-toast'
 import Navbar from "../components/Navbar";
+import fetchWithAuth from "../utils/fetchWithAuth";
 
 const AddCustomers = () => {
-  const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("TajNagar");
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phone: "",
+    address: "TajNagar"
+  });
+
+
+  // form change handler
+  const handleFormChange = (e) => {
+    setFormData({ 
+      ...formData, 
+      [e.target.name]: e.target.value 
+    });
+  };
+
   // const [AddCustomer, setAddCustomer] = useState(true);
   // const [customerList, setCustomerList] = useState(false)
+    
+
+
   const handleAddCustomer = async() =>{
     try {
-      const formData = {fullName, phone, address}
-      const response = await fetch('http://localhost:3000/api/customer/addcustomer',{
+      const response = await fetchWithAuth('http://localhost:3000/api/customer/addcustomer',{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
@@ -18,8 +34,12 @@ const AddCustomers = () => {
         body:JSON.stringify(formData)
       })
       const data = await response.json();
+      toast.success(data.message)
+      
       console.log("added customer ", data)
+      setFormData({fullName:"", phone:""})
     } catch (error) {
+      toast.error(error.message)
       console.log("Error while adding the customer ", error);
       
     }
@@ -29,7 +49,16 @@ const AddCustomers = () => {
     <div>
       <Navbar />
       
-
+      <Toaster
+      position="below-right"
+      gutter={8}
+      toastOptions={{
+        style: {
+          color:"white",
+          backgroundColor:"grey"
+        }
+      }}
+      />
       <div>
         <p className="font-bold text-3xl text-pink-600 flex items-center justify-center my-8 underline">
           Customer Register Form
@@ -41,8 +70,9 @@ const AddCustomers = () => {
             </div>
             <input
               type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleFormChange}
               className="outline-none border-2 border-pink-500 flex items-center justify-center h-10 w-3/4 text-center"
             />
           </div>
@@ -53,8 +83,9 @@ const AddCustomers = () => {
             </div>
             <input
               type="text"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              name="phone"
+              value={formData.phone}
+              onChange={handleFormChange}
               className="outline-none border-2 border-pink-500 flex items-center justify-center h-10 w-3/4 text-center"
             />
           </div>
@@ -65,8 +96,9 @@ const AddCustomers = () => {
             </div>
             <input
               type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              name="address"
+              value={formData.address}
+              onChange={handleFormChange}
               className="outline-none border-2 border-pink-500 flex items-center justify-center h-10 w-3/4 text-center"
             />
           </div>

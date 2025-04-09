@@ -10,7 +10,7 @@ const userSchema = new Schema({
     username:{
         type:String,
         required:[true, "username is required"],
-        unique:true
+        unique:[true, "username should be unique for every user"]
     },
     email:{
         type:String,
@@ -20,6 +20,9 @@ const userSchema = new Schema({
     password:{
         type:String,
         required:[true, "Please enter your password"]
+    },
+    profileImage:{
+        type:String
     },
     accessToken:{
         type:String
@@ -42,14 +45,14 @@ userSchema.pre("save", async function (next) {
 
 userSchema.methods.generateAccessToken = function(){
     const secret = process.env.AUTH_SECRET;
-    const payload = {id:this._id, email:this.email, username:this.username, fullName:this.fullName}
+    const payload = {id:this._id, email:this.email, username:this.username, fullname:this.fullname, profileImage:this.profileImage}
     const token = jwt.sign(payload,secret,{expiresIn:"1h"})
     return token;
 }
 
 userSchema.methods.generateRefreshToken = function(){
     const secret = process.env.REFRESH_SECRET;
-    const payload = {id:this._id, email:this.email, username:this.username, fullName:this.fullName}
+    const payload = {id:this._id, email:this.email, username:this.username, fullname:this.fullname, profileImage:this.profileImage}
     const token = jwt.sign(payload,secret,{expiresIn:"7d"})
     return token;
 }

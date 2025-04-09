@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+// import Cookies from 'js-cookie'
 
 const SignIn = () => {
   const { setUser } = useContext(UserContext);
+  const [profileImage, setProfileImage] = useState(null);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     fullname: "",
@@ -15,7 +17,7 @@ const SignIn = () => {
     const { name, value } = e.target;
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
   };
-  
+
   const handleSignIn = async (e) => {
     e.preventDefault();
 
@@ -25,36 +27,30 @@ const SignIn = () => {
       alert("All fields are required.");
       return;
     }
-    
-    const formData = {
-      fullname: form.fullname,
-      username: form.username,
-      email: form.email,
-      password: form.password
-    };
 
-    
-    // if(form.profileImage){
-    //   formData.append('profileImage',form.profileImage)
-    // }
-    
-
-
+    const formData = new FormData();
+    formData.append("fullname", form.fullname);
+    formData.append("username", form.username);
+    formData.append("email", form.email);
+    formData.append("password", form.password);
+    formData.append("profileImage", profileImage);
 
     try {
       const response = await fetch("http://localhost:3000/api/user/signin", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         credentials: "include",
-        body: JSON.stringify(formData)
+        body: formData
       });
       const userData = await response.json();
-      console.log("userDAta ",userData);
-      localStorage.setItem("accessToken", userData?.user?.accessToken);
-      localStorage.setItem("authenticated", "true");
-      navigate("/");
+      console.log("userDAta ", userData);
+      
+      if (userData.user) {
+        setUser(userData.user)
+        // Cookies.set("user", userData.user)
+        localStorage.setItem("accessToken", userData?.user?.accessToken);
+        localStorage.setItem("authenticated", "true");
+        navigate("/");
+      }
     } catch (error) {
       console.log("Error in Signin ", error);
       alert("Error occured while signIN");
@@ -108,7 +104,16 @@ const SignIn = () => {
             onChange={handleFormChange}
           />
         </div>
-        
+        <div className="my-2">
+          <input
+            className="text-pink-500 outline-none border-4 px-2 border-pink-500 h-12 w-80 rounded-lg"
+            type="file"
+            placeholder="Upload the image"
+            name="profileImage"
+            onChange={(e) => {setProfileImage(e.target.files[0])}}
+          />
+        </div>
+
         <div className="my-2">
           <button className="text-pink-500 outline-none border-4 px-2 border-pink-500 h-12 w-80 rounded-lg hover:bg-pink-500 hover:text-white font-bold text-xl">
             SignIn

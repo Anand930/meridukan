@@ -9,9 +9,9 @@ export default  async function fetchWithAuth(url, options = {}) {
   
     const response = await fetch(url, options);
   
-    if (response.status === 401) {
+    if (response.status === 403) {
       // Token expired, try to refresh
-      const refreshResponse = await fetch('/refreshToken', {
+      const refreshResponse = await fetch('api/user/refreshtoken', {
         method: 'POST',
         credentials: 'include', // Include cookies
       });
@@ -28,6 +28,7 @@ export default  async function fetchWithAuth(url, options = {}) {
         // Handle refresh failure (e.g., log out the user)
         localStorage.removeItem('accessToken');
         window.location.href = '/login';
+        localStorage.removeItem("authenticated")
         throw new Error('Unauthorized');
       }
     }

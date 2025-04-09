@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const {user} = useContext(UserContext)
   const [productMenuIsOpen, setProductMenuIsOpen] = useState(false);
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("authenticated");
@@ -55,6 +57,7 @@ const Navbar = () => {
               <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
                 <Link to={"/categories"}>Categories</Link>
               </li>
+              
             </ul>
           </div>
 
@@ -87,6 +90,9 @@ const Navbar = () => {
             <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
               <Link to={"/categories"}>Categories</Link>
             </li>
+            <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                <Link to={"/updateproduct"}>UpdateProduct</Link>
+              </li>
           </ul>
         </div>
         <Link to={"/profile"}>
@@ -101,7 +107,7 @@ const Navbar = () => {
                   <div className="w-10 rounded-full">
                     <img
                       alt="Tailwind CSS Navbar component"
-                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      src={user?.profileImage}
                     />
                   </div>
                 </div>

@@ -10,7 +10,7 @@ const verifyAuthToken = (req,res,next) =>{
     try {
         const decoded = jwt.verify(token, secretkey)
         req.user = decoded
-        next()
+        next();
     } catch (error) {
         return res.status(403).json({message:"Invalid or expiredToken"})
     }

@@ -1,42 +1,28 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect} from "react";
 import Slider from "./Slider";
 import { UserContext } from "../context/UserContext";
 
+
+
 const ProductSlide = ({ categoryName }) => {
   // const [productSampleCategorywise, setProductSampleCategorywise] = useState([]);
-  const prevProducts = useRef([])
-  const { products, setProducts } = useContext(UserContext);
   
-  const handleProduct = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:3000/api/product/getproduct"
-      );
-      const data = await response.json();
-      console.log("fetched data", data);
-      // Check if products have actually changed before setting state
-      if (JSON.stringify(prevProducts.current) !== JSON.stringify(data.products)) {
-        setProducts(data.products);
-        prevProducts.current = data.products; // Update ref to store latest data
-    }
-    } catch (error) {
-      console.log("Error occurred while getting all the products", error);
-    }
-  };
+
+  const { products, handleProduct } = useContext(UserContext);
+
 
   useEffect(() => {
-    handleProduct();
-    console.log(products);
+    handleProduct()
   }, []);
-
-
 
   let Categories = [];
   products.map((item) => Categories.push(item.categories));
 
-  const productSampleCategorywise = products.filter((item) =>item.categories === categoryName);
+  const productSampleCategorywise = products.filter(
+    (item) => item.categories === categoryName
+  );
 
-  console.log(productSampleCategorywise);
+  console.log("productSamepleCategorywiese", productSampleCategorywise);
 
   return (
     <div>
@@ -51,3 +37,4 @@ const ProductSlide = ({ categoryName }) => {
 };
 
 export default ProductSlide;
+

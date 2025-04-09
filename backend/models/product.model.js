@@ -23,6 +23,7 @@ const productSchema = new Schema(
         "Biscuit",
         "Stationary",
         "Cereals",
+        "Cold Drinks",
         "Others",
       ],
     },
@@ -62,6 +63,16 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
+    updateHistory: [
+      {
+        fieldName: {
+          type: String,
+          required: [true, "field name is required"],
+        },
+        oldValue:{type:String},
+        updatedValue:{type:String},
+      },
+    ],
   },
   { timestamps: true }
 );
