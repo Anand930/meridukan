@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import { UserContext } from "../context/UserContext";
+import fetchWithAuth from "../utils/fetchWithAuth";
 
 const Product = () => {
   
@@ -13,7 +14,7 @@ const Product = () => {
   const prevProducts = useRef([]);
   const handleProduct = async () => {
     try {
-      const response = await fetch(
+      const response = await fetchWithAuth(
         "https://meridukan-1.onrender.com/api/product/getproduct"
       );
       const data = await response.json();

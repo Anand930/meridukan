@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, redirect, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import fetchWithAuth from "../utils/fetchWithAuth";
 // import Cookies from "js-cookie";
 
 const Login = () => {
@@ -34,7 +35,7 @@ const Login = () => {
     };
 
     try {
-      const response = await fetch("https://meridukan-1.onrender.com/api/user/login", {
+      const response = await fetchWithAuth("https://meridukan-1.onrender.com/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,6 +43,7 @@ const Login = () => {
         body: JSON.stringify(formData),
         credentials: "include",
       });
+
 
       const userData = await response.json();
       console.log(userData);
