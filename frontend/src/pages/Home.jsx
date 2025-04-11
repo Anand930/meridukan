@@ -18,10 +18,10 @@ const Home = () => {
     <div>
       <Navbar />
       <Hero />
-      {/* <ProductSlide categoryName={"Snacks"} /> */}
-      {/* <ProductSlide categoryName={"Dairy"} /> */}
-      {/* <ProductSlide categoryName={"Cold Drinks"} /> */}
-      {/* <ProductSlide categoryName={"Biscuit"} /> */}
+      <ProductSlide categoryName={"Snacks"} />
+      <ProductSlide categoryName={"Dairy"} />
+      <ProductSlide categoryName={"Cold Drinks"} />
+      <ProductSlide categoryName={"Biscuit"} />
       <Footer />
     </div>
   );
