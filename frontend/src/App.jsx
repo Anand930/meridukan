@@ -1,22 +1,25 @@
 import React, { useEffect, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import ProductDetails from "./pages/ProductDetails";
-import Categories from "./pages/Categories";
-import Profile from "./pages/Profile";
-import AddCustomers from "./pages/AddCustomers";
-import AddProduct from "./pages/AddProduct";
-import Product from "./pages/Product";
-import Login from "./pages/Login";
-import SignIn from "./pages/SignIn";
-import ListCustomer from "./pages/ListCustomer";
-import PayAmount from "./pages/PayAmount";
-import UpdateProduct from "./pages/UpdateProduct";
-import UpdateDataCard from "./components/UpdateDataCard";
-import UpdateSellingPrice from "./pages/UpdateSellingPrice";
-import UpdateCostPrice from "./pages/UpdateCostPrice";
-import UpdateProductQuantity from "./pages/UpdateProductQuantity";
-import UpdateDescription from "./pages/UpdateDescription";
+import { lazy, Suspense } from "react";
+
+const Home = lazy(() => import("./pages/Home"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+const Categories = lazy(() => import("./pages/Categories"));
+const Profile = lazy(() => import("./pages/Profile"));
+const AddCustomers = lazy(() => import("./pages/AddCustomers"));
+const AddProduct = lazy(() => import("./pages/AddProduct"));
+const Product = lazy(() => import("./pages/Product"));
+const Login = lazy(() => import("./pages/Login"));
+const SignIn = lazy(() => import("./pages/SignIn"));
+const ListCustomer = lazy(() => import("./pages/ListCustomer"));
+const PayAmount = lazy(() => import("./pages/PayAmount"));
+const UpdateProduct = lazy(() => import("./pages/UpdateProduct"));
+const UpdateDataCard = lazy(() => import("./components/UpdateDataCard"));
+const UpdateSellingPrice = lazy(() => import("./pages/UpdateSellingPrice"));
+const UpdateCostPrice = lazy(() => import("./pages/UpdateCostPrice"));
+const UpdateProductQuantity = lazy(() => import("./pages/UpdateProductQuantity"));
+const UpdateDescription = lazy(() => import("./pages/UpdateDescription"));
+
 import Spinner from "./utils/Spinner";
 
 function App() {
