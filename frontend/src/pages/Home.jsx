@@ -8,20 +8,20 @@ import { useEffect } from "react";
 import fetchWithAuth from "../utils/fetchWithAuth";
 
 const Home = () => {
-  const { userRender, handleProduct, products } = useContext(UserContext);
+  // const { userRender, handleProduct, products } = useContext(UserContext);
 
-  useEffect(() => {
-    userRender();
-    handleProduct();
-  }, [products]);
+  // useEffect(() => {
+  //   userRender();
+  //   handleProduct();
+  // }, [products]);
   return (
     <div>
       <Navbar />
       <Hero />
-      <ProductSlide categoryName={"Snacks"} />
-      <ProductSlide categoryName={"Dairy"} />
-      <ProductSlide categoryName={"Cold Drinks"} />
-      <ProductSlide categoryName={"Biscuit"} />
+      {/* <ProductSlide categoryName={"Snacks"} /> */}
+      {/* <ProductSlide categoryName={"Dairy"} /> */}
+      {/* <ProductSlide categoryName={"Cold Drinks"} /> */}
+      {/* <ProductSlide categoryName={"Biscuit"} /> */}
       <Footer />
     </div>
   );
