@@ -70,8 +70,8 @@ const AddProduct = () => {
     formDataToSend.append("productImage", productImage)
 
     try {
-      const response = await fetchWithAuth(
-        "https://meridukan-1.onrender.com/api/product/addproduct",
+      const response = await fetch(
+        "/api/product/addproduct",
         {
           method: "POST",
           body: formDataToSend // No need to stringify FormData
@@ -79,7 +79,7 @@ const AddProduct = () => {
       );
 
       const productData = await response.json();
-      console.log(productData);
+      
       setFormData({productName: "",
         description: "",
         costPrice: 0,
@@ -87,6 +87,8 @@ const AddProduct = () => {
         purchaseDate:null,
         expiryDate:null,
         supplierName: ""})
+        console.log(productData);
+        
       toast.success(productData.message)
     } catch (error) {
       toast.error(error.message)

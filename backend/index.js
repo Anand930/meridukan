@@ -6,30 +6,40 @@ import userRoute from "./routers/user.route.js";
 import customerRoute from "./routers/customer.route.js";
 import productRoute from "./routers/product.route.js";
 import cookieParser from "cookie-parser";
+import path from "path";
+
 
 dotenv.config();
 
 const app = express();
 
-// routing middleware
+const _dirname = path.resolve()
+
 app.use(
   cors({
-    origin: "https://meridukan-2.onrender.com", // Replace with your frontend's URL
+    origin: "http://localhost:5173", // Replace with your frontend's URL
     credentials: true,
   })
 );
 
 app.options("*", cors({
-  origin: "https://meridukan-2.onrender.com",
+  origin: "http://localhost:5173", 
   credentials: true,
 }));
 
+
+// routing middleware
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/customer", customerRoute);
+
+app.use(express.static(path.join(_dirname,'/frontend/dist')))
+app.get('*',(req,res)=> {
+  res.sendFile(path.resolve(_dirname, 'frontend','dist', 'index.html'))
+})
 
 dbConnect();
 

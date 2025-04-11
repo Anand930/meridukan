@@ -12,7 +12,7 @@ const CustomerProvider = ({ children }) => {
   const handleListCustomer = async () => {
     try {
       const response = await fetchWithAuth(
-        "https://meridukan-1.onrender.com/api/customer/getcustomer"
+        "/api/customer/getcustomer"
       );
       const data = await response.json();
       setCustomers(data.customers);

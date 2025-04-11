@@ -26,7 +26,7 @@ const AddCustomers = () => {
 
   const handleAddCustomer = async() =>{
     try {
-      const response = await fetchWithAuth('https://meridukan-1.onrender.com/api/customer/addcustomer',{
+      const response = await fetchWithAuth('/api/customer/addcustomer',{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
@@ -36,7 +36,7 @@ const AddCustomers = () => {
       const data = await response.json();
       toast.success(data.message)
       
-      console.log("added customer ", data)
+      
       setFormData({fullName:"", phone:""})
     } catch (error) {
       toast.error(error.message)

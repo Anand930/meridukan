@@ -8,20 +8,8 @@ import { useEffect } from 'react'
 import fetchWithAuth from '../utils/fetchWithAuth'
 
 const Home = () => {
-  const {userRender} = useContext(UserContext)
-  const handleProduct = async (e) => {
-    // Prevent default link behavior
-    try {
-      const response = await fetchWithAuth(
-        "https://meridukan-1.onrender.com/api/product/getproduct"
-      );
-      const data = await response.json();
-      console.log(data);
-      // setProductSample(data.products)
-    } catch (error) {
-      console.log("Error occurred while getting all the products", error);
-    };
-    }
+  const {userRender, handleProduct} = useContext(UserContext)
+
     useEffect(()=>{
         userRender()
         handleProduct()

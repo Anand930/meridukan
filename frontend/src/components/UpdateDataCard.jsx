@@ -25,9 +25,9 @@ const ProductDetails = ({}) => {
   const handleKeyPress = (e) =>{
     if(e.key==="Enter"){
         const productToGet = products.find((item)=>item.name === name);
-        console.log("productToGet ", productToGet);
+
         if(!productToGet){
-            console.log("Product is not available with given name");
+
             toast.error("product is not available with given name")
         }
         setProduct(productToGet)
@@ -44,7 +44,7 @@ const ProductDetails = ({}) => {
       };
 
       const response = await fetch(
-        "https://meridukan-1.onrender.com/api/product/sellproduct",
+        "/api/product/sellproduct",
         {
           method: "POST",
           headers: {
@@ -54,7 +54,9 @@ const ProductDetails = ({}) => {
         }
       );
       const data = await response.json();
-      console.log(data);
+      if(response.ok){
+        toast.success(`product is sold to ${data.updatedCustomer.name} and available qty is ${data.updatedProduct.availableQuantity}`)
+      }
       if (data) {
         // Find and update the product in the state
         setProducts((prevProducts) =>
@@ -76,7 +78,6 @@ const ProductDetails = ({}) => {
   };
 
   useEffect(() => {
-    console.log("customers", customers);
 
     const customerNames = customers.map((item) => item.name);
     setCustomerNameList(customerNames);
@@ -85,7 +86,6 @@ const ProductDetails = ({}) => {
 
   useEffect(() => {
     const ProductToGet = products.find((item) => item.id == id);
-    console.log(ProductToGet);
 
     if (ProductToGet) {
       setProduct(ProductToGet);
@@ -94,7 +94,7 @@ const ProductDetails = ({}) => {
     if (products.length == 0) {
       handleProduct();
     }
-    console.log("product is ", product);
+    
   }, [products, product, id]);
 
   return (

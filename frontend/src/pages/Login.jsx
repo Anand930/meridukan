@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, redirect, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import fetchWithAuth from "../utils/fetchWithAuth";
+import toast, { Toaster } from "react-hot-toast";
 // import Cookies from "js-cookie";
 
 const Login = () => {
@@ -25,6 +26,7 @@ const Login = () => {
     e.preventDefault();
     if (!form.email || !form.password) {
       console.log("All fields are mandatory to fill");
+      toast.error("All fields are required");
       return;
     }
 
@@ -35,7 +37,7 @@ const Login = () => {
     };
 
     try {
-      const response = await fetchWithAuth("https://meridukan-1.onrender.com/api/user/login", {
+      const response = await fetchWithAuth("/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,24 +46,26 @@ const Login = () => {
         credentials: "include",
       });
 
-
       const userData = await response.json();
-      console.log(userData);
 
       setUser(userData.user);
       // Cookies.set("user", userData.user);
       if (userData.user) {
-        localStorage.setItem("accessToken", userData?.user?.accessToken)
+        localStorage.setItem("accessToken", userData?.user?.accessToken);
         localStorage.setItem("authenticated", "true");
-        navigate("/");
+        toast.success("user looged in successFully");
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       }
     } catch (error) {
-      console.log("Error in Signin ", error);
+      toast.error(error.message);
       alert("Error occured while signIN");
     }
   };
   return (
     <div className="items-center justify-center flex flex-col min-h-screen  ">
+      <Toaster />
       <h1 className="text-pink-500 py-4 font-bold text-2xl">Login</h1>
       <form
         className="border-4 border-pink-500 p-4 rounded-lg"

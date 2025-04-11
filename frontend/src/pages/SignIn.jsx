@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import toast, { Toaster } from "react-hot-toast";
 // import Cookies from 'js-cookie'
 
 const SignIn = () => {
@@ -24,7 +25,7 @@ const SignIn = () => {
     // Validate form fields
     if (!form.fullname || !form.username || !form.email || !form.password) {
       console.error("All fields are mandatory to fill.");
-      alert("All fields are required.");
+      toast.error("All fields are required")
       return;
     }
 
@@ -36,13 +37,12 @@ const SignIn = () => {
     formData.append("profileImage", profileImage);
 
     try {
-      const response = await fetch("https://meridukan-1.onrender.com/api/user/signin", {
+      const response = await fetch("/api/user/signin", {
         method: "POST",
         credentials: "include",
         body: formData
       });
       const userData = await response.json();
-      console.log("userDAta ", userData);
       
       if (userData.user) {
         setUser(userData.user)
@@ -52,12 +52,13 @@ const SignIn = () => {
         navigate("/");
       }
     } catch (error) {
+      toast.error("Error occured while signing in")
       console.log("Error in Signin ", error);
-      alert("Error occured while signIN");
     }
   };
   return (
     <div className="items-center justify-center flex flex-col min-h-screen  ">
+      <Toaster/>
       <h1 className="text-pink-500 py-4 font-bold text-2xl">SignIn</h1>
       <form
         className="border-4 border-pink-500 p-4 rounded-lg"
@@ -89,7 +90,7 @@ const SignIn = () => {
         <div className="my-2">
           <input
             className="text-pink-500 outline-none border-4 px-2 border-pink-500 h-12 w-80 rounded-lg"
-            type="text"
+            type="email"
             placeholder="Enter Your Email"
             name="email"
             onChange={handleFormChange}
@@ -98,7 +99,7 @@ const SignIn = () => {
         <div className="my-2">
           <input
             className="text-pink-500 outline-none border-4 px-2 border-pink-500 h-12 w-80 rounded-lg"
-            type="text"
+            type="password"
             placeholder="Enter Your Password"
             name="password"
             onChange={handleFormChange}
@@ -111,7 +112,12 @@ const SignIn = () => {
             placeholder="Upload the image"
             name="profileImage"
             onChange={(e) => {setProfileImage(e.target.files[0])}}
-          />
+          >
+            <img>
+
+            </img>
+          </input>
+
         </div>
 
         <div className="my-2">

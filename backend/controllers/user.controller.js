@@ -13,10 +13,7 @@ const generateAccessAndRefreshToken = async (userId) => {
     await user.save({ validateBeforeSave: false });
     return { accessToken, refreshToken };
   } catch (error) {
-    console.log(
-      "Something went wrong while generating access and the refreshtoken ",
-      error
-    );
+    return res.status(500).json({message:"unable to generate Acess and the refreshtoken", error})
   }
 };
 
@@ -26,7 +23,7 @@ const SignInUser = async (req, res) => {
     const { fullname, username, email, password } = req.body;
 
     const { profileImage } = req.file;
-    console.log(profileImage);
+
 
     //check for missing profileImage
     if (!req.file) {
@@ -42,7 +39,7 @@ const SignInUser = async (req, res) => {
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
-    console.log(existingUser);
+  
 
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
@@ -62,12 +59,11 @@ const SignInUser = async (req, res) => {
     const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
       user._id
     );
-    console.log("accessToken", accessToken);
 
     user.accessToken = accessToken;
     user.refreshToken = refreshToken;
     await user.save();
-    console.log("new user registered");
+
 
     const createdUser = await User.findById(user._id).select(
       "-password -refreshToken"
@@ -92,7 +88,6 @@ const SignInUser = async (req, res) => {
 const LoginUser = async (req, res) => {
   try {
     const { emailOrUsername, password } = req.body;
-    // console.log(req.body);
 
     if (!emailOrUsername || !password) {
       return res
@@ -109,11 +104,8 @@ const LoginUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" }); // ✅ Important!
     }
 
-    console.log(user);
-
-    if (user) {
+if (user) {
       const result = await bcryptjs.compare(password, user.password); // comparing the password with its hash
-      console.log(result);
 
       const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
         user._id
@@ -122,15 +114,12 @@ const LoginUser = async (req, res) => {
       if (!result) {
         return res.status(400).json({ message: "Please enter valid password" });
       }
-      console.log("logged in");
       return res
         .status(201)
-        .cookie("accessToken", accessToken, { httpOnly: true, secure: true })
-        .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true })
+        .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, maxAge:604800 })
         .json({ message: "user logged in successfully", user });
     }
   } catch (error) {
-    console.log("Error: ", error);
     return res
       .status(500)
       .json({ message: "some issue occur while try to login the user" });
@@ -182,7 +171,6 @@ const logOutUser = (req, res) => {
     res.clearCookie("refreshToken", { httpOnly: true, secure: true });
     return res.status(200).json({ message: "LogOut successfully" });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "something went wrong" });
   }
 };
@@ -190,7 +178,8 @@ const logOutUser = (req, res) => {
 const renewToken = async (req, res) => {
   try {
     const refreshToken = req?.cookies?.refreshToken;
-    console.log("refreshToken : ", refreshToken);
+    console.log("refreshToken ", refreshToken);
+    
 
     if (!refreshToken) {
       return res

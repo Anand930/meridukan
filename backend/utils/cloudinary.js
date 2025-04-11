@@ -1,7 +1,8 @@
 // utils/cloudinary.js
 import multer from "multer";
 import {CloudinaryStorage} from 'multer-storage-cloudinary'
-import cloudinary from "cloudinary";
+import { v2 as cloudinary } from 'cloudinary'; // ✅ Recommended
+
 
 cloudinary.config({
   cloud_name: "drhktzayo",

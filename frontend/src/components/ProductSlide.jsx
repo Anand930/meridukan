@@ -22,7 +22,7 @@ const ProductSlide = ({ categoryName }) => {
     (item) => item.categories === categoryName
   );
 
-  console.log("productSamepleCategorywiese", productSampleCategorywise);
+  // console.log("productSamepleCategorywiese", productSampleCategorywise);
 
   return (
     <div>

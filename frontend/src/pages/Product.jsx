@@ -15,11 +15,9 @@ const Product = () => {
   const handleProduct = async () => {
     try {
       const response = await fetchWithAuth(
-        "https://meridukan-1.onrender.com/api/product/getproduct"
+        "/api/product/getproduct"
       );
       const data = await response.json();
-      console.log("fetched data", data);
-      console.log("user ",user);
       
       // Check if products have actually changed before setting state
       if (
@@ -38,7 +36,7 @@ const Product = () => {
       handleProduct()
     }
     
-    console.log(products);
+
   },[products])
   return (
     <div>

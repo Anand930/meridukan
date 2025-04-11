@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar";
 import { UserContext } from "../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
 import fetchWithAuth from "../utils/fetchWithAuth.js";
+import toast,{Toaster} from 'react-hot-toast'
+import { jwtDecode } from "jwt-decode";
 // import getUserFromToken from '../utils/decodeToken.js'
 
 const Profile = () => {
@@ -10,10 +12,9 @@ const Profile = () => {
   const { user, setUser, userRender } = useContext(UserContext);
   const [Editable, setEditable] = useState(false);
 
-  
   useEffect(() => {
     // Retrieve user data from the token on page load
-    userRender()
+    userRender();
   }, []);
 
   // const allCookies = document.cookie;
@@ -23,32 +24,34 @@ const Profile = () => {
 
   const handleLogOut = async () => {
     try {
-      const response = await fetchWithAuth("https://meridukan-1.onrender.com/api/user/logout", {
-        method: "POST",
-        "Content-Type": "application/json",
-        credentials: "include",
-      });
+      const response = await fetchWithAuth(
+        "/api/user/logout",
+        {
+          method: "POST",
+          "Content-Type": "application/json",
+          credentials: "include",
+        }
+      );
       const data = await response.json();
-      console.log(data);
+      if (response.ok) {
+        toast.success("user logout successfully");
+      }
       localStorage.removeItem("authenticated");
       localStorage.removeItem("accessToken");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.log("Error occured while logging out the user ", error);
     }
   };
 
   return (
     <div>
       <Navbar />
+      <Toaster/>
       <div className="text-center">
         <div className="flex items-center justify-center mt-10">
           <div className="border-2 border-pink-500 rounded-full w-24 h-24 overflow-hidden">
-            <img
-              className="bg-contain  "
-              src={user?.profileImage}
-              alt=""
-            />
+            <img className="bg-contain  " src={user?.profileImage} alt="" />
           </div>
         </div>
         <div className="my-8 w-1/2 mx-auto">

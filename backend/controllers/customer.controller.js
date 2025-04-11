@@ -5,7 +5,7 @@ const customerController = {
   addCustomer: async (req, res) => {
     try {
       const { fullName, phone, address } = req.body;
-      console.log(req.body);
+      
 
       const newCustomer = new Customer({ name: fullName, phone, address });
       if (!newCustomer) {
@@ -20,7 +20,7 @@ const customerController = {
           .json({ message: "customer added successfully", newCustomer });
       }
     } catch (error) {
-      console.log("Error: ", error);
+
       return res.status(500).json({ message: "customer not added" });
     }
   },
@@ -42,7 +42,6 @@ const customerController = {
           .json({ message: "customer updated successfully" });
       }
     } catch (error) {
-      console.log("Error: ", error);
       return res.status(500).json({ message: "customer's info not updated" });
     }
   },
@@ -53,7 +52,7 @@ const customerController = {
         res.status(200).json({ message: "customer fetched ", customers });
       }
     } catch (error) {
-      console.log("Error occured while trying to fetch the customers");
+      res.status(500).json({message:"Error occure while getting the customer", error})
     }
   },
   setOverdueAmount: async (req, res) => {
@@ -65,17 +64,14 @@ const customerController = {
         return res.status(400).json({ message: "Customer not found" });
       }
   
-      console.log(customer);
-  
       // Ensure paymentHistory is an array before calling map
       const totalpaidAmount = (customer.paymentHistory && customer.paymentHistory.length > 0)
         ? customer.paymentHistory.reduce((num, entry) => num + (entry.paidAmount || 0), 0)
         : 0;
   
-      console.log("Total Paid Amount:", totalpaidAmount);
   
       if (isNaN(totalpaidAmount)) {
-        console.log("totalPaidAmount is NaN, setting to 0");
+        return res.status(500).json({message:"total paid amount is not a number"})
       }
   
       // Ensure paidAmount is a number
@@ -84,13 +80,12 @@ const customerController = {
       customer.dueAmount = customer.totalSpend - (totalpaidAmount + parsedPaidAmount);
       customer.paymentHistory.push({ paidAmount: parsedPaidAmount });
   
-      console.log("Updated Due Amount:", customer.dueAmount);
+    
   
       await customer.save();
       res.status(200).json({ message: "Due amount updated", customer });
     } catch (error) {
-      console.log("Something went wrong while updating the due amount", error.message);
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error occurred while trying to set the overdue amount",
         error,
       });

@@ -22,7 +22,7 @@ const PayAmount = () => {
 
   const handlePaidAmount = async() => {
     const formData = {paidAmount, name:selectedCustomer }
-    const response = await fetch("https://meridukan-1.onrender.com/api/customer/setdueamount", {
+    const response = await fetch("/api/customer/setdueamount", {
         method:"POST",
         headers:{
             "Content-Type":"application/json"

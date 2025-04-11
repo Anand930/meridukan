@@ -19,7 +19,7 @@ const UpdateDetailsComponents = ({
 
     try {
       const response = await fetchWithAuth(
-        `https://meridukan-1.onrender.com/api/product/updateproduct/${apiRoute}`,
+        `/api/product/updateproduct/${apiRoute}`,
         {
           method: "POST",
           headers: {
@@ -29,10 +29,8 @@ const UpdateDetailsComponents = ({
         }
       );
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         toast.success(data.message);
-        console.log(data);
       }
     } catch (error) {
       toast.error(`${updatedField} not updated`);
@@ -41,11 +39,8 @@ const UpdateDetailsComponents = ({
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      console.log("Enter key pressed");
-      console.log(products);
-
+      
       const productToGet = products.find((item) => item.name === productName);
-      console.log(productToGet);
       setProduct(productToGet);
     }
   };

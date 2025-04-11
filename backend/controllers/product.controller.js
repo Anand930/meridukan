@@ -13,14 +13,11 @@ const addProduct = async (req, res) => {
       sellingPrice,
       purchaseDate,
       supplierName,
-      destroyedQuantity,
       expiryDate,
-      productImage,
       productQuantity,
     } = req.body;
-    console.log(req.body);
 
-
+    console.log("req", req.body);
 
     if (!req.file) {
       return res.status(500).json({ message: "file not uploaded" });
@@ -53,45 +50,50 @@ const addProduct = async (req, res) => {
       expiryDate,
       productImage: req.file?.path,
     });
-    console.log(newProduct);
 
     if (newProduct) {
-      await newProduct.save();
+      console.log("before save", newProduct);
+
+      const data = await newProduct.save().catch(err => {
+        console.log("Save error:", err);
+        return res.status(500).json({ message: "DB Save error", error: err });
+      });
+      if (data) {
+        console.log("after Save", data);
+      }
       return res
         .status(201)
         .json({ message: "new product added successfully" });
     }
+    if (!newProduct) {
+      return res
+        .status(500)
+        .json({ message: "Failed to create product object" });
+    }
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ message: "product not added", error });
   }
 };
-
-
 
 const deleteProduct = async (req, res) => {
   try {
     const { name } = req.body;
     const result = await Product.deleteOne({ name: name });
-    console.log(result);
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: "product not found" });
     }
     return res.status(200).json({ message: "product deleted successfully" });
   } catch (error) {
-    console.log(error);
     return res.status(500).json("product not deleted");
   }
 };
 
-
 const updateProduct = {
-  // selling price updated on selling the product 
+  // selling price updated on selling the product
   updateSellingPrice: async (req, res) => {
     try {
       const { productName, updatedValue } = req.body;
-      console.log(req.body);
 
       const selectedProduct = await Product.findOne({ name: productName });
 
@@ -112,7 +114,6 @@ const updateProduct = {
           .json({ message: "selling price updated successfully" });
       }
     } catch (error) {
-      console.log("Error: ", error);
       return res.status(500).json({ message: "selling price not updated" });
     }
   },
@@ -121,7 +122,6 @@ const updateProduct = {
   updateCostPrice: async (req, res) => {
     try {
       const { productName, updatedValue } = req.body;
-      console.log(req.body);
 
       const selectedProduct = await Product.findOne({ name: productName });
 
@@ -142,17 +142,14 @@ const updateProduct = {
           .json({ message: "Cost Price updated successfully" });
       }
     } catch (error) {
-      console.log("Error: ", error);
       return res.status(500).json({ message: "Cost Price not updated" });
     }
   },
-
 
   // update product description
   updateDescription: async (req, res) => {
     try {
       const { productName, updatedValue } = req.body;
-      console.log(req.body);
 
       const selectedProduct = await Product.findOne({ name: productName });
 
@@ -173,7 +170,6 @@ const updateProduct = {
           .json({ message: "Description updated successfully" });
       }
     } catch (error) {
-      console.log("Error: ", error);
       return res.status(500).json({ message: "Description not updated" });
     }
   },
@@ -182,7 +178,6 @@ const updateProduct = {
   updateQuantity: async (req, res) => {
     try {
       const { productName, updatedValue } = req.body;
-      console.log(req.body);
 
       const selectedProduct = await Product.findOne({ name: productName });
 
@@ -203,8 +198,9 @@ const updateProduct = {
           .json({ message: "Quantity updated successfully" });
       }
     } catch (error) {
-      console.log("Error: ", error);
-      return res.status(500).json({ message: "Quantity is not updated" });
+      return res
+        .status(500)
+        .json({ message: "Quantity is not updated", error });
     }
   },
 
@@ -246,14 +242,13 @@ const updateProduct = {
       productToUpdate.destroyedQuantity = destroyedQuantity;
       productToUpdate.expiryDate = expiryDate;
       const result = await productToUpdate.save();
-      console.log(result);
+
       if (result) {
         return res
           .status(201)
           .json({ message: "Product updated Successfully" });
       }
     } catch (error) {
-      console.log("Error: ", error);
       return res.status(500).json({ message: "Product not Updated" });
     }
   },
@@ -264,7 +259,9 @@ const getProduct = async (req, res) => {
     const products = await Product.find({});
     res.status(201).json({ message: "product fetched", products });
   } catch (error) {
-    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "error occured while getting the product", error });
   }
 };
 
@@ -273,10 +270,9 @@ const getProductByProductId = async (req, res) => {
   try {
     const product = await Product.findOne({ id });
     if (!product) {
-      console.log("product not get fetched by given id");
       return res.status(500).json({
         message:
-          "something went wrong while fetching the product with given id",
+          "unable to find the product by id either product is not available or wrong id",
       });
     } else {
       res.status(200).json({
@@ -284,19 +280,16 @@ const getProductByProductId = async (req, res) => {
         product,
       });
     }
-    console.log(product);
   } catch (error) {
-    console.log(
-      "Error while trying to fetch the product with given id ",
-      error
-    );
+    return res.status(500).json({
+      message: "error occured while getting the product by id",
+      error,
+    });
   }
 };
 
 const sellProduct = async (req, res) => {
   const { name, quantity, customer } = req.body;
-
-  console.log(req.body);
 
   try {
     const requiredProduct = await Product.findOne({ name });
@@ -346,10 +339,7 @@ const sellProduct = async (req, res) => {
           )
         : 0;
 
-    console.log("Total Paid Amount:", totalpaidAmount);
-
     if (isNaN(totalpaidAmount) || isNaN(requiredCustomer.totalSpend)) {
-      console.log("Invalid amount detected, setting to 0");
       requiredCustomer.dueAmount = 0;
     } else {
       requiredCustomer.dueAmount =
@@ -357,14 +347,15 @@ const sellProduct = async (req, res) => {
     }
 
     await requiredCustomer.save();
+    const updatedRequiredProduct = await Product.findOne({ name });
+    const updatedRequiredCustomer = await Customer.findOne({ customer });
 
     return res.status(200).json({
       message: "Product sold",
-      updatedProduct: requiredProduct,
-      updatedCustomer: requiredCustomer,
+      updatedProduct: updatedRequiredProduct,
+      updatedCustomer: updatedRequiredCustomer,
     });
   } catch (error) {
-    console.log("Error while selling the product:", error);
     return res.status(500).json({ message: "Error while selling product" });
   }
 };
@@ -375,5 +366,5 @@ export {
   updateProduct,
   getProduct,
   getProductByProductId,
-  sellProduct
+  sellProduct,
 };
