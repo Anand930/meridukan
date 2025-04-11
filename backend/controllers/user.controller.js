@@ -71,7 +71,9 @@ const SignInUser = async (req, res) => {
 
     return res
       .status(201)
-      .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, maxAge:604800 })
+      .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, maxAge: 7 * 24 * 60 * 60 * 1000 // ✅ 7 days in milliseconds
+        // Which equals: 604800000
+         })
       .json({
         message: "User created successfully",
         user: createdUser,
@@ -115,7 +117,9 @@ if (user) {
       }
       return res
         .status(201)
-        .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, maxAge:604800 })
+        .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, maxAge: 7 * 24 * 60 * 60 * 1000 // ✅ 7 days in milliseconds
+          // Which equals: 604800000
+           })
         .json({ message: "user logged in successfully", user });
     }
   } catch (error) {
