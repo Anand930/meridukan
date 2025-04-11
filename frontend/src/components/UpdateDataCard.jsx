@@ -5,6 +5,7 @@ import { UserContext } from "../context/UserContext";
 import { CustomerContext } from "../context/CustomerContext";
 import toast, { Toaster } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
+import fetchWithAuth from "../utils/fetchWithAuth";
 
 
 const ProductDetails = ({}) => {
@@ -43,7 +44,7 @@ const ProductDetails = ({}) => {
         customer: selectedCustomer,
       };
 
-      const response = await fetch(
+      const response = await fetchWithAuth(
         "https://meridukan-f7iy.onrender.com/api/product/sellproduct",
         {
           method: "POST",

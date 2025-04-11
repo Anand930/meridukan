@@ -10,7 +10,7 @@ export default  async function fetchWithAuth(url, options = {}) {
   
     const response = await fetch(url, options);
   
-    if (response.status === 401) {
+    if (response.status === 403) {
       // Token expired, try to refresh
       const refreshResponse = await fetch('/api/user/refreshtoken', {
         method: 'POST',

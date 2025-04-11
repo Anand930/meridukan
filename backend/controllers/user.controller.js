@@ -13,7 +13,12 @@ const generateAccessAndRefreshToken = async (userId) => {
     await user.save({ validateBeforeSave: false });
     return { accessToken, refreshToken };
   } catch (error) {
-    return res.status(500).json({message:"unable to generate Acess and the refreshtoken", error})
+    return res
+      .status(500)
+      .json({
+        message: "unable to generate Acess and the refreshtoken",
+        error,
+      });
   }
 };
 
@@ -23,7 +28,6 @@ const SignInUser = async (req, res) => {
     const { fullname, username, email, password } = req.body;
 
     const { profileImage } = req.file;
-
 
     //check for missing profileImage
     if (!req.file) {
@@ -39,7 +43,6 @@ const SignInUser = async (req, res) => {
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
-  
 
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
@@ -64,16 +67,17 @@ const SignInUser = async (req, res) => {
     user.refreshToken = refreshToken;
     await user.save();
 
-
     const createdUser = await User.findById(user._id).select(
       "-password -refreshToken"
     );
 
     return res
       .status(201)
-      .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, maxAge: 7 * 24 * 60 * 60 * 1000 // ✅ 7 days in milliseconds
-
-         })
+      .cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000, // ✅ 7 days in milliseconds
+      })
       .json({
         message: "User created successfully",
         user: createdUser,
@@ -105,7 +109,7 @@ const LoginUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" }); // ✅ Important!
     }
 
-if (user) {
+    if (user) {
       const result = await bcryptjs.compare(password, user.password); // comparing the password with its hash
 
       const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
@@ -117,9 +121,12 @@ if (user) {
       }
       return res
         .status(201)
-        .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, maxAge: 7 * 24 * 60 * 60 * 1000 // ✅ 7 days in milliseconds
+        .cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          secure: true,
+          maxAge: 7 * 24 * 60 * 60 * 1000, // ✅ 7 days in milliseconds
           // Which equals: 604800000
-           })
+        })
         .json({ message: "user logged in successfully", user });
     }
   } catch (error) {
@@ -182,7 +189,6 @@ const renewToken = async (req, res) => {
   try {
     const refreshToken = req?.cookies?.refreshToken;
     console.log("refreshToken ", refreshToken);
-    
 
     if (!refreshToken) {
       return res
@@ -198,8 +204,8 @@ const renewToken = async (req, res) => {
       }
 
       const userFromDatabase = await User.findOne({ name: user.name });
-      console.log("userFromDatabase",userFromDatabase);
-      
+      console.log("userFromDatabase", userFromDatabase);
+
       if (userFromDatabase) {
         var newAccessToken = userFromDatabase.generateAccessToken();
         console.log("newAcessToken", newAccessToken);
