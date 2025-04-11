@@ -17,13 +17,13 @@ const _dirname = path.resolve()
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend's URL
+    origin: "https://meri-dukan2.netlify.app/", // Replace with your frontend's URL
     credentials: true,
   })
 );
 
 app.options("*", cors({
-  origin: "http://localhost:5173", 
+  origin: "https://meri-dukan2.netlify.app/", 
   credentials: true,
 }));
 
