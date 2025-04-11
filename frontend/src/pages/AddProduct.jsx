@@ -71,7 +71,7 @@ const AddProduct = () => {
 
     try {
       const response = await fetch(
-        "/api/product/addproduct",
+        "https://meridukan-f7iy.onrender.com/api/product/addproduct",
         {
           method: "POST",
           body: formDataToSend // No need to stringify FormData

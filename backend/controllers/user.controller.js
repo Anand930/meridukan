@@ -71,8 +71,7 @@ const SignInUser = async (req, res) => {
 
     return res
       .status(201)
-      .cookie("accessToken", accessToken, { httpOnly: true, secure: true })
-      .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true })
+      .cookie("refreshToken", refreshToken, { httpOnly: true, secure: true, maxAge:604800 })
       .json({
         message: "User created successfully",
         user: createdUser,
@@ -195,7 +194,7 @@ const renewToken = async (req, res) => {
       }
 
       const userFromDatabase = await User.findOne({ name: user.name });
-      console.log(userFromDatabase);
+      console.log("userFromDatabase",userFromDatabase);
       
       if (userFromDatabase) {
         var newAccessToken = userFromDatabase.generateAccessToken();

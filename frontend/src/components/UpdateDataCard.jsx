@@ -44,7 +44,7 @@ const ProductDetails = ({}) => {
       };
 
       const response = await fetch(
-        "/api/product/sellproduct",
+        "https://meridukan-f7iy.onrender.com/api/product/sellproduct",
         {
           method: "POST",
           headers: {

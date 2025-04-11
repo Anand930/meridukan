@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
 import fetchWithAuth from "../utils/fetchWithAuth.js";
 import toast,{Toaster} from 'react-hot-toast'
-import { jwtDecode } from "jwt-decode";
+
 // import getUserFromToken from '../utils/decodeToken.js'
 
 const Profile = () => {
@@ -25,7 +25,7 @@ const Profile = () => {
   const handleLogOut = async () => {
     try {
       const response = await fetchWithAuth(
-        "/api/user/logout",
+        "https://meridukan-f7iy.onrender.com/api/user/logout",
         {
           method: "POST",
           "Content-Type": "application/json",

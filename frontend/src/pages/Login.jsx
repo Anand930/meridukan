@@ -37,7 +37,7 @@ const Login = () => {
     };
 
     try {
-      const response = await fetchWithAuth("/api/user/login", {
+      const response = await fetchWithAuth("https://meridukan-f7iy.onrender.com/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

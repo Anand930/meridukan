@@ -19,7 +19,7 @@ const UpdateDetailsComponents = ({
 
     try {
       const response = await fetchWithAuth(
-        `/api/product/updateproduct/${apiRoute}`,
+        `https://meridukan-f7iy.onrender.com/api/product/updateproduct/${apiRoute}`,
         {
           method: "POST",
           headers: {

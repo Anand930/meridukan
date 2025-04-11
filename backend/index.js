@@ -36,10 +36,10 @@ app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/customer", customerRoute);
 
-app.use(express.static(path.join(_dirname,'/frontend/dist')))
-app.get('*',(req,res)=> {
-  res.sendFile(path.resolve(_dirname, 'frontend','dist', 'index.html'))
-})
+// app.use(express.static(path.join(_dirname,'/frontend/dist')))
+// app.get('*',(req,res)=> {
+//   res.sendFile(path.resolve(_dirname, 'frontend','dist', 'index.html'))
+// })
 
 dbConnect();
 

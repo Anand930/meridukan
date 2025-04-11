@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { CustomerContext } from "../context/CustomerContext";
 import toast, { Toaster } from "react-hot-toast";
+import fetchWithAuth from "../utils/fetchWithAuth";
 
 const PayAmount = () => {
   const [paidAmount, setPaidAmount] = useState("");
@@ -22,7 +23,7 @@ const PayAmount = () => {
 
   const handlePaidAmount = async() => {
     const formData = {paidAmount, name:selectedCustomer }
-    const response = await fetch("/api/customer/setdueamount", {
+    const response = await fetchWithAuth("https://meridukan-f7iy.onrender.com/api/customer/setdueamount", {
         method:"POST",
         headers:{
             "Content-Type":"application/json"
