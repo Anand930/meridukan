@@ -70,7 +70,7 @@ const AddProduct = () => {
     formDataToSend.append("productImage", productImage)
 
     try {
-      const response = await fetch(
+      const response = await fetchWithAuth(
         "https://meridukan-f7iy.onrender.com/api/product/addproduct",
         {
           method: "POST",

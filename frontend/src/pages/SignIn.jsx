@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import toast, { Toaster } from "react-hot-toast";
+import fetchWithAuth from "../utils/fetchWithAuth";
 // import Cookies from 'js-cookie'
 
 const SignIn = () => {
@@ -37,7 +38,7 @@ const SignIn = () => {
     formData.append("profileImage", profileImage);
 
     try {
-      const response = await fetch("https://meridukan-f7iy.onrender.com/api/user/signin", {
+      const response = await fetchWithAuth("https://meridukan-f7iy.onrender.com/api/user/signin", {
         method: "POST",
         credentials: "include",
         body: formData

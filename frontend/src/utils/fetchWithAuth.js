@@ -5,12 +5,12 @@ export default  async function fetchWithAuth(url, options = {}) {
     // Attach the Authorization header
     options.headers = {
       ...options.headers,
-      Authorization: `Bearer ${accessToken}`,
+      authorization: `Bearer ${accessToken}`,
     };
   
     const response = await fetch(url, options);
   
-    if (response.status === 403) {
+    if (response.status === 401) {
       // Token expired, try to refresh
       const refreshResponse = await fetch('/api/user/refreshtoken', {
         method: 'POST',
