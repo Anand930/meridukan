@@ -33,7 +33,7 @@ const ProductDetails = () => {
       };
 
       const response = await fetchWithAuth(
-        "https://meridukan-f7iy.onrender.com/api/product/sellproduct",
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app//api/product/sellproduct",
         {
           method: "POST",
           headers: {

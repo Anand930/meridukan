@@ -13,7 +13,7 @@ const UserProvider = ({ children }) => {
   const handleProduct = async () => {
     try {
       const response = await fetchWithAuth(
-        "https://meridukan-f7iy.onrender.com/api/product/getproduct"
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app//api/product/getproduct"
       );
 
       const data = await response.json();

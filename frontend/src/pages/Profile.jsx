@@ -25,7 +25,7 @@ const Profile = () => {
   const handleLogOut = async () => {
     try {
       const response = await fetchWithAuth(
-        "https://meridukan-f7iy.onrender.com/api/user/logout",
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app//api/user/logout",
         {
           method: "POST",
           "Content-Type": "application/json",
