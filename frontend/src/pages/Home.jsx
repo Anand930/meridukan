@@ -8,12 +8,13 @@ import { useEffect } from "react";
 import fetchWithAuth from "../utils/fetchWithAuth";
 
 const Home = () => {
-  const { userRender } = useContext(UserContext);
+  const { userRender, user, setUser } = useContext(UserContext);
 
   useEffect(() => {
+    const token = localStorage.getItem("accessToken");
     userRender();
-  }, []);
-  
+  }, [token, user]);
+
   return (
     <div>
       <Navbar />
