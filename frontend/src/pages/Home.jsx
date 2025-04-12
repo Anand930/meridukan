@@ -8,12 +8,12 @@ import { useEffect } from "react";
 import fetchWithAuth from "../utils/fetchWithAuth";
 
 const Home = () => {
-  // const { userRender, handleProduct, products } = useContext(UserContext);
+  const { userRender } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   userRender();
-  //   handleProduct();
-  // }, [products]);
+  useEffect(() => {
+    userRender();
+  }, []);
+  
   return (
     <div>
       <Navbar />
