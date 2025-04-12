@@ -1,5 +1,8 @@
-import { ClipLoader } from "react-spinners";
-
+// Spinner.jsx
 export default function Spinner() {
-  return <ClipLoader color="#36d7b7" size={50} />;
+  return (
+    <div style={{ background: "white", padding: "2rem", textAlign: "center" }}>
+      <h2>Loading Spinner...</h2>
+    </div>
+  );
 }
