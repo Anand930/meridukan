@@ -8,12 +8,11 @@ import { useEffect } from "react";
 import fetchWithAuth from "../utils/fetchWithAuth";
 
 const Home = () => {
-  const { userRender, user, setUser } = useContext(UserContext);
+  const { userRender, user} = useContext(UserContext);
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
     userRender();
-  }, [token, user]);
+  }, [user]);
 
   return (
     <div>
