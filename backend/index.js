@@ -13,7 +13,6 @@ dotenv.config();
 
 const app = express();
 
-const _dirname = path.resolve()
 
 app.use(
   cors({
@@ -36,13 +35,11 @@ app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/customer", customerRoute);
 
-// app.use(express.static(path.join(_dirname,'/frontend/dist')))
-// app.get('*',(req,res)=> {
-//   res.sendFile(path.resolve(_dirname, 'frontend','dist', 'index.html'))
-// })
 
 dbConnect();
 
-app.listen(process.env.PORT || 4000 , () => {
+const PORT = process.env.PORT || 4000
+
+app.listen( PORT, () => {
   console.log(`App is running at ${process.env.PORT}`);
 });
