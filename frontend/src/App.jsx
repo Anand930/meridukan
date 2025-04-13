@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, lazy } from "react";
+import React, { useEffect, Suspense, lazy, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const Home = lazy(() => import("./pages/Home"));
@@ -25,11 +25,31 @@ import Spinner from "./utils/Spinner";
 import SpinnerForLazyLoad from "./utils/SpinnerForLazyLoad";
 
 function App() {
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+
+  useEffect(() => {
+    const handlePageLoad = () => {
+      setIsPageLoaded(true);
+    };
+
+    if (document.readyState === "complete") {
+      handlePageLoad();
+    } else {
+      window.addEventListener("load", handlePageLoad);
+    }
+
+    return () => {
+      window.removeEventListener("load", handlePageLoad);
+    };
+  }, []);
+  if (!isPageLoaded) {
+    return <div className="spinner"><SpinnerForLazyLoad/></div>; // customize spinner
+  }
   return (
     <div>
       <Router>
         <Spinner />
-        <Suspense fallback={SpinnerForLazyLoad}>
+        <Suspense fallback={<SpinnerForLazyLoad/>}>
           <Routes>
             <Route path={"/"} element={<Home />} />
             <Route path={"/product/:id"} element={<ProductDetails />} />

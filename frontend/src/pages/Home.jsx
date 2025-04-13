@@ -8,11 +8,11 @@ import { useEffect } from "react";
 import fetchWithAuth from "../utils/fetchWithAuth";
 
 const Home = () => {
-  const { userRender} = useContext(UserContext);
+  // const { userRender} = useContext(UserContext);
 
-  useEffect(() => {
-    userRender();
-  }, []);
+  // useEffect(() => {
+  //   userRender();
+  // }, []);
 
   return (
     <div>

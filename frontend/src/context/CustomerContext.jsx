@@ -12,8 +12,7 @@ const CustomerProvider = ({ children }) => {
   const handleListCustomer = async () => {
     try {
       const response = await fetchWithAuth("api/customer/getcustomer",{});
-      const text = response.text()
-      // const data = await response.json();
+      const data = await response.json();
       console.log("customer ",  );
       if (response.ok) {
         setCustomers(data.customers);

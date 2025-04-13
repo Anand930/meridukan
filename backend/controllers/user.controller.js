@@ -190,39 +190,44 @@ const logOutUser = (req, res) => {
 
 const renewToken = async (req, res) => {
   try {
-    const refreshToken = req?.cookies?.refreshToken;
+    const refreshToken = req?.cookie?.refreshToken;
     console.log("refreshToken ", refreshToken);
 
     if (!refreshToken) {
-      return res
-        .status(401)
-        .json({ message: "refresh token not found in the cookie" });
+      return res.status(401).json({ message: "refresh token not found in the cookie" });
     }
 
     jwt.verify(refreshToken, process.env.REFRESH_SECRET, async (err, user) => {
+      console.log("user ", user);
+
       if (err) {
-        return res
-          .status(403)
-          .json({ message: "refreshToken is invalid or expired" });
+        return res.status(403).json({ message: "refreshToken is invalid or expired" });
       }
 
-      const userFromDatabase = await User.findOne({ name: user.name });
+      if (!user) {
+        return res.status(400).json({ message: "Invalid token" });
+      }
+
+      const userFromDatabase = await User.findById(user.id);
       console.log("userFromDatabase", userFromDatabase);
 
       if (userFromDatabase) {
-        var newAccessToken = userFromDatabase.generateAccessToken();
+        let newAccessToken = userFromDatabase.generateAccessToken();
+        console.log("newAccessToken", jwt.decode(newAccessToken));
         
-        console.log("newAcessToken",decode(newAccessToken) );
+        return res.status(200).json({
+          message: "new accessToken is created",
+          accessToken: newAccessToken,
+        });
+      } else {
+        return res.status(404).json({ message: "User not found" });
       }
-
-      return res.status(200).json({
-        message: "new accessToken is created",
-        accessToken: newAccessToken,
-      });
     });
   } catch (error) {
     console.log("Something went wrong while renewing the token ", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 
 export { SignInUser, LoginUser, logOutUser, renewToken };

@@ -1,6 +1,5 @@
 export default  async function fetchWithAuth(url, options = {}) {
     let accessToken = localStorage.getItem('accessToken');
-  
     options.credentials = 'include';
     // Attach the Authorization header
     options.headers = {
