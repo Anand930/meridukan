@@ -37,19 +37,19 @@ const Login = () => {
     };
 
     try {
-      const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/login", {
+      const response = await fetch("api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        credentials: "include",
+        credentials: "include"
       });
 
       const userData = await response.json();
 
       setUser(userData.user);
-      // Cookies.set("user", userData.user);
+      
       if (userData.user) {
         localStorage.setItem("accessToken", userData?.user?.accessToken);
         localStorage.setItem("authenticated", "true");

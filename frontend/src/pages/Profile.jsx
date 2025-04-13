@@ -9,7 +9,7 @@ import toast,{Toaster} from 'react-hot-toast'
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { user, setUser, userRender } = useContext(UserContext);
+  const { user, userRender } = useContext(UserContext);
   const [Editable, setEditable] = useState(false);
 
   useEffect(() => {
@@ -17,18 +17,13 @@ const Profile = () => {
     userRender();
   }, []);
 
-  // const allCookies = document.cookie;
-  // console.log("allcookies ", allCookies);
-
-  // setUser(allCookies.user)
-
   const handleLogOut = async () => {
     try {
+
       const response = await fetchWithAuth(
-        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/logout",
+        "api/user/logout",
         {
           method: "POST",
-          "Content-Type": "application/json",
           credentials: "include",
         }
       );
@@ -44,6 +39,8 @@ const Profile = () => {
     }
   };
 
+
+  
   return (
     <div>
       <Navbar />

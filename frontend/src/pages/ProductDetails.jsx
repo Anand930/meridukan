@@ -20,6 +20,7 @@ const ProductDetails = () => {
     allCustomerNameList,
     SetAllCustomerNameList,
     handleListCustomer,
+    
   } = useContext(CustomerContext);
 
   const { id } = useParams();
@@ -33,7 +34,7 @@ const ProductDetails = () => {
       };
 
       const response = await fetchWithAuth(
-        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/sellproduct",
+        "api/product/sellproduct",
         {
           method: "POST",
           headers: {
@@ -65,11 +66,17 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-
-    const customerNames = customers.map((item) => item.name);
-    setCustomerNameList(customerNames);
-    SetAllCustomerNameList(customerNames);
-  }, [customers]); // Runs only when customers change
+    if (customers.length > 0) {
+      // Only set customer names if customers data is available
+      const customerNames = customers.map((item) => item.name);
+      setCustomerNameList(customerNames);
+      SetAllCustomerNameList(customerNames);
+    } else {
+      // Handle case when customers data is not available yet
+      console.log("No customers available.");
+    }
+  }, [customers]); // Runs when customers data changes
+  
 
   useEffect(() => {
     const ProductToGet = products.find((item) => item.id == id);

@@ -26,7 +26,7 @@ const AddCustomers = () => {
 
   const handleAddCustomer = async() =>{
     try {
-      const response = await fetchWithAuth('https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/customer/addcustomer',{
+      const response = await fetchWithAuth('api/customer/addcustomer',{
         method:"POST",
         headers:{
           "Content-Type":"application/json"

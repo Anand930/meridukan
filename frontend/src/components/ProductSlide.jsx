@@ -16,7 +16,7 @@ const ProductSlide = ({ categoryName }) => {
   }, []);
 
   let Categories = [];
-  products.map((item) => Categories.push(item.categories));
+  products.forEach((item) => Categories.push(item.categories));
 
   const productSampleCategorywise = products.filter(
     (item) => item.categories === categoryName

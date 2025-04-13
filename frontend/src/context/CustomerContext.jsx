@@ -11,12 +11,13 @@ const CustomerProvider = ({ children }) => {
 
   const handleListCustomer = async () => {
     try {
-      const response = await fetchWithAuth(
-        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/customer/getcustomer"
-      );
-      const data = await response.json();
-      setCustomers(data.customers);
-      
+      const response = await fetchWithAuth("api/customer/getcustomer",{});
+      const text = response.text()
+      // const data = await response.json();
+      console.log("customer ",  );
+      if (response.ok) {
+        setCustomers(data.customers);
+      }
     } catch (error) {
       console.log("Error occured while tring to fetch the customer ", error);
     }

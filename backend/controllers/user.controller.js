@@ -1,6 +1,7 @@
 import bcryptjs from "bcryptjs";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
+import {decode } from 'jsonwebtoken'
 
 // function to generate access and the refreshToken
 const generateAccessAndRefreshToken = async (userId) => {
@@ -76,6 +77,7 @@ const SignInUser = async (req, res) => {
       .cookie("refreshToken", refreshToken, {
         httpOnly: true,
         secure: true,
+        sameSite:"Strict",
         maxAge: 7 * 24 * 60 * 60 * 1000, // ✅ 7 days in milliseconds
       })
       .json({
@@ -124,6 +126,7 @@ const LoginUser = async (req, res) => {
         .cookie("refreshToken", refreshToken, {
           httpOnly: true,
           secure: true,
+          sameSite:"Strict",
           maxAge: 7 * 24 * 60 * 60 * 1000, // ✅ 7 days in milliseconds
           // Which equals: 604800000
         })
@@ -208,7 +211,8 @@ const renewToken = async (req, res) => {
 
       if (userFromDatabase) {
         var newAccessToken = userFromDatabase.generateAccessToken();
-        console.log("newAcessToken", newAccessToken);
+        
+        console.log("newAcessToken",decode(newAccessToken) );
       }
 
       return res.status(200).json({

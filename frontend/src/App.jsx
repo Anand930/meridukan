@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense,lazy } from "react";
+import React, { useEffect, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const Home = lazy(() => import("./pages/Home"));
@@ -16,16 +16,20 @@ const UpdateProduct = lazy(() => import("./pages/UpdateProduct"));
 const UpdateDataCard = lazy(() => import("./components/UpdateDataCard"));
 const UpdateSellingPrice = lazy(() => import("./pages/UpdateSellingPrice"));
 const UpdateCostPrice = lazy(() => import("./pages/UpdateCostPrice"));
-const UpdateProductQuantity = lazy(() => import("./pages/UpdateProductQuantity"));
+const UpdateProductQuantity = lazy(() =>
+  import("./pages/UpdateProductQuantity")
+);
 const UpdateDescription = lazy(() => import("./pages/UpdateDescription"));
 
 import Spinner from "./utils/Spinner";
+import SpinnerForLazyLoad from "./utils/SpinnerForLazyLoad";
 
 function App() {
   return (
     <div>
-      <Suspense fallback={<Spinner/>}>
-        <Router>
+      <Router>
+        <Spinner />
+        <Suspense fallback={SpinnerForLazyLoad}>
           <Routes>
             <Route path={"/"} element={<Home />} />
             <Route path={"/product/:id"} element={<ProductDetails />} />
@@ -60,8 +64,8 @@ function App() {
               element={<UpdateDescription />}
             />
           </Routes>
-        </Router>
-      </Suspense>
+        </Suspense>
+      </Router>
     </div>
   );
 }
