@@ -1,42 +1,41 @@
 import React, { useState, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { UserContext } from "../context/UserContext";
-import toast, {Toaster} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 // import { data } from "react-router-dom";
 import fetchWithAuth from "../utils/fetchWithAuth.js";
 
 const AddProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [productImage, setProductImage] = useState(null);
   const [formData, setFormData] = useState({
     productName: "",
     description: "",
-    costPrice: 0,
-    sellingPrice: 0,
-    purchaseDate:null,
-    expiryDate:null,
+    costPrice: null,
+    sellingPrice: null,
+    purchaseDate: null,
+    expiryDate: null,
     supplierName: "",
+    productQuantity:null
   });
 
 
   const handleProductFormChange = (e) => {
     const { name, value } = e.target;
-  
-    let newValue = value;
+
+    var newValue = value;
     if (["costPrice", "sellingPrice", "productQuantity"].includes(name)) {
       newValue = parseFloat(value) || 0;
     } else if (name === "purchaseDate" || name === "expiryDate") {
       newValue = value ? value : ""; // Keep it in 'YYYY-MM-DD' format
     }
-  
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: newValue,
     }));
   };
-  
 
-
-  const [productImage, setProductImage] = useState(null);
   const categories = [
     "Dairy",
     "Snacks",
@@ -48,8 +47,6 @@ const AddProduct = () => {
     "Cold Drinks",
     "Others",
   ];
-
-  
 
   const handleAddProduct = async () => {
     if (!productImage) {
@@ -67,31 +64,30 @@ const AddProduct = () => {
     formDataToSend.append("expiryDate", formData.expiryDate);
     formDataToSend.append("supplierName", formData.supplierName);
     formDataToSend.append("productQuantity", formData.productQuantity);
-    formDataToSend.append("productImage", productImage)
+    formDataToSend.append("productImage", productImage);
 
     try {
-      const response = await fetchWithAuth(
-        "api/product/addproduct",
-        {
-          method: "POST",
-          body: formDataToSend // No need to stringify FormData
-        }
-      );
+      const response = await fetchWithAuth("https://curved-jeniffer/meridukan/api/product/addproduct", {
+        method: "POST",
+        body: formDataToSend, // No need to stringify FormData
+      });
 
       const productData = await response.json();
-      
-      setFormData({productName: "",
+
+      setFormData({
+        productName: "",
         description: "",
         costPrice: 0,
         sellingPrice: 0,
-        purchaseDate:null,
-        expiryDate:null,
-        supplierName: ""})
-        console.log(productData);
-        
-      toast.success(productData.message)
+        purchaseDate: null,
+        expiryDate: null,
+        supplierName: "",
+      });
+      console.log(productData);
+      
+      toast.success(productData.message);
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message);
       console.error("Error while adding product:", error);
     }
   };
@@ -107,7 +103,7 @@ const AddProduct = () => {
         position="below-right"
         gutter={8}
         toastOptions={{
-          duration:5000,
+          duration: 5000,
           style: {
             color: "white",
             backgroundColor: "grey",
@@ -187,7 +183,7 @@ const AddProduct = () => {
             Product Quantity
           </div>
           <input
-            type="text"
+            type="number"
             value={formData.productQuantity}
             name="productQuantity"
             onChange={handleProductFormChange}
@@ -199,7 +195,8 @@ const AddProduct = () => {
             Product Cost Price
           </div>
           <input
-            type="text"
+            type="number"
+            step={'0.01'}
             value={formData.costPrice}
             name="costPrice"
             onChange={handleProductFormChange}
@@ -211,7 +208,8 @@ const AddProduct = () => {
             Product Selling Price
           </div>
           <input
-            type="text"
+            type="number"
+            step={'0.01'}
             value={formData.sellingPrice}
             name="sellingPrice"
             onChange={handleProductFormChange}

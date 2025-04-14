@@ -3,16 +3,10 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import ProductSlide from "../components/ProductSlide";
 import Footer from "../components/Footer";
-import { UserContext } from "../context/UserContext";
-import { useEffect } from "react";
-import fetchWithAuth from "../utils/fetchWithAuth";
+
 
 const Home = () => {
-  // const { userRender} = useContext(UserContext);
-
-  // useEffect(() => {
-  //   userRender();
-  // }, []);
+  
 
   return (
     <div>

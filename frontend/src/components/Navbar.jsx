@@ -6,11 +6,15 @@ const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const {user} = useContext(UserContext)
   const [productMenuIsOpen, setProductMenuIsOpen] = useState(false);
+  const { userRender} = useContext(UserContext);
+  
+    
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("authenticated");
     if (isAuthenticated === "true") {
       setLoggedIn(true);
     }
+    userRender();
   }, []);
   
 
