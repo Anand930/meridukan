@@ -34,7 +34,7 @@ const ProductDetails = () => {
       };
 
       const response = await fetchWithAuth(
-        "https://curved-jeniffer/meridukan/api/product/sellproduct",
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/sellproduct",
         {
           method: "POST",
           headers: {

@@ -37,7 +37,7 @@ const Login = () => {
     };
 
     try {
-      const response = await fetch("https://curved-jeniffer/meridukan/api/user/login", {
+      const response = await fetch("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

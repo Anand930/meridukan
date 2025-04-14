@@ -19,7 +19,7 @@ const UpdateDetailsComponents = ({
 
     try {
       const response = await fetchWithAuth(
-        `https://curved-jeniffer/meridukan/api/product/updateproduct/${apiRoute}`,
+        `https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/updateproduct/${apiRoute}`,
         {
           method: "POST",
           headers: {

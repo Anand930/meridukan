@@ -11,7 +11,7 @@ const CustomerProvider = ({ children }) => {
 
   const handleListCustomer = async () => {
     try {
-      const response = await fetchWithAuth("https://curved-jeniffer/meridukan/api/customer/getcustomer");
+      const response = await fetchWithAuth("/api/customer/getcustomer");
       const data = await response.json();
       console.log("customer ", data );
       if (response.ok) {

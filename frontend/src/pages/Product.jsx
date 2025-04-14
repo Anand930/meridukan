@@ -15,7 +15,7 @@ const Product = () => {
   const handleProduct = async () => {
     try {
       const response = await fetchWithAuth(
-        "https://curved-jeniffer/meridukan/api/product/getproduct"
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/getproduct"
       );
       const data = await response.json();
       
