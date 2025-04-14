@@ -21,7 +21,7 @@ const Profile = () => {
     try {
 
       const response = await fetchWithAuth(
-        "api/user/logout",
+        "https://curved-jeniffer/meridukan/api/user/logout",
         {
           method: "POST",
           credentials: "include",

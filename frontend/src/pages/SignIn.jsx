@@ -38,7 +38,7 @@ const SignIn = () => {
     formData.append("profileImage", profileImage);
 
     try {
-      const response = await fetchWithAuth("api/user/signin", {
+      const response = await fetchWithAuth("https://curved-jeniffer/meridukan/api/user/signin", {
         method: "POST",
         credentials: "include",
         body: formData

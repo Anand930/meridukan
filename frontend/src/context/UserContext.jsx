@@ -16,7 +16,7 @@ const UserProvider = ({ children }) => {
   const handleProduct = async () => {
     try {
       const response = await fetchWithAuth(
-        "api/product/getproduct"
+        "https://curved-jeniffer/meridukan/api/product/getproduct"
       );
       
       if(response.status===401){
@@ -39,7 +39,7 @@ const UserProvider = ({ children }) => {
     try {
 
       const response = await fetchWithAuth(
-        "api/user/logout",
+        "https://curved-jeniffer/meridukan/api/user/logout",
         {
           method: "POST",
           credentials: "include",

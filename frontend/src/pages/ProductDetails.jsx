@@ -34,7 +34,7 @@ const ProductDetails = () => {
       };
 
       const response = await fetchWithAuth(
-        "api/product/sellproduct",
+        "https://curved-jeniffer/meridukan/api/product/sellproduct",
         {
           method: "POST",
           headers: {
@@ -90,6 +90,10 @@ const ProductDetails = () => {
       handleProduct();
     }
   }, [products, product, id]);
+
+  useEffect(()=>{
+      handleListCustomer()
+  },[])
 
   return (
     <div>
