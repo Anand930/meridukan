@@ -1,7 +1,7 @@
 import bcryptjs from "bcryptjs";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
-import {decode } from 'jsonwebtoken'
+import { decode } from "jsonwebtoken";
 
 // function to generate access and the refreshToken
 const generateAccessAndRefreshToken = async (userId) => {
@@ -14,12 +14,10 @@ const generateAccessAndRefreshToken = async (userId) => {
     await user.save({ validateBeforeSave: false });
     return { accessToken, refreshToken };
   } catch (error) {
-    return res
-      .status(500)
-      .json({
-        message: "unable to generate Acess and the refreshtoken",
-        error,
-      });
+    return res.status(500).json({
+      message: "unable to generate Acess and the refreshtoken",
+      error,
+    });
   }
 };
 
@@ -43,7 +41,9 @@ const SignInUser = async (req, res) => {
     }
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({
+      $or: [{ email }, { username }],
+    });
 
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
@@ -190,18 +190,22 @@ const logOutUser = (req, res) => {
 
 const renewToken = async (req, res) => {
   try {
-    const refreshToken = req?.cookie?.refreshToken;
+    const refreshToken = req?.cookies?.refreshToken;
     console.log("refreshToken ", refreshToken);
 
     if (!refreshToken) {
-      return res.status(401).json({ message: "refresh token not found in the cookie" });
+      return res
+        .status(401)
+        .json({ message: "refresh token not found in the cookie" });
     }
 
     jwt.verify(refreshToken, process.env.REFRESH_SECRET, async (err, user) => {
       console.log("user ", user);
 
       if (err) {
-        return res.status(403).json({ message: "refreshToken is invalid or expired" });
+        return res
+          .status(403)
+          .json({ message: "refreshToken is invalid or expired" });
       }
 
       if (!user) {
@@ -214,7 +218,7 @@ const renewToken = async (req, res) => {
       if (userFromDatabase) {
         let newAccessToken = userFromDatabase.generateAccessToken();
         console.log("newAccessToken", jwt.decode(newAccessToken));
-        
+
         return res.status(200).json({
           message: "new accessToken is created",
           accessToken: newAccessToken,
@@ -228,6 +232,5 @@ const renewToken = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 
 export { SignInUser, LoginUser, logOutUser, renewToken };

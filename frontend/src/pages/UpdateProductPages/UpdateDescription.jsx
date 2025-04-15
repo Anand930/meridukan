@@ -1,5 +1,5 @@
 import React from 'react'
-import UpdateDetailsComponents from '../components/UpdateDetailsComponent'
+import UpdateDetailsComponents from '../../components/UpdateDetailsComponent'
 
 const UpdateDescription = () => {
   return (

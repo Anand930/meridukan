@@ -1,5 +1,6 @@
 import React, { useEffect, Suspense, lazy, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CustomUpdateCard from "./components/CustomUpdateCard";
 
 const Home = lazy(() => import("./pages/Home"));
 const ProductDetails = lazy(() => import("./pages/ProductDetails"));
@@ -14,37 +15,18 @@ const ListCustomer = lazy(() => import("./pages/ListCustomer"));
 const PayAmount = lazy(() => import("./pages/PayAmount"));
 const UpdateProduct = lazy(() => import("./pages/UpdateProduct"));
 const UpdateDataCard = lazy(() => import("./components/UpdateDataCard"));
-const UpdateSellingPrice = lazy(() => import("./pages/UpdateSellingPrice"));
-const UpdateCostPrice = lazy(() => import("./pages/UpdateCostPrice"));
+const UpdateSellingPrice = lazy(() => import("./pages/UpdateProductPages/UpdateSellingPrice"));
+const UpdateCostPrice = lazy(() => import("./pages/UpdateProductPages/UpdateCostPrice"));
 const UpdateProductQuantity = lazy(() =>
-  import("./pages/UpdateProductQuantity")
+  import("./pages/UpdateProductPages/UpdateProductQuantity")
 );
-const UpdateDescription = lazy(() => import("./pages/UpdateDescription"));
+const UpdateDescription = lazy(() => import("./pages/UpdateProductPages/UpdateDescription"));
 
 import Spinner from "./utils/Spinner";
 import SpinnerForLazyLoad from "./utils/SpinnerForLazyLoad";
 
 function App() {
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
-
-  useEffect(() => {
-    const handlePageLoad = () => {
-      setIsPageLoaded(true);
-    };
-
-    if (document.readyState === "complete") {
-      handlePageLoad();
-    } else {
-      window.addEventListener("load", handlePageLoad);
-    }
-
-    return () => {
-      window.removeEventListener("load", handlePageLoad);
-    };
-  }, []);
-  if (!isPageLoaded) {
-    return <div className="spinner"><SpinnerForLazyLoad/></div>; // customize spinner
-  }
+  
   return (
     <div>
       <Router>
@@ -82,6 +64,11 @@ function App() {
             <Route
               path={"/updateproduct/updatedescription"}
               element={<UpdateDescription />}
+            />
+            <Route
+              path={"/updateproduct/customupdateproduct"}
+              element={<CustomUpdateCard />}
+
             />
           </Routes>
         </Suspense>

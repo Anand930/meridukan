@@ -21,8 +21,9 @@ const ListCustomer = () => {
         <p className="font-bold text-3xl text-pink-600 flex items-center justify-center my-8 underline">
           Customer name and their overdues <Link to={'/payamount'}><span >(payBills)</span></Link>
         </p>
-        {customers.map((customer, i) => (
-          <div className="my-2 md:w-1/2 mx-4 md:mx-auto" key={i}>
+        {customers.map((customer, i) => {
+          if(customer.dueAmount>0){
+            return<div className="my-2 md:w-1/2 mx-4 md:mx-auto" key={i}>
             <div className="flex items-center justify-center">
               <input
                 type="text"
@@ -36,7 +37,8 @@ const ListCustomer = () => {
               
             </div>
           </div>
-        ))}
+          }
+})}
       </div>
     </div>
   );

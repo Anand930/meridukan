@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import UpdateCard from "../components/UpdateCard";
+import CustomUpdateCard from "../components/CustomUpdateCard";
 
 const UpdateProduct = () => {
   return (
@@ -15,7 +16,8 @@ const UpdateProduct = () => {
           <UpdateCard name={"Update Cost Price"} to={'updatecostprice'}/>
           <UpdateCard name={"Update Product Quantity"} to={'updatequantity'} />
           <UpdateCard name={"Update Product discription"} to={'updatedescription'} />
-          <UpdateCard name={"Custom Update"} to={'customupdate'}/>
+          <UpdateCard name={"Custom Update"} to={'customupdateproduct'}/>
+
         </div>
         <div className="flex justify-start items-center mt-6 text-2xl font-bold text-pink-600 cursor-pointer">
           Customers

@@ -38,18 +38,25 @@ const SignIn = () => {
     formData.append("profileImage", profileImage);
 
     try {
-      const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/signin", {
+      const response = await fetchWithAuth("/api/user/signin", {
         method: "POST",
         credentials: "include",
         body: formData
       });
       const userData = await response.json();
+
+      if(response.status===400){
+        toast.error("user with given email or username exist already")
+      }
       
       if (userData.user) {
         setUser(userData.user)
         // Cookies.set("user", userData.user)
         localStorage.setItem("accessToken", userData?.user?.accessToken);
         localStorage.setItem("authenticated", "true");
+        setTimeout(() => {
+          toast.success("user loggedIn")
+        }, 1000);
         navigate("/");
       }
     } catch (error) {
@@ -114,9 +121,6 @@ const SignIn = () => {
             name="profileImage"
             onChange={(e) => {setProfileImage(e.target.files[0])}}
           >
-            <img>
-
-            </img>
           </input>
 
         </div>
