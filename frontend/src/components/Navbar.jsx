@@ -4,9 +4,8 @@ import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const { user } = useContext(UserContext);
-  const [productMenuIsOpen, setProductMenuIsOpen] = useState(false);
-  const { userRender } = useContext(UserContext);
+  const { user, userRender } = useContext(UserContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("authenticated");
@@ -16,156 +15,134 @@ const Navbar = () => {
     userRender();
   }, []);
 
-  return (
-    <div className="w-full px-2 bg-custom1 ">
-      <div className="navbar w-full flex justify-between items-center">
-        <div className="flex">
-          <div className="dropdown lg:hidden">
-            <div
+  const navLinkStyle =
+    "hover:bg-white hover:text-black text-pink-600 py-1 px-3 rounded-xl transition duration-200 ";
+
+  const navLinks = (
+    <>
+      {loggedIn && (
+        <>
+          <div className="dropdown md:dropdown-hover  md:dropdown-bottom ">
+            <label
               tabIndex={0}
-              role="button"
+              className={`btn  outline-none bg-transparent border-none shadow-none ${navLinkStyle} py-0`}
+            >
+              Customer
+            </label>
+            <ul
+              tabIndex={0}
+              className={`dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-52 absolute ${navLinkStyle} `}
+            >
+              <li className="hover:bg-pink-300 rounded-lg hover:text-white">
+                <Link to="/addcustomers">Add Customer</Link>
+              </li>
+              <li className="hover:bg-pink-300 rounded-lg hover:text-white">
+                <Link to="/listcustomers">ListCustomer</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="dropdown md:dropdown-hover  md:dropdown-bottom ">
+            <label
+              tabIndex={0}
+              className={`btn  outline-none bg-transparent border-none shadow-none ${navLinkStyle} py-0`}
+            >
+              Product
+            </label>
+            <ul
+              tabIndex={0}
+              className={`dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-52 absolute ${navLinkStyle} `}
+            >
+              <li className="hover:bg-pink-300 rounded-lg hover:text-white">
+                <Link to="/product">List Product</Link>
+              </li>
+              <li className="hover:bg-pink-300 rounded-lg hover:text-white">
+                <Link to="/addproduct">Add Product</Link>
+              </li>
+              <li className="hover:bg-pink-300 rounded-lg hover:text-white">
+                <Link to="/updateproduct">Update Product</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="dropdown md:dropdown-hover  md:dropdown-bottom ">
+            <li
+              tabIndex={0}
+              className={`btn  outline-none bg-transparent border-none shadow-none ${navLinkStyle} py-0`}
+            >
+              <Link to={'/payamount'}>PayAmount</Link>
+            </li>
+          </div>
+        </>
+      )}
+    </>
+  );
+
+  return (
+    <div className="w-full bg-custom1 px-4 py-1 shadow-md">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Left - Logo and Hamburger */}
+        <div className="flex items-center gap-4">
+          {/* Hamburger for Mobile */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="btn btn-ghost btn-circle"
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="w-6 h-6"
                 fill="none"
-                viewBox="0 0 24 24"
                 stroke="currentColor"
+                viewBox="0 0 24 24"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h7"
+                  d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              <Link to={"/product"}>
-                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                  Product
-                </li>
-              </Link>
-              <Link to={"/addcustomers"}>
-                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                  Customers
-                </li>
-              </Link>{" "}
-              <Link to={"/categories"}>
-                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                  Categories
-                </li>
-              </Link>
-              {loggedIn && (
-              <Link to={"/addproduct"}>
-                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                  Add Product
-                </li>
-              </Link>
+            </button>
+            {isMenuOpen && (
+              <ul className="absolute mt-2 z-50 bg-white shadow-lg rounded-lg p-3 w-42 space-y-2 flex lg:block flex-col md:dropdown-bottom dropdown-right">
+                {navLinks}
+              </ul>
             )}
-            {loggedIn && (
-              <Link to={"/addcustomers"}>
-                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                  Add Customers{" "}
-                </li>
-              </Link>
-            )}
-            {loggedIn && (
-              <Link to={"/listcustomers"}>
-                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                  List Customers{" "}
-                </li>
-              </Link>
-            )}
-            {loggedIn&&<Link to={"/updateproduct"}>
-              <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                UpdateProduct
-              </li>
-            </Link>}
-            </ul>
           </div>
 
-          <div className="flex">
-            <Link to={"/"} className="btn btn-ghost text-2xl font-extrabold">
-              MERI <span className="text-pink-600">DUKAN</span>
-            </Link>
-          </div>
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-extrabold tracking-wide">
+            MERI <span className="text-pink-600">DUKAN</span>
+          </Link>
         </div>
-        <div>
-          <ul className="hidden lg:flex gap-4 text-xl font-semibold cursor-pointer">
-            <Link to={"/product"}>
-              <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                Product
-              </li>
-            </Link>
-            {loggedIn && (
-              <Link to={"/addproduct"}>
-                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                  Add Product
-                </li>
-              </Link>
-            )}
-            {loggedIn && (
-              <Link to={"/addcustomers"}>
-                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                  Add Customers{" "}
-                </li>
-              </Link>
-            )}
-            {loggedIn && (
-              <Link to={"/listcustomers"}>
-                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                  List Customers{" "}
-                </li>
-              </Link>
-            )}
-            <Link to={"/categories"}>
-              <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                Categories
-              </li>
-            </Link>
-            {loggedIn&&<Link to={"/updateproduct"}>
-              <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                UpdateProduct
-              </li>
-            </Link>}
-          </ul>
-        </div>
-        <Link to={"/profile"}>
-          {loggedIn && (
-            <div className="flex-none">
-              <div className="dropdown dropdown-end">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
-                >
-                  <div className="w-10 rounded-full">
-                    <img
-                      alt="Tailwind CSS Navbar component"
-                      src={user?.profileImage}
-                    />
-                  </div>
-                </div>
+
+        {/* Center - Desktop Nav Links */}
+        <ul className="hidden lg:flex gap-6 items-center text-lg font-medium">
+          {navLinks}
+        </ul>
+
+        {/* Right - Auth / Profile */}
+        <div className="flex items-center gap-4">
+          {loggedIn ? (
+            <Link to="/profile">
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-pink-600">
+                <img
+                  src={user?.profileImage}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
               </div>
-            </div>
-          )}
-          {!loggedIn && (
-            <div className="text-pink-600 font-bold">
-              <Link to={"/login"}>
-                <button>LogIn</button>
+            </Link>
+          ) : (
+            <div className="text-pink-600 font-semibold space-x-2">
+              <Link to="/login">
+                <button className="hover:underline">Login</button>
               </Link>
               /
-              <Link to={"/signin"}>
-                <button>SignUp</button>
+              <Link to="/signin">
+                <button className="hover:underline">SignUp</button>
               </Link>
             </div>
           )}
-        </Link>
+        </div>
       </div>
     </div>
   );

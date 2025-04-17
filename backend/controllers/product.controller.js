@@ -1,5 +1,6 @@
 import { Customer } from "../models/customer.model.js";
 import Product from "../models/product.model.js";
+import jwt from 'jsonwebtoken'
 import User from "../models/user.model.js";
 
 const addProduct = async (req, res) => {
@@ -16,8 +17,20 @@ const addProduct = async (req, res) => {
       expiryDate,
       productQuantity,
     } = req.body;
+    
+    const token = req?.headers?.authorization?.split(" ")[1];
 
-    console.log("req", req.body);
+    console.log("token ", token);
+
+    const user = token?jwt.decode(token):""
+    if(!user){
+      return res.status(400).json({message:"user details not decoded from the given token"})
+    }
+    const userDetails = await User.findById({_id:user.id})
+    console.log("user decoded ", user);
+    console.log("user fetched ", userDetails);
+
+    
 
     if (!req.file) {
       return res.status(500).json({ message: "file not uploaded" });
@@ -49,26 +62,19 @@ const addProduct = async (req, res) => {
       supplierName,
       expiryDate,
       productImage: req.file?.path,
+      createdBy:user.id
     });
 
     if (newProduct) {
       console.log("before save", newProduct);
-
-      const data = await newProduct.save().catch(err => {
-        console.log("Save error:", err);
-        return res.status(500).json({ message: "DB Save error", error: err });
-      });
+      const data = await newProduct.save()
+      
       if (data) {
         console.log("after Save", data);
       }
       return res
         .status(201)
         .json({ message: "new product added successfully" });
-    }
-    if (!newProduct) {
-      return res
-        .status(500)
-        .json({ message: "Failed to create product object" });
     }
   } catch (error) {
     return res.status(500).json({ message: "product not added", error });
@@ -216,7 +222,7 @@ const updateProduct = {
         expiryDate,
       } = req.body;
       console.log(req.body);
-      
+
       if (
         !name ||
         !description ||
@@ -228,10 +234,16 @@ const updateProduct = {
         return res.status(400).json({ message: "All fields are required" });
       }
       const productToUpdate = await Product.findOne({ name });
-      if(productToUpdate.description === description&&productToUpdate.costPrice === costPrice&&productToUpdate.sellingPrice === sellingPrice&&productToUpdate.availableQuantity === availableQuantity&&productToUpdate.expiryDate === expiryDate){
-        return res.status(302).json({message:"Not modified"})
+      if (
+        productToUpdate.description === description &&
+        productToUpdate.costPrice === costPrice &&
+        productToUpdate.sellingPrice === sellingPrice &&
+        productToUpdate.availableQuantity === availableQuantity &&
+        productToUpdate.expiryDate === expiryDate
+      ) {
+        return res.status(302).json({ message: "Not modified" });
       }
-      
+
       productToUpdate.description = description;
       productToUpdate.costPrice = costPrice;
       productToUpdate.sellingPrice = sellingPrice;
@@ -300,8 +312,8 @@ const sellProduct = async (req, res) => {
       return res.status(404).json({ message: "Customer not found" });
     }
 
-    if(requiredProduct?.availableQuantity<=0){
-      return res.status(400).json({message:"not enough stock available"})
+    if (requiredProduct?.availableQuantity <= 0) {
+      return res.status(400).json({ message: "not enough stock available" });
     }
 
     // Update available quantity
@@ -313,14 +325,14 @@ const sellProduct = async (req, res) => {
     // Update customer purchase history
     requiredCustomer.saleHistory = requiredCustomer.saleHistory || [];
     requiredCustomer.saleHistory.push({
-      name:requiredProduct.name,
+      name: requiredProduct.name,
       id: requiredProduct._id,
       quantity,
     });
 
     const saleHistory = await Promise.all(
       requiredCustomer.saleHistory.map(async (item) => {
-        const product = await Product.findOne({name:item.name});
+        const product = await Product.findOne({ name: item.name });
         return product
           ? Number(product.sellingPrice || 0) * Number(item.quantity || 0)
           : 0;

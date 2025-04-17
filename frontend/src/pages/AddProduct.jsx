@@ -4,21 +4,22 @@ import { UserContext } from "../context/UserContext";
 import toast, { Toaster } from "react-hot-toast";
 // import { data } from "react-router-dom";
 import fetchWithAuth from "../utils/fetchWithAuth.js";
+import Spinner from "../utils/Spinner.jsx";
 
 const AddProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [productImage, setProductImage] = useState(null);
+  const {loading, setLoading} = useContext(UserContext)
   const [formData, setFormData] = useState({
     productName: "",
     description: "",
-    costPrice: null,
-    sellingPrice: null,
-    purchaseDate: null,
-    expiryDate: null,
+    costPrice: "",
+    sellingPrice: "",
+    purchaseDate: "",
+    expiryDate: "",
     supplierName: "",
-    productQuantity:null
+    productQuantity: "",
   });
-
 
   const handleProductFormChange = (e) => {
     const { name, value } = e.target;
@@ -67,25 +68,35 @@ const AddProduct = () => {
     formDataToSend.append("productImage", productImage);
 
     try {
-      const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/addproduct", {
+      const response = await fetchWithAuth("/api/product/addproduct", {
         method: "POST",
         body: formDataToSend, // No need to stringify FormData
       });
+      
+      setLoading(true)
 
       const productData = await response.json();
-
+      if(productData){
+        setLoading(false)
+      }
       setFormData({
         productName: "",
         description: "",
-        costPrice: 0,
-        sellingPrice: 0,
-        purchaseDate: null,
-        expiryDate: null,
+        costPrice: "",
+        sellingPrice: "",
+        purchaseDate: "",
+        expiryDate: "",
         supplierName: "",
       });
+      setProductImage(null)
       console.log(productData);
-      
-      toast.success(productData.message);
+      if (response.status === 400) {
+        return toast.error("All fields are required");
+      }
+      if (productData.error) {
+        return toast.error(productData.message);
+      }
+      toast.success(productData.message)
     } catch (error) {
       toast.error(error.message);
       console.error("Error while adding product:", error);
@@ -98,18 +109,9 @@ const AddProduct = () => {
 
   return (
     <div>
+      {loading&& <Spinner/>}
       <Navbar />
-      <Toaster
-        position="below-right"
-        gutter={8}
-        toastOptions={{
-          duration: 5000,
-          style: {
-            color: "white",
-            backgroundColor: "grey",
-          },
-        }}
-      />
+      <Toaster />
       <div className="flex itmes-center justify-center font-bold text-3xl mt-5 text-pink-500">
         <p className="underline">Product Addition Form</p>
       </div>
@@ -196,7 +198,7 @@ const AddProduct = () => {
           </div>
           <input
             type="number"
-            step={'0.01'}
+            step={"0.01"}
             value={formData.costPrice}
             name="costPrice"
             onChange={handleProductFormChange}
@@ -209,7 +211,7 @@ const AddProduct = () => {
           </div>
           <input
             type="number"
-            step={'0.01'}
+            step={"0.01"}
             value={formData.sellingPrice}
             name="sellingPrice"
             onChange={handleProductFormChange}

@@ -73,6 +73,11 @@ const productSchema = new Schema(
         updatedValue:{type:String},
       },
     ],
+    createdBy:{
+      type:Schema.Types.ObjectId,
+      ref:'User',
+      required:[true, "users schema id is required to save the product"]
+    }
   },
   { timestamps: true }
 );

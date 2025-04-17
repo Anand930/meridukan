@@ -21,7 +21,7 @@ const Profile = () => {
     try {
 
       const response = await fetchWithAuth(
-        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/logout",
+        "/api/user/logout",
         {
           method: "POST",
           credentials: "include",
@@ -51,7 +51,7 @@ const Profile = () => {
             <img className="bg-contain  " src={user?.profileImage} alt="" />
           </div>
         </div>
-        <div className="my-8 w-1/2 mx-auto">
+        <div className="my-8 md:w-1/2 w-full mx-2 md:mx-auto">
           <div className="flex items-center justify-center ">
             <div className="border-2 border-pink-500 w-1/4">FullName</div>
             <input

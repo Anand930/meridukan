@@ -1,26 +1,37 @@
-import React from 'react'
-import cheetos from '/cheetos.png'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ item }) => {
-    const navigate = useNavigate()
-    const handleCardOnClick= (e) =>{
-        e.preventDefault();
-        navigate(`/product/${item.id}`)
-    }
-    return (
-        <div onClick={handleCardOnClick}>
-            <div className='border-2 border-pink-500 mx-2 my-4 rounded-lg cursor-pointer hover:bg-pink-500 hover:text-white md:hover:scale-105 duration-700 w-72 lg:w-72 lg:h-80 flex flex-col items-center'>
-                <div className='flex items-center justify-center '>
-                    <p className='font-semibold pb-4'>{item.name}</p>
-                </div>
-                <img  className='object-contain h-60 items-center' src={item.productImage || cheetos} alt="" />
-                <div className=''>
-                    <p className='flex justify-center pt-2 font-bold'><span className='border-pink-500' ></span>${item.sellingPrice}</p>
-                </div>
-            </div>
-        </div>
-    )
-}
+  const navigate = useNavigate();
 
-export default Card
+  const handleCardOnClick = (e) => {
+    e.preventDefault();
+    navigate(`/product/${item.id}`);
+  };
+
+  return (
+    <div
+      className="card bg-base-100 w-80 shadow-md border border-pink-300 m-4 cursor-pointer hover:shadow-xl transition hover:bg-pink-300"
+      onClick={handleCardOnClick}
+    >
+      <figure className="w-full h-48 overflow-hidden flex items-center justify-center bg-white">
+        <img
+          src={item.productImage}
+          alt={item.name}
+          className="object-cover w-full h-full"
+        />
+      </figure>
+      <div className="card-body p-4 flex flex-row justify-between hover:text-white">
+        <div>
+          <h2 className="card-title text-lg font-semibold text-pink-500 ">{item.name}</h2>
+          <p className="text-sm text-pink-500">{item.description}</p>
+        </div>
+        <div>
+          <p className="text-xl font-bold text-pink-500">₹ {item.sellingPrice}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Card;

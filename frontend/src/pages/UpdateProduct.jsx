@@ -11,7 +11,7 @@ const UpdateProduct = () => {
         <div className="flex justify-start items-center mt-6 text-2xl font-bold text-pink-600 cursor-pointer">
           Products
         </div>
-        <div className=" grid lg:grid-cols-8 grid-col-2 ">
+        <div className=" grid lg:grid-cols-7 grid-col-2 ">
           <UpdateCard name={"Update Selling Price"} to={"updatesellingprice"} />
           <UpdateCard name={"Update Cost Price"} to={"updatecostprice"} />
           <UpdateCard name={"Update Product Quantity"} to={"updatequantity"} />

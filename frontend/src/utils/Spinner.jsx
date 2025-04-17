@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-const RouteLoader= () => {
+const Spinner= () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
 
@@ -26,4 +26,4 @@ const RouteLoader= () => {
   );
 };
 
-export default RouteLoader;
+export default Spinner;

@@ -19,15 +19,19 @@ export default ({ item }) => {
       slidesPerView={5}
       breakpoints={{
         320: {            // For small screens
-          slidesPerView: 2 ,   // Show 1 card per slide
+          slidesPerView: 1 ,   // Show 1 card per slide
         },
         768: {            // For medium screens (tablets)
-          slidesPerView: 3,   // Show 2 cards per slide
+          slidesPerView: 2,   // Show 2 cards per slide
         },
-        1024: {           // For larger screens (desktops)
+        1024:{
+          slidesPerView: 3,   // Show 3 cards per slide
+
+        },
+        1224: {           // For larger screens (desktops)
           slidesPerView: 4,   // Show 3 cards per slide
         },
-        1440: {           // For very large screens
+        1640: {           // For very large screens
           slidesPerView: 5,   // Show 4 cards per slide
         }
       }}

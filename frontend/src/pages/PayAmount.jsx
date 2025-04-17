@@ -35,7 +35,7 @@ const PayAmount = () => {
       name: selectedCustomer.value, // Get name from selected option
     };
 
-    const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/customer/setdueamount", {
+    const response = await fetchWithAuth("/api/customer/setdueamount", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

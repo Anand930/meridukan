@@ -11,20 +11,23 @@ export const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false)
   
   const prevProducts = useRef([]);
   const handleProduct = async () => {
     try {
       const response = await fetchWithAuth(
-        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/getproduct"
+        "/api/product/getproduct"
       );
+      setLoading(true)
       
       if(response.status===401){
         window.location.href=('/login')
       }
       const data = await response.json();
-
-      console.log(data);
+      if(data){
+        setLoading(false)
+      }
       
       // Check if products have actually changed before setting state
       if (
@@ -42,7 +45,7 @@ const UserProvider = ({ children }) => {
     try {
 
       const response = await fetchWithAuth(
-        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/logout",
+        "/api/user/logout",
         {
           method: "POST",
           credentials: "include",
@@ -85,7 +88,9 @@ const UserProvider = ({ children }) => {
         setProducts,
         handleProduct,
         userRender,
-        handleLogOut
+        handleLogOut,
+        loading,
+        setLoading
       }}
     >
       {children}
