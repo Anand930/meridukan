@@ -12,7 +12,7 @@ export default  async function fetchWithAuth(url, options = {}) {
   
     if (response.status === 403) {
       // Token expired, try to refresh
-      const refreshResponse = await fetch('/api/user/refreshtoken', {
+      const refreshResponse = await fetch('https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/refreshtoken', {
         method: 'POST',
         credentials: 'include', // Include cookies
       });

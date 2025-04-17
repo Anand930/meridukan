@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import toast,{Toaster} from 'react-hot-toast'
 import Navbar from "./Navbar";
+import fetchWithAuth from "../utils/fetchWithAuth";
 
 const CustomUpdateCard = () => {
+  
   const { products, handleProduct } = useContext(UserContext); // getting product and handle product from userContext
 
   const [requiredProductToUpdateName, setRequiredProductToUpdateName] =
@@ -35,6 +37,40 @@ const CustomUpdateCard = () => {
   };
   // A function used to conver the date into the format which we can display
 
+  const customProductUpdateOnChangeHandler = (e) =>{
+    const {name, value} = e.target;
+    setRequiredProductToUpdate(prev=>({
+      ...prev,[name]:value
+    }))
+  }
+
+  // product update hanlder method 
+  const handleProductUpdate = async()=>{
+    try {
+      console.log(requiredProductToUpdate);
+      
+      const response = await fetchWithAuth('/api/product/updateproduct/updatewholeproduct',{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(requiredProductToUpdate)
+      })
+      if(response.status===400){
+        toast.error('all fields are required')
+      }else if(response.status===302){
+        toast.error('Please edit any field to update')
+      }
+      const data = await response.json();
+      console.log(data);
+      
+
+    } catch (error) {
+      toast.error('Product not updated')
+      console.log("something went wrong while updating ",error);
+    }
+  }
+  
   useEffect(() => {
     handleProduct();
   }, []);
@@ -49,7 +85,9 @@ const CustomUpdateCard = () => {
           <img
             className="px-10 py-10 w-full h-full object-contain"
             src={requiredProductToUpdate?.productImage}
+            name='productImage'
             alt=""
+            onChange={customProductUpdateOnChangeHandler}
           />
         </div>
         <div className=" w-full md:w-2/5 lg:w-1/2">
@@ -60,10 +98,7 @@ const CustomUpdateCard = () => {
             <input
               className="w-1/2 min-h-14 border-2 border-pink-500 text-center outline-none flex items-center justify-center rounded-lg"
               value={requiredProductToUpdateName}
-              onChange={(e) => {
-                setRequiredProductToUpdateName(e.target.value);
-                setRequiredProductToUpdate({})
-              }}
+              onChange={(e) => {setRequiredProductToUpdateName(e.target.value);}}
               onKeyDown={handleKeyDown}
             ></input>
           </div>
@@ -73,7 +108,9 @@ const CustomUpdateCard = () => {
             </p>
             <input
               className="w-1/2 min-h-14 border-2 border-pink-500 text-center outline-none flex items-center justify-center rounded-lg"
+              name="description"
               value={requiredProductToUpdate?.description}
+              onChange={customProductUpdateOnChangeHandler}
             ></input>
           </div>
           <div className="flex mt-3">
@@ -82,7 +119,9 @@ const CustomUpdateCard = () => {
             </p>
             <input
               className="w-1/2 min-h-14 border-2 border-pink-500 text-center outline-none flex items-center justify-center rounded-lg"
+              name="costPrice"
               value={requiredProductToUpdate?.costPrice}
+              onChange={customProductUpdateOnChangeHandler}
             ></input>
           </div>
           <div className="flex mt-3">
@@ -91,7 +130,9 @@ const CustomUpdateCard = () => {
             </p>
             <input
               className="w-1/2 min-h-14 border-2 border-pink-500 text-center outline-none flex items-center justify-center rounded-lg"
+              name="sellingPrice"
               value={requiredProductToUpdate?.sellingPrice}
+              onChange={customProductUpdateOnChangeHandler}
             ></input>
           </div>
           <div className="flex mt-3">
@@ -100,7 +141,9 @@ const CustomUpdateCard = () => {
             </p>
             <input
               className="w-1/2 min-h-14 border-2 border-pink-500 text-center outline-none flex items-center justify-center rounded-lg"
+              name="availableQuantity"
               value={requiredProductToUpdate?.availableQuantity}
+              onChange={customProductUpdateOnChangeHandler}
             ></input>
           </div>
           <div className="flex mt-3">
@@ -110,17 +153,20 @@ const CustomUpdateCard = () => {
             <input
               className="w-1/2 min-h-14 border-2 border-pink-500 text-center outline-none flex items-center justify-center rounded-lg"
               type="Date"
+              name="expiryDate"
               value={
                 requiredProductToUpdate?.expiryDate
                   ? formatDate(requiredProductToUpdate.expiryDate)
                   : ""
               }
+              onChange={customProductUpdateOnChangeHandler}
             ></input>
           </div>
 
           <button
             // onClick={handleSaleProduct}
             className="w-full border-2 border-pink-500 text-center flex items-center justify-center rounded-lg mt-8 h-40 text-4xl text-pink-600 hover:bg-pink-600 hover:text-white"
+            onClick={handleProductUpdate}
           >
             Click Here to Update
           </button>

@@ -21,7 +21,7 @@ const Profile = () => {
     try {
 
       const response = await fetchWithAuth(
-        "/api/user/logout",
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/logout",
         {
           method: "POST",
           credentials: "include",

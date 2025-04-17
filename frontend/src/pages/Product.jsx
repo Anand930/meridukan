@@ -15,7 +15,7 @@ const Product = () => {
   const handleProduct = async () => {
     try {
       const response = await fetchWithAuth(
-        "/api/product/getproduct"
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/getproduct"
       );
       const data = await response.json();
       
@@ -42,7 +42,7 @@ const Product = () => {
     <div>
       <Navbar />
       <div className="md:mx-10 md:my-5 my-2 mx-2">
-        <div className="grid md:grid-cols-5 gap-4 md:h-5/6 lg:h-3/4 sm:grid-cols-3 grid-cols-2">
+        <div className="grid md:grid-cols-4 gap-4 md:h-5/6 lg:h-3/4 sm:grid-cols-3 grid-cols-1 ">
           {products.map((p, i) => (
             <div
               key={i}

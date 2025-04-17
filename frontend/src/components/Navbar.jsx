@@ -4,11 +4,10 @@ import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
   const [productMenuIsOpen, setProductMenuIsOpen] = useState(false);
-  const { userRender} = useContext(UserContext);
-  
-    
+  const { userRender } = useContext(UserContext);
+
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("authenticated");
     if (isAuthenticated === "true") {
@@ -16,7 +15,6 @@ const Navbar = () => {
     }
     userRender();
   }, []);
-  
 
   return (
     <div className="w-full px-2 bg-custom1 ">
@@ -48,20 +46,46 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <Link to={"/product"}>
-                <li
-                  className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl"
-                >
+                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
                   Product
                 </li>
               </Link>
-
+              <Link to={"/addcustomers"}>
+                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                  Customers
+                </li>
+              </Link>{" "}
+              <Link to={"/categories"}>
+                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                  Categories
+                </li>
+              </Link>
+              {loggedIn && (
+              <Link to={"/addproduct"}>
+                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                  Add Product
+                </li>
+              </Link>
+            )}
+            {loggedIn && (
+              <Link to={"/addcustomers"}>
+                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                  Add Customers{" "}
+                </li>
+              </Link>
+            )}
+            {loggedIn && (
+              <Link to={"/listcustomers"}>
+                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                  List Customers{" "}
+                </li>
+              </Link>
+            )}
+            {loggedIn&&<Link to={"/updateproduct"}>
               <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                <Link to={"/addcustomers"}>Customers</Link>{" "}
+                UpdateProduct
               </li>
-              <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                <Link to={"/categories"}>Categories</Link>
-              </li>
-              
+            </Link>}
             </ul>
           </div>
 
@@ -73,30 +97,42 @@ const Navbar = () => {
         </div>
         <div>
           <ul className="hidden lg:flex gap-4 text-xl font-semibold cursor-pointer">
-            <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-              <Link to={"/product"}>Product</Link>
-            </li>
-            {loggedIn && (
+            <Link to={"/product"}>
               <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                <Link to={"/addproduct"}>Add Product</Link>
+                Product
               </li>
+            </Link>
+            {loggedIn && (
+              <Link to={"/addproduct"}>
+                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                  Add Product
+                </li>
+              </Link>
             )}
             {loggedIn && (
-              <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                <Link to={"/addcustomers"}>Add Customers</Link>{" "}
-              </li>
+              <Link to={"/addcustomers"}>
+                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                  Add Customers{" "}
+                </li>
+              </Link>
             )}
             {loggedIn && (
-              <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                <Link to={"/listcustomers"}>List Customers</Link>{" "}
-              </li>
+              <Link to={"/listcustomers"}>
+                <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                  List Customers{" "}
+                </li>
+              </Link>
             )}
-            <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-              <Link to={"/categories"}>Categories</Link>
-            </li>
-            <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
-                <Link to={"/updateproduct"}>UpdateProduct</Link>
+            <Link to={"/categories"}>
+              <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                Categories
               </li>
+            </Link>
+            {loggedIn&&<Link to={"/updateproduct"}>
+              <li className="hover:bg-white text-pink-600 hover:text-black py-2 px-2 rounded-xl">
+                UpdateProduct
+              </li>
+            </Link>}
           </ul>
         </div>
         <Link to={"/profile"}>

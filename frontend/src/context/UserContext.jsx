@@ -16,13 +16,16 @@ const UserProvider = ({ children }) => {
   const handleProduct = async () => {
     try {
       const response = await fetchWithAuth(
-        "/api/product/getproduct"
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/getproduct"
       );
       
       if(response.status===401){
         window.location.href=('/login')
       }
       const data = await response.json();
+
+      console.log(data);
+      
       // Check if products have actually changed before setting state
       if (
         JSON.stringify(prevProducts.current) !== JSON.stringify(data.products)
@@ -39,7 +42,7 @@ const UserProvider = ({ children }) => {
     try {
 
       const response = await fetchWithAuth(
-        "/api/user/logout",
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/logout",
         {
           method: "POST",
           credentials: "include",

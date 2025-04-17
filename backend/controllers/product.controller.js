@@ -209,38 +209,35 @@ const updateProduct = {
     try {
       const {
         name,
-        categories,
         description,
         costPrice,
         sellingPrice,
-        purchaseDate,
-        supplierName,
-        destroyedQuantity,
+        availableQuantity,
         expiryDate,
       } = req.body;
-
+      console.log(req.body);
+      
       if (
         !name ||
-        !categories ||
         !description ||
         !costPrice ||
         !sellingPrice ||
-        !purchaseDate ||
-        !supplierName ||
-        !destroyedQuantity ||
+        !availableQuantity ||
         !expiryDate
       ) {
         return res.status(400).json({ message: "All fields are required" });
       }
       const productToUpdate = await Product.findOne({ name });
-      productToUpdate.categories = categories;
+      if(productToUpdate.description === description&&productToUpdate.costPrice === costPrice&&productToUpdate.sellingPrice === sellingPrice&&productToUpdate.availableQuantity === availableQuantity&&productToUpdate.expiryDate === expiryDate){
+        return res.status(302).json({message:"Not modified"})
+      }
+      
       productToUpdate.description = description;
       productToUpdate.costPrice = costPrice;
       productToUpdate.sellingPrice = sellingPrice;
-      productToUpdate.purchaseDate = purchaseDate;
-      productToUpdate.supplierName = supplierName;
-      productToUpdate.destroyedQuantity = destroyedQuantity;
+      productToUpdate.availableQuantity = availableQuantity;
       productToUpdate.expiryDate = expiryDate;
+
       const result = await productToUpdate.save();
 
       if (result) {
@@ -303,6 +300,10 @@ const sellProduct = async (req, res) => {
       return res.status(404).json({ message: "Customer not found" });
     }
 
+    if(requiredProduct?.availableQuantity<=0){
+      return res.status(400).json({message:"not enough stock available"})
+    }
+
     // Update available quantity
     requiredProduct.availableQuantity =
       parseInt(requiredProduct.availableQuantity) - parseInt(quantity);
@@ -312,13 +313,14 @@ const sellProduct = async (req, res) => {
     // Update customer purchase history
     requiredCustomer.saleHistory = requiredCustomer.saleHistory || [];
     requiredCustomer.saleHistory.push({
-      products: requiredProduct._id,
+      name:requiredProduct.name,
+      id: requiredProduct._id,
       quantity,
     });
 
     const saleHistory = await Promise.all(
       requiredCustomer.saleHistory.map(async (item) => {
-        const product = await Product.findById(item.products);
+        const product = await Product.findOne({name:item.name});
         return product
           ? Number(product.sellingPrice || 0) * Number(item.quantity || 0)
           : 0;

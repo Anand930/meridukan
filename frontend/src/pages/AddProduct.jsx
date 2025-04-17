@@ -67,7 +67,7 @@ const AddProduct = () => {
     formDataToSend.append("productImage", productImage);
 
     try {
-      const response = await fetchWithAuth("/api/product/addproduct", {
+      const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/addproduct", {
         method: "POST",
         body: formDataToSend, // No need to stringify FormData
       });
@@ -115,7 +115,7 @@ const AddProduct = () => {
       </div>
       <div className="md:mx-60 mx-4 my-10">
         <div className="flex items-center justify-center ">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Name
           </div>
           <input
@@ -123,11 +123,11 @@ const AddProduct = () => {
             value={formData.productName}
             name="productName"
             onChange={handleProductFormChange}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
         <div className="flex items-center justify-center ">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product ID
           </div>
           <input
@@ -135,22 +135,22 @@ const AddProduct = () => {
             value={formData.productId}
             name="productId"
             onChange={handleProductFormChange}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
         <div className="flex items-center justify-center text-center">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Category
           </div>
           <select
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
             value={selectedCategory}
             onChange={handleCategoryChange}
           >
             <option
               value=""
               disabled
-              className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+              className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
             >
               Select a Category
             </option>
@@ -158,7 +158,7 @@ const AddProduct = () => {
               <option
                 key={index}
                 value={category}
-                className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+                className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
               >
                 {category}
               </option>
@@ -167,7 +167,7 @@ const AddProduct = () => {
         </div>
 
         <div className="flex  items-center justify-center text-center">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Description
           </div>
           <input
@@ -175,11 +175,11 @@ const AddProduct = () => {
             value={formData.description}
             name="description"
             onChange={handleProductFormChange}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
         <div className="flex  items-center justify-center text-center">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Quantity
           </div>
           <input
@@ -187,11 +187,11 @@ const AddProduct = () => {
             value={formData.productQuantity}
             name="productQuantity"
             onChange={handleProductFormChange}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
         <div className="flex  items-center justify-center text-center">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Cost Price
           </div>
           <input
@@ -200,11 +200,11 @@ const AddProduct = () => {
             value={formData.costPrice}
             name="costPrice"
             onChange={handleProductFormChange}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
         <div className="flex items-center justify-center text-center">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Selling Price
           </div>
           <input
@@ -213,11 +213,11 @@ const AddProduct = () => {
             value={formData.sellingPrice}
             name="sellingPrice"
             onChange={handleProductFormChange}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
         <div className="flex  items-center justify-center text-center">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Purchase Date
           </div>
           <input
@@ -225,11 +225,11 @@ const AddProduct = () => {
             value={formData.purchaseDate}
             name="purchaseDate"
             onChange={handleProductFormChange}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
         <div className="flex  items-center justify-center text-center">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Expiry Date
           </div>
           <input
@@ -237,11 +237,11 @@ const AddProduct = () => {
             value={formData.expiryDate}
             name="expiryDate"
             onChange={handleProductFormChange}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
         <div className="flex  items-center justify-center text-center">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Supplier Name
           </div>
           <input
@@ -249,18 +249,18 @@ const AddProduct = () => {
             value={formData.supplierName}
             name="supplierName"
             onChange={handleProductFormChange}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
         <div className="flex  items-center justify-center text-center">
-          <div className="border-2 border-pink-500 md:w-1/4 w-1/3 md:h-10 h-16 flex items-center justify-center">
+          <div className="border-2 border-pink-500 md:w-1/4 w-1/2 md:h-10 h-12 flex items-center justify-center">
             Product Image
           </div>
           <input
             type="file"
             name="productImage"
             onChange={(e) => setProductImage(e.target.files[0])}
-            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+            className="outline-none border-2 border-pink-500 flex items-center justify-center md:h-10 h-12 md:w-3/4 w-2/3 text-center"
           />
         </div>
 

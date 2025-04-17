@@ -14,12 +14,15 @@ const UpdateDetailsComponents = ({
   const { products, handleProduct } = useContext(UserContext);
   const [updatedValue, setUpdatedValue] = useState("");
 
+  
+  
+
   const handleUpdateDetails = async () => {
     const formData = { productName, updatedValue };
 
     try {
       const response = await fetchWithAuth(
-        `/api/product/updateproduct/${apiRoute}`,
+        `https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/updateproduct/${apiRoute}`,
         {
           method: "POST",
           headers: {

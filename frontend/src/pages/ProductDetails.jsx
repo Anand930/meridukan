@@ -10,7 +10,7 @@ import fetchWithAuth from "../utils/fetchWithAuth";
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const { products, setProducts, handleProduct } = useContext(UserContext);
-  
+
   const [customerNameList, setCustomerNameList] = useState([]);
   const [quantityToSale, setQuantityToSale] = useState(0);
   const [selectedCustomer, setSelectedCustomer] = useState("");
@@ -20,7 +20,6 @@ const ProductDetails = () => {
     allCustomerNameList,
     SetAllCustomerNameList,
     handleListCustomer,
-    
   } = useContext(CustomerContext);
 
   const { id } = useParams();
@@ -33,16 +32,21 @@ const ProductDetails = () => {
         customer: selectedCustomer,
       };
 
-      const response = await fetchWithAuth(
-        "/api/product/sellproduct",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData)
-        }
-      );
+      if (formData.quantity === 0) {
+        toast.error("Quantity should not be 0");
+        return;
+      } else if (!formData.customer) {
+        toast.error("Please select a customer");
+        return;
+      }
+
+      const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/sellproduct", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await response.json();
 
       if (data) {
@@ -58,7 +62,12 @@ const ProductDetails = () => {
           )
         );
       }
-      toast.success("product sold successfully");
+      if(response.status===400){
+        toast.error("Not enough stock available")
+      }
+      if (response.ok) {
+        toast.success("product sold successfully");
+      }
     } catch (error) {
       console.log("Error occured while trying to sell the product ", error);
       toast.error(error.message);
@@ -76,11 +85,9 @@ const ProductDetails = () => {
       console.log("No customers available.");
     }
   }, [customers]); // Runs when customers data changes
-  
 
   useEffect(() => {
     const ProductToGet = products.find((item) => item.id == id);
-    
 
     if (ProductToGet) {
       setProduct(ProductToGet);
@@ -91,9 +98,9 @@ const ProductDetails = () => {
     }
   }, [products, product, id]);
 
-  useEffect(()=>{
-      handleListCustomer()
-  },[])
+  useEffect(() => {
+    handleListCustomer();
+  }, []);
 
   return (
     <div>

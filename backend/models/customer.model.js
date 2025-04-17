@@ -18,7 +18,11 @@ const customerSchema = new Schema(
     saleHistory: {
       type: [
         {
-          products: {
+          name:{
+            type:String,
+            required:[true,"name is required"]
+          },
+          id: {
             type: Schema.Types.ObjectId,
             ref: "product",
           },

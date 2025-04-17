@@ -1,77 +1,53 @@
-import React, { useEffect, Suspense, lazy, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ProductDetails from "./pages/ProductDetails";
+import Categories from "./pages/Categories";
+import Profile from "./pages/Profile";
+import AddCustomers from "./pages/AddCustomers";
+import AddProduct from "./pages/AddProduct";
+import Product from "./pages/Product";
+import Login from "./pages/Login";
+import SignIn from "./pages/SignIn";
+import ListCustomer from "./pages/ListCustomer";
+import PayAmount from "./pages/PayAmount";
+import UpdateProduct from "./pages/UpdateProduct";
+import UpdateDataCard from "./components/UpdateDataCard";
+import UpdateSellingPrice from "./pages/UpdateProductPages/UpdateSellingPrice";
+import UpdateCostPrice from "./pages/UpdateProductPages/UpdateCostPrice";
+import UpdateProductQuantity from "./pages/UpdateProductPages/UpdateProductQuantity";
+import UpdateDescription from "./pages/UpdateProductPages/UpdateDescription";
 import CustomUpdateCard from "./components/CustomUpdateCard";
 
-const Home = lazy(() => import("./pages/Home"));
-const ProductDetails = lazy(() => import("./pages/ProductDetails"));
-const Categories = lazy(() => import("./pages/Categories"));
-const Profile = lazy(() => import("./pages/Profile"));
-const AddCustomers = lazy(() => import("./pages/AddCustomers"));
-const AddProduct = lazy(() => import("./pages/AddProduct"));
-const Product = lazy(() => import("./pages/Product"));
-const Login = lazy(() => import("./pages/Login"));
-const SignIn = lazy(() => import("./pages/SignIn"));
-const ListCustomer = lazy(() => import("./pages/ListCustomer"));
-const PayAmount = lazy(() => import("./pages/PayAmount"));
-const UpdateProduct = lazy(() => import("./pages/UpdateProduct"));
-const UpdateDataCard = lazy(() => import("./components/UpdateDataCard"));
-const UpdateSellingPrice = lazy(() => import("./pages/UpdateProductPages/UpdateSellingPrice"));
-const UpdateCostPrice = lazy(() => import("./pages/UpdateProductPages/UpdateCostPrice"));
-const UpdateProductQuantity = lazy(() =>
-  import("./pages/UpdateProductPages/UpdateProductQuantity")
-);
-const UpdateDescription = lazy(() => import("./pages/UpdateProductPages/UpdateDescription"));
-
 import Spinner from "./utils/Spinner";
-import SpinnerForLazyLoad from "./utils/SpinnerForLazyLoad";
+import SaleHistory from "./pages/Customers/SaleHistory";
 
 function App() {
-  
   return (
     <div>
       <Router>
         <Spinner />
-        <Suspense fallback={<SpinnerForLazyLoad/>}>
-          <Routes>
-            <Route path={"/"} element={<Home />} />
-            <Route path={"/product/:id"} element={<ProductDetails />} />
-            <Route path={"/categories"} element={<Categories />} />
-            <Route path={"/profile"} element={<Profile />} />
-            <Route path={"/addcustomers"} element={<AddCustomers />} />
-            <Route path={"/addproduct"} element={<AddProduct />} />
-            <Route path={"/product"} element={<Product />} />
-            <Route path={"/login"} element={<Login />} />
-            <Route path={"/signIn"} element={<SignIn />} />
-            <Route path={"/listcustomers"} element={<ListCustomer />} />
-            <Route path={"/payamount"} element={<PayAmount />} />
-            <Route path={"/updateproduct"} element={<UpdateProduct />} />
-            <Route
-              path={"/updateproductdetails"}
-              element={<UpdateDataCard />}
-            />
-            <Route
-              path={"/updateproduct/updatesellingprice"}
-              element={<UpdateSellingPrice />}
-            />
-            <Route
-              path={"/updateproduct/updatecostprice"}
-              element={<UpdateCostPrice />}
-            />
-            <Route
-              path={"/updateproduct/updatequantity"}
-              element={<UpdateProductQuantity />}
-            />
-            <Route
-              path={"/updateproduct/updatedescription"}
-              element={<UpdateDescription />}
-            />
-            <Route
-              path={"/updateproduct/customupdateproduct"}
-              element={<CustomUpdateCard />}
-
-            />
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/addcustomers" element={<AddCustomers />} />
+          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/listcustomers" element={<ListCustomer />} />
+          <Route path="/payamount" element={<PayAmount />} />
+          <Route path="/updateproduct" element={<UpdateProduct />} />
+          <Route path="/updateproductdetails" element={<UpdateDataCard />} />
+          <Route path="/updateproduct/updatesellingprice" element={<UpdateSellingPrice />} />
+          <Route path="/updateproduct/updatecostprice" element={<UpdateCostPrice />} />
+          <Route path="/updateproduct/updatequantity" element={<UpdateProductQuantity />} />
+          <Route path="/updateproduct/updatedescription" element={<UpdateDescription />} />
+          <Route path="/updateproduct/customupdateproduct" element={<CustomUpdateCard />} />
+          <Route path="/customer/saleHistory/:name" element={<SaleHistory />} />
+        </Routes>
       </Router>
     </div>
   );
