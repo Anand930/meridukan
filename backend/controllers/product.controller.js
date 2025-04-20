@@ -1,6 +1,6 @@
 import { Customer } from "../models/customer.model.js";
 import Product from "../models/product.model.js";
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 
 const addProduct = async (req, res) => {
@@ -17,20 +17,20 @@ const addProduct = async (req, res) => {
       expiryDate,
       productQuantity,
     } = req.body;
-    
+
     const token = req?.headers?.authorization?.split(" ")[1];
 
     console.log("token ", token);
 
-    const user = token?jwt.decode(token):""
-    if(!user){
-      return res.status(400).json({message:"user details not decoded from the given token"})
+    const user = token ? jwt.decode(token) : "";
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "user details not decoded from the given token" });
     }
-    const userDetails = await User.findById({_id:user.id})
+    const userDetails = await User.findById({ _id: user.id });
     console.log("user decoded ", user);
     console.log("user fetched ", userDetails);
-
-    
 
     if (!req.file) {
       return res.status(500).json({ message: "file not uploaded" });
@@ -62,13 +62,13 @@ const addProduct = async (req, res) => {
       supplierName,
       expiryDate,
       productImage: req.file?.path,
-      createdBy:user.id
+      createdBy: user.id,
     });
 
     if (newProduct) {
       console.log("before save", newProduct);
-      const data = await newProduct.save()
-      
+      const data = await newProduct.save();
+
       if (data) {
         console.log("after Save", data);
       }
@@ -299,6 +299,11 @@ const getProductByProductId = async (req, res) => {
 
 const sellProduct = async (req, res) => {
   const { name, quantity, customer } = req.body;
+  const token = req?.headers?.authorization?.split(" ")[1];
+  const verified = jwt.verify(token, process.env.AUTH_SECRET)
+  if(!verified){
+    return res.status(402).json({message:"Invalid or Expired Token"})
+  }
 
   try {
     const requiredProduct = await Product.findOne({ name });
@@ -306,14 +311,26 @@ const sellProduct = async (req, res) => {
     if (!requiredProduct) {
       return res.status(404).json({ message: "Product not found" });
     }
-
-    const requiredCustomer = await Customer.findOne({ name: customer });
-    if (!requiredCustomer) {
-      return res.status(404).json({ message: "Customer not found" });
-    }
-
     if (requiredProduct?.availableQuantity <= 0) {
       return res.status(400).json({ message: "not enough stock available" });
+    }
+
+    if (token) {
+      
+      const user = jwt.decode(token);
+      const requiredUser = await User.findOne({ email: user.email });
+      if (!requiredUser) {
+        return res.status(401).json({ message: "user not found" });
+      }
+      requiredUser.soldProducts = requiredUser.soldProducts || [];
+      requiredUser.soldProducts.push({
+        product:requiredProduct?._id,
+        name:requiredProduct?.name,
+        quantity,
+        sellingPrice:requiredProduct?.sellingPrice
+      })
+
+      await requiredUser.save()
     }
 
     // Update available quantity
@@ -322,47 +339,56 @@ const sellProduct = async (req, res) => {
 
     await requiredProduct.save();
 
-    // Update customer purchase history
-    requiredCustomer.saleHistory = requiredCustomer.saleHistory || [];
-    requiredCustomer.saleHistory.push({
-      name: requiredProduct.name,
-      id: requiredProduct._id,
-      quantity,
-    });
+    if (customer) {
+      const requiredCustomer = await Customer.findOne({ name: customer });
 
-    const saleHistory = await Promise.all(
-      requiredCustomer.saleHistory.map(async (item) => {
-        const product = await Product.findOne({ name: item.name });
-        return product
-          ? Number(product.sellingPrice || 0) * Number(item.quantity || 0)
+      // Update customer purchase history
+      if(!requiredCustomer){
+        return res.status(400).json({message:"customer not found"})
+      }
+      requiredCustomer.saleHistory = requiredCustomer.saleHistory || [];
+
+      requiredCustomer.saleHistory.push({
+        name: requiredProduct.name,
+        id: requiredProduct._id,
+        quantity,
+      });
+
+      const saleHistory = await Promise.all(
+        requiredCustomer.saleHistory.map(async (item) => {
+          const product = await Product.findOne({ name: item.name });
+          return product
+            ? Number(product.sellingPrice || 0) * Number(item.quantity || 0)
+            : 0;
+        })
+      );
+
+      requiredCustomer.totalSpend = saleHistory.reduce(
+        (acc, curr) => acc + curr,
+        0
+      );
+
+      const totalpaidAmount =
+        requiredCustomer.paymentHistory &&
+        requiredCustomer.paymentHistory.length > 0
+          ? requiredCustomer.paymentHistory.reduce(
+              (num, entry) => num + (Number(entry.paidAmount) || 0),
+              0
+            )
           : 0;
-      })
-    );
 
-    requiredCustomer.totalSpend = saleHistory.reduce(
-      (acc, curr) => acc + curr,
-      0
-    );
+      if (isNaN(totalpaidAmount) || isNaN(requiredCustomer.totalSpend)) {
+        requiredCustomer.dueAmount = 0;
+      } else {
+        requiredCustomer.dueAmount =
+          requiredCustomer.totalSpend - totalpaidAmount;
+      }
 
-    const totalpaidAmount =
-      requiredCustomer.paymentHistory &&
-      requiredCustomer.paymentHistory.length > 0
-        ? requiredCustomer.paymentHistory.reduce(
-            (num, entry) => num + (Number(entry.paidAmount) || 0),
-            0
-          )
-        : 0;
-
-    if (isNaN(totalpaidAmount) || isNaN(requiredCustomer.totalSpend)) {
-      requiredCustomer.dueAmount = 0;
-    } else {
-      requiredCustomer.dueAmount =
-        requiredCustomer.totalSpend - totalpaidAmount;
+      await requiredCustomer.save();
     }
-
-    await requiredCustomer.save();
+    
     const updatedRequiredProduct = await Product.findOne({ name });
-    const updatedRequiredCustomer = await Customer.findOne({ customer });
+    const updatedRequiredCustomer = await Customer.findOne({ name:customer });
 
     return res.status(200).json({
       message: "Product sold",
@@ -370,6 +396,8 @@ const sellProduct = async (req, res) => {
       updatedCustomer: updatedRequiredCustomer,
     });
   } catch (error) {
+    console.log(error);
+    
     return res.status(500).json({ message: "Error while selling product" });
   }
 };

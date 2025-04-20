@@ -49,7 +49,7 @@ const CustomUpdateCard = () => {
     try {
       console.log(requiredProductToUpdate);
       
-      const response = await fetchWithAuth('/api/product/updateproduct/updatewholeproduct',{
+      const response = await fetchWithAuth('http://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/updateproduct/updatewholeproduct',{
         method:"POST",
         headers:{
           "Content-Type":"application/json"

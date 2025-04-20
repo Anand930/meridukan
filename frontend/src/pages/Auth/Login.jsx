@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, redirect, useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
-import fetchWithAuth from "../utils/fetchWithAuth";
+import { UserContext } from "../../context/UserContext";
+import fetchWithAuth from "../../utils/fetchWithAuth";
 import toast, { Toaster } from "react-hot-toast";
 // import Cookies from "js-cookie";
 
@@ -37,7 +37,7 @@ const Login = () => {
     };
 
     try {
-      const response = await fetch("/api/user/login", {
+      const response = await fetch("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

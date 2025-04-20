@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { useParams } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
-import { CustomerContext } from "../context/CustomerContext";
+import { UserContext } from "../../context/UserContext";
+import { CustomerContext } from "../../context/CustomerContext";
 import toast, { Toaster } from "react-hot-toast";
-import ProductDetailsCard from "../components/ProductDetailsCard";
-import fetchWithAuth from "../utils/fetchWithAuth";
+import ProductDetailsCard from "../../components/ProductDetailsCard";
+import fetchWithAuth from "../../utils/fetchWithAuth";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -35,12 +35,9 @@ const ProductDetails = () => {
       if (formData.quantity === 0) {
         toast.error("Quantity should not be 0");
         return;
-      } else if (!formData.customer) {
-        toast.error("Please select a customer");
-        return;
-      }
-
-      const response = await fetchWithAuth("/api/product/sellproduct", {
+      } 
+      
+      const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/sellproduct", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

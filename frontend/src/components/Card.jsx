@@ -11,18 +11,19 @@ const Card = ({ item }) => {
 
   return (
     <div
-      className="card bg-base-100 w-80 shadow-md border border-pink-300 m-4 cursor-pointer hover:shadow-xl transition hover:bg-pink-300"
+      className="card bg-base-100 w-80 shadow-md border border-pink-300 m-4 cursor-pointer hover:shadow-xl transition hover:bg-pink-300 "
       onClick={handleCardOnClick}
     >
-      <figure className="w-full h-48 overflow-hidden flex items-center justify-center bg-white">
+      <figure className="w-full h-48 overflow-hidden flex items-center justify-center hover:bg-pink-300">
         <img
           src={item.productImage}
           alt={item.name}
           className="object-cover w-full h-full"
         />
       </figure>
+      <hr className="hidden hover:block " />
       <div className="card-body p-4 flex flex-row justify-between hover:text-white">
-        <div>
+        <div >
           <h2 className="card-title text-lg font-semibold text-pink-500 ">{item.name}</h2>
           <p className="text-sm text-pink-500">{item.description}</p>
         </div>

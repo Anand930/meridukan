@@ -24,6 +24,29 @@ const userSchema = new Schema({
     profileImage:{
         type:String
     },
+    soldProducts:[{
+        product:{
+            type:Schema.Types.ObjectId,
+            ref:'Product',
+            require:[true, "product object id is required"]
+        },
+        name:{
+            type:String
+        },
+        quantity:{
+            type:Number,
+            required:[true, "quantity is required"]
+        },
+        sellingPrice:{
+            type:Number,
+            required:[true, "selling Price is required"]
+        },
+        soldDate:{
+            type:Date,
+            required:[true,"sold date is required"],
+            default:Date.now()
+        }
+    }],
     accessToken:{
         type:String
     },

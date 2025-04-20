@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import Navbar from "../components/Navbar";
-import { UserContext } from "../context/UserContext";
+import Navbar from "../../components/Navbar.jsx";
+import { UserContext } from "../../context/UserContext.jsx";
 import toast, { Toaster } from "react-hot-toast";
 // import { data } from "react-router-dom";
-import fetchWithAuth from "../utils/fetchWithAuth.js";
-import Spinner from "../utils/Spinner.jsx";
+import fetchWithAuth from "../../utils/fetchWithAuth.js";
+import Spinner from "../../utils/Spinner.jsx";
 
 const AddProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -68,7 +68,7 @@ const AddProduct = () => {
     formDataToSend.append("productImage", productImage);
 
     try {
-      const response = await fetchWithAuth("/api/product/addproduct", {
+      const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/addproduct", {
         method: "POST",
         body: formDataToSend, // No need to stringify FormData
       });

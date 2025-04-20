@@ -35,6 +35,11 @@ const customerSchema = new Schema(
             required: [true, "Date is required"],
             default: Date.now(),
           },
+          paid:{
+            type:Boolean,
+            required:[true, "payment status is required"],
+            default:false
+          }
         },
       ],
       default: [],

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import { CustomerContext } from "../context/CustomerContext";
-import { UserContext } from "../context/UserContext";
+import Navbar from "../../components/Navbar";
+import { CustomerContext } from "../../context/CustomerContext";
+import { UserContext } from "../../context/UserContext";
 
 const ListCustomer = () => {
   const { customers, handleListCustomer } = useContext(CustomerContext);

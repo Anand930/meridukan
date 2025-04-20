@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { CustomerContext } from "../context/CustomerContext";
 import toast, { Toaster } from "react-hot-toast";
-import { useLocation } from "react-router-dom";
 import fetchWithAuth from "../utils/fetchWithAuth";
 
 
@@ -45,7 +44,7 @@ const ProductDetails = ({}) => {
       };
 
       const response = await fetchWithAuth(
-        "/api/product/sellproduct",
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/sellproduct",
         {
           method: "POST",
           headers: {

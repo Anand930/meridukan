@@ -2,6 +2,7 @@ import React,{useState} from "react";
 
 
 
+
 const ProductDetailsCard = ({product,  customerNameList, handleSaleProduct, quantityToSale, setQuantityToSale, selectedCustomer, setSelectedCustomer}) => {
     const FormatedDate = product?.expiryDate.split('T')[0]
   return (  
@@ -103,10 +104,13 @@ const ProductDetailsCard = ({product,  customerNameList, handleSaleProduct, quan
                   {item}
                 </option>
               ))}
+              <option>
+                Others
+              </option>
             </select>
           </div>
 
-          <button onClick={handleSaleProduct} className="w-full border-2 border-pink-500 text-center flex items-center justify-center rounded-lg mt-8 h-40 text-4xl text-pink-600 hover:bg-pink-600 hover:text-white">
+          <button onClick={handleSaleProduct} className="btn w-full border-2 border-pink-500 text-center flex items-center justify-center rounded-lg mt-8 h-40 text-4xl text-pink-600 hover:bg-pink-600 hover:text-white">
             Click Here to Sell it 
           </button>
         </div>
