@@ -130,7 +130,7 @@ const LoginUser = async (req, res) => {
           maxAge: 7 * 24 * 60 * 60 * 1000, // ✅ 7 days in milliseconds
           // Which equals: 604800000
         })
-        .json({ message: "user logged in successfully", user });
+        .json({ message: "user logged in successfully", user, accessToken });
     }
   } catch (error) {
     return res

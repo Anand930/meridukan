@@ -37,7 +37,7 @@ const Login = () => {
     };
 
     try {
-      const response = await fetch("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/login", {
+      const response = await fetch("/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const Login = () => {
       setUser(userData.user);
       
       if (userData.user) {
-        localStorage.setItem("accessToken", userData?.user?.accessToken);
+        localStorage.setItem("accessToken", userData?.accessToken);
         localStorage.setItem("authenticated", "true");
         toast.success("user looged in successFully");
         setTimeout(() => {

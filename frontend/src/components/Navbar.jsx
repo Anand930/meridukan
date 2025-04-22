@@ -8,7 +8,8 @@ const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { user, userRender } = useContext(UserContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filterDataToRender, setFilterDataToRender] = useState([]);
+  // const [filterDataToRender, setFilterDataToRender] = useState([]);
+  const [searchView, setSearchView] = useState(false)
 
   const {
     focus,
@@ -21,7 +22,7 @@ const Navbar = () => {
     finalSearchValue,
     setFinalSearchValue,
     products,
-    setFilteredData
+    setFilteredData,
   } = useContext(SearchContext);
 
   const location = useLocation();
@@ -44,13 +45,12 @@ const Navbar = () => {
         break;
       case "Enter":
         if (selectedIndex >= 0 && filteredData[selectedIndex]) {
-          navigate(`/product/${filteredData[selectedIndex].id}`);
           setFocus(false);
+          navigate(`/product/${filteredData[selectedIndex].id}`);
         } else if (selectedIndex < 0) {
           navigate("/product/searchresult");
           setFocus(false);
         } else if (searchResultPage) {
-          
         }
         break;
       case "Escape":
@@ -81,7 +81,6 @@ const Navbar = () => {
 
   useEffect(() => {
     if (searchResultPage) {
-      
     }
     handleFilteredData();
     resetSelection();
@@ -145,7 +144,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <div className="dropdown md:dropdown-hover  md:dropdown-bottom ">
+          <div className="dropdown md:dropdown-hover flex flex-col md:flex-row  md:dropdown-bottom ">
             <li
               tabIndex={0}
               className={`btn  outline-none bg-transparent border-none shadow-none ${navLinkStyle} py-0`}
@@ -189,90 +188,107 @@ const Navbar = () => {
                 />
               </svg>
             </button>
+
+            {/* Mobile Devices Navilinks */}
             {isMenuOpen && (
-              <ul className="absolute mt-2 z-50 bg-white shadow-lg rounded-lg p-3 w-42 space-y-2 flex lg:block flex-col md:dropdown-bottom dropdown-right">
+              <ul className="relative mt-2 z-50 bg-white shadow-lg rounded-lg p-3 w-42 space-y-2 flex lg:block flex-col md:dropdown-bottom dropdown-right">
                 {navLinks}
               </ul>
             )}
           </div>
 
           {/* Logo */}
-          <Link to="/" className="text-2xl font-extrabold tracking-wide">
+          <Link to="/" className={`text-2xl font-extrabold tracking-wide sm:block ${searchView?"hidden":""}` }>
             MERI <span className="text-pink-600">DUKAN</span>
-          </Link>
+          </Link>  
+
+          {/* this link will be hidden if the search view is opened */}
         </div>
 
         {/* Center - Desktop Nav Links */}
-        <ul className="hidden lg:flex gap-6 items-center text-lg font-medium">
+        <ul className="hidden lg:flex gap-6 items-center text-lg font-medium ">
           {navLinks}
         </ul>
-        <div className="flex gap-2">
-          <input
-            className={`border-2 border-pink-500 h-10 w-64 rounded-lg outline-none pl-2 hidden lg:block caret-pink-500`}
-            placeholder="Search your products here..."
-            onFocus={() => setFocus(true)}
-            onBlur={() => setTimeout(() => setFocus(false), 150)}
-            value={searchTerm}
-            onKeyDown={handleKeyDown}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          ></input>
-          <img
-            src={searchIcon}
-            alt=""
-            width={"25px"}
-            height={"15px"}
-            className="cursor-pointer"
-          />
-        </div>
-
-        <div className="absolute right-52 top-14 z-50">
-          <ul className="flex flex-col gap-1 bg-gray-100 p-2 rounded-xl">
-            {focus &&
-              filteredData.length > 0 &&
-              filteredData.slice(0, 9).map((item, index) => (
-                <div
-                  className="w-72 border-1 border-pink-600 hover:border-pink-500 "
-                  key={index}
-                  onClick={() => {
-                    navigate(`/product/${item.id}`);
-                    if (!focus) setSearchTerm("");
-                  }}
-                >
-                  <button
-                    className={`text-pink-500 h-10 border-2 border-pink-500 w-full rounded-lg hover:text-white hover:bg-pink-300 ${
-                      selectedIndex === index ? "bg-pink-500 text-white" : ""
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                </div>
-              ))}
-          </ul>
-        </div>
-
-        {/* Right - Auth / Profile */}
-        <div className="flex items-center gap-4">
-          {loggedIn ? (
-            <Link to="/profile">
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-pink-600">
-                <img
-                  src={user?.profileImage}
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </Link>
-          ) : (
-            <div className="text-pink-600 font-semibold space-x-2">
-              <Link to="/login">
-                <button className="hover:underline">Login</button>
-              </Link>
-              /
-              <Link to="/signin">
-                <button className="hover:underline">SignUp</button>
-              </Link>
+        <div className="hidden md:flex gap-5 items-center justify-center">
+          <div className="relative  lg:block">
+            <div className="flex gap-2">
+              <input
+                className={`border-2 border-pink-500 h-10  md:w-64 rounded-lg outline-none pl-2 ${searchView?"":"hidden"} lg:block caret-pink-500`}  // if the search view is true then the input will visibel else it will be hidden 
+                placeholder="Search your products here..."
+                onFocus={() => setFocus(true)}
+                onBlur={() => setTimeout(() => setFocus(false), 150)}
+                value={searchTerm}
+                onKeyDown={handleKeyDown}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              ></input>
+              <img
+                src={searchIcon}
+                alt=""
+                width={"25px"}
+                height={"15px"}
+                className="cursor-pointer"
+                onClick={()=>setSearchView(!searchView)}
+              />
             </div>
-          )}
+
+            {/* // rendering the filtered data from the search Input */}
+
+            <div className="absolute flex items-center justify-center md:block right-1  z-50">
+              <ul
+                className={`flex flex-col gap-1 bg-gray-100 p-2 rounded-xl list-none ${
+                  !focus ? "hidden" : ""
+                }`}
+              >
+                {focus &&
+                  filteredData.length > 0 &&
+                  filteredData.slice(0, 9).map((item, index) => (
+                    <div
+                      className="w-72 border-1 border-pink-600 hover:border-pink-500 "
+                      key={index}
+                      onClick={() => {
+                        navigate(`/product/${item.id}`);
+                        if (!focus) setSearchTerm("");
+                      }}
+                    >
+                      <button
+                        className={`text-pink-500 h-10 border-2 border-pink-500 w-full rounded-lg hover:text-white hover:bg-pink-300 ${
+                          selectedIndex === index
+                            ? "bg-pink-500 text-white"
+                            : ""
+                        }`}
+                      >
+                        {item.name}
+                      </button>
+                    </div>
+                  ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Right - Auth / Profile */}
+          <div className="flex items-center gap-4">
+            {loggedIn ? (
+              <Link to="/profile">
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-pink-600">
+                  <img
+                    src={user?.profileImage}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </Link>
+            ) : (
+              <div className="text-pink-600 font-semibold space-x-2">
+                <Link to="/login">
+                  <button className="hover:underline">Login</button>
+                </Link>
+                /
+                <Link to="/signin">
+                  <button className="hover:underline">SignUp</button>
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

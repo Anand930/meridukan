@@ -28,13 +28,13 @@ const SaleHistory = () => {
   return (
     <div>
       <Navbar />
-      <table className="table-auto border-collapse w-full md:w-3/4 mx-auto my-4 text-center border border-pink-500">
+      <table className="table-auto border-collapse w-10/12 md:w-3/4 mx-auto my-4 text-center border border-pink-500">
         <thead className="bg-pink-400">
           <tr>
-            <th className="border border-pink-500 p-2 text-white">Product ID</th>
+            <th className="border border-pink-500 p-2 text-white">Product Name</th>
             <th className="border border-pink-500 p-2 text-white">Quantity</th>
-            <th className="border border-pink-500 p-2 text-white">Sale Date</th>
-            <th className="border border-pink-500 p-2 text-white">Sale Time</th>
+            <th className="border border-pink-500 p-2 hidden md:block text-white">Sale Date</th>
+            <th className="border border-pink-500 p-2 hidden md:block text-white">Sale Time</th>
             <th className="border border-pink-500 p-2 text-white">Selling Price</th>
             <th className="border border-pink-500 p-2 text-white">Total Value</th>
           </tr>
@@ -48,10 +48,10 @@ const SaleHistory = () => {
               <td className="border border-pink-500 p-2">
                 {product?.quantity}
               </td>
-              <td className="border border-pink-500 p-2">
+              <td className="border hidden border-pink-500 md:block p-2">
                 {new Date(product?.saleDate).toISOString().split("T")[0]}
               </td>
-              <td className="border border-pink-500 p-2">
+              <td className="border hidden md:block border-pink-500 p-2">
                 {
                   new Date(product?.saleDate)
                     .toLocaleString("en-IN", {
