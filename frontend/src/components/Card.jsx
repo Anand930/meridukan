@@ -11,7 +11,7 @@ const Card = ({ item }) => {
 
   return (
     <div
-      className="card bg-base-100 w-80 shadow-md border border-pink-300 m-4 cursor-pointer hover:shadow-xl transition hover:bg-pink-300 "
+      className="card bg-white w-80 shadow-md border border-pink-300 m-4 cursor-pointer hover:shadow-xl transition hover:bg-pink-300 "
       onClick={handleCardOnClick}
     >
       <figure className="w-full h-48 overflow-hidden flex items-center justify-center hover:bg-pink-300">

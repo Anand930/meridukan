@@ -151,12 +151,12 @@ const Navbar = () => {
             >
               <Link to={"/payamount"}>PayAmount</Link>
             </li>
-            <li
+            {/* <li
               tabIndex={0}
               className={`btn  outline-none bg-transparent border-none shadow-none ${navLinkStyle} py-0`}
             >
               <Link to={"/analytics"}>Analytics</Link>
-            </li>
+            </li> */}
           </div>
         </>
       )}
@@ -191,7 +191,7 @@ const Navbar = () => {
 
             {/* Mobile Devices Navilinks */}
             {isMenuOpen && (
-              <ul className="relative mt-2 z-50 bg-white shadow-lg rounded-lg p-3 w-42 space-y-2 flex lg:block flex-col md:dropdown-bottom dropdown-right">
+              <ul className="absolute mt-2 z-50 bg-white shadow-lg rounded-lg p-3 w-42 space-y-2 flex lg:block flex-col md:dropdown-bottom dropdown-right">
                 {navLinks}
               </ul>
             )}
@@ -199,7 +199,7 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link to="/" className={`text-2xl font-extrabold tracking-wide sm:block ${searchView?"hidden":""}` }>
-            MERI <span className="text-pink-600">DUKAN</span>
+            <span className="text-slate-400">MERI</span> <span className="text-pink-600">DUKAN</span>
           </Link>  
 
           {/* this link will be hidden if the search view is opened */}
@@ -209,11 +209,11 @@ const Navbar = () => {
         <ul className="hidden lg:flex gap-6 items-center text-lg font-medium ">
           {navLinks}
         </ul>
-        <div className="hidden md:flex gap-5 items-center justify-center">
+        <div className="flex gap-5 items-center justify-center">
           <div className="relative  lg:block">
             <div className="flex gap-2">
               <input
-                className={`border-2 border-pink-500 h-10  md:w-64 rounded-lg outline-none pl-2 ${searchView?"":"hidden"} lg:block caret-pink-500`}  // if the search view is true then the input will visibel else it will be hidden 
+                className={`border-2 bg-white border-pink-500 h-10  md:w-64 rounded-lg outline-none pl-2 ${searchView?"":"hidden"} lg:block caret-pink-500`}  // if the search view is true then the input will visibel else it will be hidden 
                 placeholder="Search your products here..."
                 onFocus={() => setFocus(true)}
                 onBlur={() => setTimeout(() => setFocus(false), 150)}

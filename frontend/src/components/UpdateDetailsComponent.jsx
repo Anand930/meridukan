@@ -14,9 +14,6 @@ const UpdateDetailsComponents = ({
   const { products, handleProduct } = useContext(UserContext);
   const [updatedValue, setUpdatedValue] = useState("");
 
-  
-  
-
   const handleUpdateDetails = async () => {
     const formData = { productName, updatedValue };
 
@@ -42,11 +39,16 @@ const UpdateDetailsComponents = ({
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      
       const productToGet = products.find((item) => item.name === productName);
       setProduct(productToGet);
     }
   };
+
+  const handleUpdateButtonClick = () => {
+    const productToGet = products.find((item) => item.name === productName);
+    setProduct(productToGet);
+  };
+
   useEffect(() => {
     handleProduct();
   }, []);
@@ -67,12 +69,20 @@ const UpdateDetailsComponents = ({
             <p className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg">
               Product Name
             </p>
-            <input
-              className="w-1/2 min-h-14 border-2 outline-none border-pink-500 text-center flex items-center justify-center rounded-lg"
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
-              onKeyDown={handleKeyDown}
-            ></input>
+            <div className="w-1/2 flex">
+              <input
+                className="w-full min-h-14 border-2 outline-none border-pink-500 text-center flex items-center justify-center rounded-l-lg lg:rounded-lg"
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+              <button
+                onClick={handleUpdateButtonClick}
+                className=" lg:hidden px-1 min-h-14 bg-pink-500 text-white rounded-r-lg  hover:bg-pink-600"
+              >
+                click
+              </button>
+            </div>
           </div>
           {/* {UpdatingFieldNameInDB ==='descripition'&&<div className="flex mt-3">
             <p className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg ">
