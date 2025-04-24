@@ -265,7 +265,8 @@ const updateProduct = {
 
 const getProduct = async (req, res) => {
   try {
-    const accessToken = req.headers.split(" ")
+    const token = req.headers.authorization.split(" ")[1]
+    const user = jwt.decode(token)
     const products = await Product.find({createdBy:user._id});
     res.status(201).json({ message: "product fetched", products });
   } catch (error) {
