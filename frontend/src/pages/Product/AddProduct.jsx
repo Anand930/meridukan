@@ -68,7 +68,7 @@ const AddProduct = () => {
     formDataToSend.append("productImage", productImage);
 
     try {
-      const response = await fetchWithAuth("/api/product/addproduct", {
+      const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/apiproduct/addproduct", {
         method: "POST",
         body: formDataToSend, // No need to stringify FormData
       });
