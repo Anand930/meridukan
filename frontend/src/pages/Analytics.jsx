@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 
 const Analytics = () => {
   return (
-    <div>
+    <div className="bg-gray-50">
       <Navbar />
       <p>Dashboard</p>
     </div>

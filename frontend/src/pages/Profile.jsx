@@ -42,7 +42,7 @@ const Profile = () => {
 
   
   return (
-    <div>
+    <div className="bg-gray-50">
       <Navbar />
       <Toaster/>
       <div className="text-center flex items-center justify-center flex-col">

@@ -5,7 +5,7 @@ import CustomUpdateCard from "../components/CustomUpdateCard";
 
 const UpdateProduct = () => {
   return (
-    <div>
+    <div className="bg-gray-50">
       <Navbar />
       <div className="lg:mx-20 mx-2">
         <div className="flex justify-start items-center mt-6 text-2xl font-bold text-pink-600 cursor-pointer">

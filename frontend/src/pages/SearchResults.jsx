@@ -8,7 +8,7 @@ const SearchResults = () => {
   const { filteredData, searchTerm } = useContext(SearchContext);
 
   return (
-    <div>
+    <div className="bg-gray-50">
       <Navbar />
       <div className="my-5 ">
         <p className="text-bold text-3xl px-10 text-pink-500">

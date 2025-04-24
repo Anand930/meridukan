@@ -13,7 +13,7 @@ const ListCustomer = () => {
   }, [products]);
 
   return (
-    <div>
+    <div className="bg-gray-50">
       <Navbar />
       <div>
         <p className="font-bold md:text-3xl text-xl text-pink-600 text-center md:flex items-center justify-center my-8 underline">

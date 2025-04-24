@@ -39,7 +39,7 @@ const Product = () => {
 
   },[products])
   return (
-    <div>
+    <div className="bg-gray-50">
       <Navbar />
       <div className="md:mx-10 md:my-5 my-2 mx-2">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-col-5 gap-4 md:h-5/6 lg:h-3/4 sm:grid-cols-2 grid-cols-1 ">

@@ -131,7 +131,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className={`dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-52 absolute ${navLinkStyle} `}
+              className={`dropdown-content z-[1] menu bg-gray-50 shadow  rounded-box w-52 absolute ${navLinkStyle} `}
             >
               <li className="hover:bg-pink-300 rounded-lg hover:text-white">
                 <Link to="/product">List Product</Link>
