@@ -265,7 +265,8 @@ const updateProduct = {
 
 const getProduct = async (req, res) => {
   try {
-    const products = await Product.find({});
+    const accessToken = req.headers.split(" ")
+    const products = await Product.find({createdBy:user._id});
     res.status(201).json({ message: "product fetched", products });
   } catch (error) {
     return res

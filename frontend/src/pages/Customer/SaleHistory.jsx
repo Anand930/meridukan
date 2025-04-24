@@ -3,17 +3,32 @@ import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { CustomerContext } from "../../context/CustomerContext";
 import { UserContext } from "../../context/UserContext";
+import toast from "react-hot-toast";
 
 const SaleHistory = () => {
   const { name } = useParams();
   const { products } = useContext(UserContext);
   const { handleListCustomer, customers } = useContext(CustomerContext);
-  const selectedCustomer = customers.find((c) => c.name === name);
+  const [selectedCustomer, setSelectedCustomer] = useState(null)
   const [productSellingPrice, setProductSellingPrice] = useState([]);
 
   useEffect(() => {
     handleListCustomer();
   }, []);
+
+  useEffect(()=>{
+    if(customers.length>0){
+      if(!name){
+        console.log("name: ",name);
+        
+        toast.error("name param is not accessible")
+      }
+      const found = customers.find((c)=> c.name===name)
+      setSelectedCustomer(found)
+    }
+  },[customers,name])
+
+
   useEffect(() => {
     if (selectedCustomer && products?.length > 0) {
       const prices = selectedCustomer.saleHistory.map((item) =>
@@ -29,12 +44,12 @@ const SaleHistory = () => {
     <div>
       <Navbar />
       <table className="table-auto border-collapse w-10/12 md:w-3/4 mx-auto my-4 text-center border border-pink-500">
-        <thead className="bg-pink-400">
+        <thead className="bg-pink-400 ">
           <tr>
             <th className="border border-pink-500 p-2 text-white">Product Name</th>
             <th className="border border-pink-500 p-2 text-white">Quantity</th>
-            <th className="border border-pink-500 p-2 hidden md:block text-white">Sale Date</th>
-            <th className="border border-pink-500 p-2 hidden md:block text-white">Sale Time</th>
+            <th className="border border-pink-500 p-2  text-white">Sale Date</th>
+            <th className="border border-pink-500 p-2  text-white">Sale Time</th>
             <th className="border border-pink-500 p-2 text-white">Selling Price</th>
             <th className="border border-pink-500 p-2 text-white">Total Value</th>
           </tr>
@@ -48,10 +63,10 @@ const SaleHistory = () => {
               <td className="border border-pink-500 p-2">
                 {product?.quantity}
               </td>
-              <td className="border hidden border-pink-500 md:block p-2">
+              <td className="border  border-pink-500 md:block p-2">
                 {new Date(product?.saleDate).toISOString().split("T")[0]}
               </td>
-              <td className="border hidden md:block border-pink-500 p-2">
+              <td className="border border-pink-500 p-2">
                 {
                   new Date(product?.saleDate)
                     .toLocaleString("en-IN", {
