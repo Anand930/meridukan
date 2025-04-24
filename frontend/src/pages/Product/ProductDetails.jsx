@@ -100,7 +100,7 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <div className="bg-gray-50 min-h-full min-h-full">
+    <div className="bg-gray-50 min-h-full">
       <Navbar />
       <Toaster />
 
