@@ -8,7 +8,7 @@ import { SearchContext } from "../context/SearchContext";
 
 const Home = () => {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50  min-h-full">
       <Navbar />
       <Hero />
       <ProductSlide categoryName={"Snacks"} />

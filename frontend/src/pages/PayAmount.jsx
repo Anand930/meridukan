@@ -52,7 +52,7 @@ const PayAmount = () => {
   }));
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 min-h-full">
       <Navbar />
       <Toaster position="bottom-right" />
 

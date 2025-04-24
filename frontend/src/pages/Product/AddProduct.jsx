@@ -108,7 +108,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 min-h-full">
       {loading&& <Spinner/>}
       <Navbar />
       <Toaster />
