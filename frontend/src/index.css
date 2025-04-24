@@ -5,4 +5,8 @@
 .swiper-button-disabled {
     @apply opacity-0 pointer-events-none;
   }
+
+  body {
+    @apply bg-gray-50; /* change to your preferred Tailwind class */
+  }
   

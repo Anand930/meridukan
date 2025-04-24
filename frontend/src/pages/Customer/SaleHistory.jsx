@@ -41,7 +41,7 @@ const SaleHistory = () => {
   console.log(productSellingPrice);
 
   return (
-    <div className="bg-gray-50 min-h-full">
+    <div className="bg-gray-50 min-h-screen">
       <Navbar />
       <table className="table-auto border-collapse w-10/12 md:w-3/4 mx-auto my-4 text-center border border-pink-500">
         <thead className="bg-pink-400 ">

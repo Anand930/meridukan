@@ -68,7 +68,7 @@ const AddProduct = () => {
     formDataToSend.append("productImage", productImage);
 
     try {
-      const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/addproduct", {
+      const response = await fetchWithAuth("/api/product/addproduct", {
         method: "POST",
         body: formDataToSend, // No need to stringify FormData
       });
@@ -108,7 +108,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-full">
+    <div className="bg-gray-50 min-h-screen">
       {loading&& <Spinner/>}
       <Navbar />
       <Toaster />

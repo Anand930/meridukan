@@ -49,7 +49,7 @@ const CustomUpdateCard = () => {
     try {
       console.log(requiredProductToUpdate);
       
-      const response = await fetchWithAuth('https://curved-jeniffer-anandsharma-521f7f2a.koyeb.apphttps://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/updateproduct/updatewholeproduct',{
+      const response = await fetchWithAuth('/api/product/updateproduct/updatewholeproduct',{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
@@ -83,7 +83,7 @@ const CustomUpdateCard = () => {
       <div className="mx-2 my-2 md:flex gap-5 justify-center ">
         <div className="w-full flex item-center justify-center my-0 md:w-3/5 lg:w-2/5  border-2 border-pink-500 rounded-xl lg:h-[725px] ">
           <img
-            className="px-10 py-10 w-full h-full object-contain"
+            className="px-10 py-10 w-full h-screen object-contain"
             src={requiredProductToUpdate?.productImage}
             name='productImage'
             alt=""

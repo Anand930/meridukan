@@ -10,7 +10,7 @@ const ProductDetailsCard = ({product,  customerNameList, handleSaleProduct, quan
       <div className="mx-2 my-2 md:flex gap-5 justify-center ">
         <div className="w-full flex item-center justify-center my-0 md:w-3/5 lg:w-2/5  border-2 border-pink-500 rounded-xl lg:h-[725px] ">
           <img
-            className="px-10 py-10 w-full h-full object-contain"
+            className="px-10 py-10 w-full h-screen object-contain"
             src={product?.productImage}
             alt=""
           />
@@ -33,10 +33,10 @@ const ProductDetailsCard = ({product,  customerNameList, handleSaleProduct, quan
             </p>
           </div>
           <div className="flex mt-3">
-            <p className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg ">
+            <p className="w-1/2 min-h-14 border-2 border-pink-500  text-center flex items-center justify-center rounded-lg ">
               Cost price
             </p>
-            <input className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg"
+            <input className="w-1/2 min-h-14 border-2 border-pink-500 bg-gray-50 text-center flex items-center justify-center rounded-lg"
             value={product?.costPrice}
             readOnly>
             </input>
@@ -45,7 +45,7 @@ const ProductDetailsCard = ({product,  customerNameList, handleSaleProduct, quan
             <p className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg ">
               Selling price
             </p>
-            <input className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg"
+            <input className="w-1/2 min-h-14 border-2 border-pink-500 text-center bg-gray-50 flex items-center justify-center rounded-lg"
             value={product?.sellingPrice}
             readOnly
             >
@@ -56,16 +56,16 @@ const ProductDetailsCard = ({product,  customerNameList, handleSaleProduct, quan
             <p className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg ">
               Available Quantity
             </p>
-            <input className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg"
+            <input className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex bg-gray-50 items-center justify-center rounded-lg"
             value={product?.availableQuantity}
             readOnly>
             </input>
           </div>
           <div className="flex mt-3">
-            <p className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg ">
+            <p className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex bg-gray-50 items-center justify-center rounded-lg ">
               Expiry Date
             </p>
-            <input className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg"
+            <input className="w-1/2 min-h-14 border-2 border-pink-500 text-center bg-gray-50 flex items-center justify-center rounded-lg"
             type="Date"
             value={FormatedDate}
             readOnly>
@@ -76,7 +76,7 @@ const ProductDetailsCard = ({product,  customerNameList, handleSaleProduct, quan
               Quantity to sell
             </p>
             <input
-              className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg outline-none"
+              className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex bg-gray-50 items-center justify-center rounded-lg outline-none"
               type="number"
               value={quantityToSale}
               onChange={(e)=>{setQuantityToSale(e.target.value)}}
@@ -87,7 +87,7 @@ const ProductDetailsCard = ({product,  customerNameList, handleSaleProduct, quan
               Customer to sell
             </p>
             <select
-              className="outline-none min-h-14  border-2 border-pink-500 flex items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
+              className="outline-none min-h-14  border-2 border-pink-500 flex bg-gray-50 items-center justify-center md:h-10 h-16 md:w-3/4 w-2/3 text-center"
               value={selectedCustomer}
               onChange={(e)=>setSelectedCustomer(e.target.value)}
             >
@@ -110,7 +110,7 @@ const ProductDetailsCard = ({product,  customerNameList, handleSaleProduct, quan
             </select>
           </div>
 
-          <button onClick={handleSaleProduct} className="btn w-full border-2 border-pink-500 text-center flex items-center justify-center rounded-lg mt-8 h-40 text-4xl text-pink-600 hover:bg-pink-600 hover:text-white">
+          <button onClick={handleSaleProduct} className="btn w-full border-2 bg-gray-50 border-pink-500 text-center flex items-center justify-center rounded-lg mt-8 h-40 text-4xl text-pink-600 hover:bg-pink-600 hover:text-white">
             Click Here to Sell it 
           </button>
         </div>

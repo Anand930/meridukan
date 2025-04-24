@@ -13,9 +13,9 @@ const ListCustomer = () => {
   }, [products]);
 
   return (
-    <div className="bg-gray-50 min-h-full">
+    <div className="bg-white min-h-screen">
       <Navbar />
-      <div>
+      <div className="h-screen bg-gray-50">
         <p className="font-bold md:text-3xl text-xl text-pink-600 text-center md:flex items-center justify-center my-8 underline">
           Customer name and their overdues{" "}
           <Link to="/payamount">

@@ -21,7 +21,7 @@ const Profile = () => {
     try {
 
       const response = await fetchWithAuth(
-        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/logout",
+        "/api/user/logout",
         {
           method: "POST",
           credentials: "include",
@@ -42,7 +42,7 @@ const Profile = () => {
 
   
   return (
-    <div className="bg-gray-50 min-h-full">
+    <div className="bg-gray-50 min-h-screen">
       <Navbar />
       <Toaster/>
       <div className="text-center flex items-center justify-center flex-col">
@@ -53,12 +53,12 @@ const Profile = () => {
         </div>
         <div className="my-8 md:w-1/2 w-6/7 mx-2 md:mx-auto">
           <div className="flex items-center justify-center ">
-            <div className="border-2 border-pink-500 w-1/4">FullName</div>
+            <div className="border-2 border-pink-500  w-1/4">FullName</div>
             <input
               type="text"
               readOnly
               value={user?.fullname}
-              className="outline-none border-2 border-pink-500 w-3/4 text-center"
+              className="outline-none border-2 bg-gray-50 border-pink-500 w-3/4 text-center"
             />
           </div>
 
@@ -69,7 +69,7 @@ const Profile = () => {
               readOnly={!Editable}
               value={user?.email}
               onChange={(e) => setEmail(e.target.email)}
-              className="outline-none border-2 border-pink-500 w-3/4 text-center"
+              className="outline-none border-2 border-pink-500 w-3/4 bg-gray-50 text-center"
             />
           </div>
           <div className="flex items-center justify-center">
@@ -79,7 +79,7 @@ const Profile = () => {
               readOnly={!Editable}
               value={user?.username}
               onChange={(e) => setUsername(e.target.Username)}
-              className="outline-none border-2 border-pink-500 w-3/4 text-center"
+              className="outline-none border-2 border-pink-500 w-3/4 bg-gray-50 text-center"
             />
           </div>
           <div className="flex items-center justify-between mx-2 my-5 gap-5 ">

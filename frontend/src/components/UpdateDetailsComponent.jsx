@@ -19,7 +19,7 @@ const UpdateDetailsComponents = ({
 
     try {
       const response = await fetchWithAuth(
-        `https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/updateproduct/${apiRoute}`,
+        `/api/product/updateproduct/${apiRoute}`,
         {
           method: "POST",
           headers: {
@@ -53,13 +53,13 @@ const UpdateDetailsComponents = ({
     handleProduct();
   }, []);
   return (
-    <div>
+    <div className="bg-gray-50">
       <Navbar />
       <Toaster />
       <div className="mx-2 my-2 md:flex gap-5 justify-center ">
         <div className="w-full flex item-center justify-center my-0 md:w-3/5 lg:w-2/5  border-2 border-pink-500 rounded-xl lg:h-[725px] ">
           <img
-            className="px-10 py-10 w-full h-full object-contain"
+            className="px-10 py-10 w-full h-screen object-contain"
             src={product?.productImage}
             alt=""
           />
@@ -71,7 +71,7 @@ const UpdateDetailsComponents = ({
             </p>
             <div className="w-1/2 flex">
               <input
-                className="w-full min-h-14 border-2 outline-none border-pink-500 text-center flex items-center justify-center rounded-l-lg lg:rounded-lg"
+                className="w-full min-h-14 border-2 outline-none bg-gray-50 border-pink-500 text-center flex items-center justify-center rounded-l-lg lg:rounded-lg"
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -93,11 +93,11 @@ const UpdateDetailsComponents = ({
             </p>
           </div>} */}
           <div className="flex mt-3">
-            <p className="w-1/2 min-h-14 border-2 border-pink-500 text-center flex items-center justify-center rounded-lg ">
+            <p className="w-1/2 min-h-14 border-2 border-pink-500 text-center  flex items-center justify-center rounded-lg ">
               {updatedField}
             </p>
             <input
-              className="w-1/2 min-h-14 border-2 outline-none border-pink-500 text-center flex items-center justify-center rounded-lg"
+              className="w-1/2 min-h-14 border-2 outline-none border-pink-500 text-center bg-gray-50 flex items-center justify-center rounded-lg"
               value={product?.[UpdatingFieldNameInDB]}
               readOnly
             ></input>
@@ -117,7 +117,7 @@ const UpdateDetailsComponents = ({
               Updated {updatedField}
             </p>
             <input
-              className="w-1/2 min-h-14 border-2 outline-none border-pink-500 text-center flex items-center justify-center rounded-lg"
+              className="w-1/2 min-h-14 border-2 outline-none border-pink-500 bg-gray-50 text-center flex items-center justify-center rounded-lg"
               value={updatedValue}
               onChange={(e) => setUpdatedValue(e.target.value)}
             ></input>

@@ -13,7 +13,7 @@ const Categories = () => {
         return Categories
     })
     return (
-        <div className='bg-gray-50 min-h-full'>
+        <div className='bg-gray-50 min-h-screen'>
             <Navbar />
             <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 py-2 px-5 gap-2 '>
                 {Categories.map((categ, i) => (

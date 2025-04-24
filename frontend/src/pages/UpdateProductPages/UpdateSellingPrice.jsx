@@ -3,7 +3,7 @@ import UpdateDetailsComponents from "../../components/UpdateDetailsComponent";
 
 const UpdateSellingPrice = () => {
   return (
-    <div className="bg-gray-50 min-h-full">
+    <div className="bg-gray-50 min-h-screen">
       <UpdateDetailsComponents apiRoute={'updatesellingprice'} updatedField={'selling price'} UpdatingFieldNameInDB={'sellingPrice'} />
     </div>
   );

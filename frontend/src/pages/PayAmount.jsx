@@ -35,7 +35,7 @@ const PayAmount = () => {
       name: selectedCustomer.value, // Get name from selected option
     };
 
-    const response = await fetchWithAuth("https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/customer/setdueamount", {
+    const response = await fetchWithAuth("/api/customer/setdueamount", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -52,7 +52,7 @@ const PayAmount = () => {
   }));
 
   return (
-    <div className="bg-gray-50 min-h-full">
+    <div className="bg-gray-50 min-h-screen">
       <Navbar />
       <Toaster position="bottom-right" />
 
@@ -81,7 +81,7 @@ const PayAmount = () => {
         </div>
 
         <input
-          className="border-2 border-pink-500 md:w-1/4 w-full h-10 px-2 text-sm text-center outline-none"
+          className="border-2 border-pink-500 md:w-1/4 w-full bg-gray-50 h-10 px-2 text-sm text-center outline-none"
           type="text"
           value={paidAmount}
           onChange={(e) => setPaidAmount(e.target.value)}
