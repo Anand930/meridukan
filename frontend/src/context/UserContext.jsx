@@ -17,7 +17,7 @@ const UserProvider = ({ children }) => {
   const handleProduct = async () => {
     try {
       const response = await fetchWithAuth(
-        "/api/product/getproduct"
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/product/getproduct"
       );
       setLoading(true)
       
@@ -45,7 +45,7 @@ const UserProvider = ({ children }) => {
     try {
 
       const response = await fetchWithAuth(
-        "/api/user/logout",
+        "https://curved-jeniffer-anandsharma-521f7f2a.koyeb.app/api/user/logout",
         {
           method: "POST",
           credentials: "include",
